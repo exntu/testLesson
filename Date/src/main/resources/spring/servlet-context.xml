@@ -53,5 +53,27 @@
     	<beans:property name="useDefaultSuffixPattern" value="false" />
 	</beans:bean>
 	
+	
+	<interceptors>
+		<interceptor>
+			<!-- 모든 URL은 인터셉터 대상이됨 -->
+			<mapping path="/**" />
+			<!-- Root(/)는 인터셉터 제외 -->
+			<exclude-mapping path="/" />
+			<!-- 에러 페이지는 인터셉터 제외 -->
+			<exclude-mapping path="/error/**" />
+			<!-- 로그인 페이지는 인터셉터 제외 -->
+			<exclude-mapping path="/login**" />
+			<!-- 가입신청 페이지는 인터셉터 제외 -->
+			<exclude-mapping path="/join/**" />
+			<!-- 서비스 경로는 인터셉터 제외 -->
+			<exclude-mapping path="/service**" /> 
+			<!-- Resource 경로는 인터셉터 제외 -->
+			<exclude-mapping path="/resource/**" />
+			<!-- 프론트 인터셉터 -->
+            <beans:bean class="com.skt.date.common.DateInterceptor"></beans:bean>
+        </interceptor>
+	</interceptors>
+	
 </beans:beans>
 	
