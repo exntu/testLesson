@@ -12,7 +12,5 @@ public interface ProfileService {
 
 	public void updateProfile(ProfileVo vo);
 	
-	public boolean UploadProfile(UploadVo vo);
-	
-	public String upload(MultipartFile uploadfile);
+	public boolean uploadProfile(UploadVo vo);
 }

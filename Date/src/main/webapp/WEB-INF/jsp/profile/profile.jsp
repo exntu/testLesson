@@ -5,9 +5,6 @@
 <html ng-app="App">
 <head>
 <title>업로드화면</title>
-<script>
-	var ctx="${_ctx}";	
-</script>
 
 	<%-- 공통 Variable & CSS & JS --%>
 	<%@ include file="/WEB-INF/jsp/common/common.jsp" %>
@@ -39,7 +36,14 @@
 
 </head>
 <body class="sample-body" ng-controller="AppController">
-	
+<%-- 	<span class="sk-user-photo">
+		<img id="imgProfile" src="${_ctx}/service/my/profile" style="width:144px; height:144px;" alt="user photo">
+	</span> --%>
+	<button ngf-select ngf-change="uploadPhoto($files)" class="btn btn-block btn-secondary btn-icon btn-icon-standalone sk-primary">
+		<i class="fa-picture-o"></i>
+		<span>사진 올리기</span>
+	</button>
+	<!-- 
  	<div class="container" >
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -49,8 +53,7 @@
 							<label>파일</label> <input type="file"
 								ng-file-select="onFileSelect2($files)">
 						</div>
-						<button type="button" class="btn btn-default" ng-click="send()"
-							ng-disabled="selectedFile == undefined">button</button>
+						<button type="button"  ng-click="send()">button</button>
 					</form>
 					<br>
 					<div>{{ successMsg }}</div>
@@ -58,7 +61,7 @@
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>  -->
 
 
 </body>

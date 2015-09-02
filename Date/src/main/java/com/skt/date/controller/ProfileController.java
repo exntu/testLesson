@@ -63,21 +63,31 @@ public class ProfileController extends AbstractBaseController {
 	public ModelAndView profileUpload(
 			HttpServletRequest request,
 			HttpServletResponse response,
-			@ModelAttribute UploadVo UploadVo ) throws Exception {
+			@ModelAttribute UploadVo vo ) throws Exception {
 		
 		//////////////////////////////////////////////////
 		//
 		// ModelAndView 반환
 		//
 		//////////////////////////////////////////////////
+		String result="FAIL";
+		if(profileservice.uploadProfile(vo)){
+			result="SUCCESS";
+		}
 		
+
 		ModelAndView model = new ModelAndView();
-		Boolean repp=profileservice.UploadProfile(UploadVo);
+		
+		model.setViewName("/profile/profile");
+		//model.addObject("jsonView");
+		
+
+/*		Boolean repp=profileservice.UploadProfile(UploadVo);
 		
 		model.addObject("repp",repp);
 		
 		// JSP포워드
-		model.setViewName(Path.PROFILE_JSP);
+		model.setViewName(Path.PROFILE_JSP);*/
 		
 		return model;
 	}
