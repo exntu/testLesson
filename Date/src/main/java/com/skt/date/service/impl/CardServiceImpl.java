@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.skt.date.repository.CardRepository;
 import com.skt.date.service.CardService;
 import com.skt.date.vo.CardVo;
+import com.skt.date.vo.PeopleVo;
 
 @Service
 public class CardServiceImpl implements CardService {
@@ -21,8 +22,8 @@ public class CardServiceImpl implements CardService {
 		
 		return result;
 	}
-	public List<CardVo> selectAllCard(){ //모든카드 조회
-		List<CardVo> result=cardrepository.selectAllCard();
+	public List<PeopleVo> selectAllCard(){ //모든카드 조회
+		List<PeopleVo> result=cardrepository.selectAllCard();
 		
 		return result;
 				

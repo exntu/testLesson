@@ -10,34 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.skt.date.repository.CardRepository;
 import com.skt.date.vo.CardVo;
+import com.skt.date.vo.PeopleVo;
 @Repository
 public class CardRepositoryImpl implements CardRepository {
 
 
-	public List<CardVo> selectAllCard(){ //모든카드 조회
-		
-		List<CardVo> result=new ArrayList<CardVo>();
-		
-		CardVo vo1 =new CardVo();
-		
-		vo1.setName("나남자");
-		vo1.setJob("기사");
-		vo1.setAge("29");
-		vo1.setSex('m');
-		
-		CardVo vo2 =new CardVo();
-		
-		vo2.setName("이상진");
-		vo2.setJob("건축가");
-		vo2.setAge("45");
-		vo2.setSex('m');
-		
-		
-		result.add(vo1);
-		result.add(vo2);
-		return result;
-	}
-	
 	public List<CardVo> selectTodayCard(CardVo vo){ //오늘의 카드 조회
 		List<CardVo> result=new ArrayList<CardVo>();
 	
@@ -69,6 +46,16 @@ public class CardRepositoryImpl implements CardRepository {
 	
 	public List<CardVo> selectPopular(CardVo vo){ //인기있는사람 카드 조회
 		List<CardVo> result=new ArrayList<CardVo>();
+		return result;
+	}
+	
+	public List<PeopleVo> selectAllCard() { //모든카드(랜덤) 조회
+		
+		PeopleRepositoryImpl pe=new PeopleRepositoryImpl();
+		
+		
+		List<PeopleVo> result=pe.createPeople(1);
+
 		return result;
 	}
 	
