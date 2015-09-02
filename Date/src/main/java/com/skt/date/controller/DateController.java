@@ -44,9 +44,6 @@ public class DateController {
 	@Autowired
 	private QuestionService questionservice;
 	
-	@Autowired
-	private UserService userservice;
-	
 	
 	@RequestMapping(value={"/sample"}, method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response){
@@ -140,21 +137,6 @@ public class DateController {
 		
 		model.addObject("repp",repp);
 		model.setViewName("Profile");
-		return model;
-		
-		
-	}
-	
-	@RequestMapping(value={"/user"}, method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView User(HttpServletRequest request,HttpServletResponse response){
-		
-		ModelAndView model=new ModelAndView();
-
-		UserVo vo=new UserVo();
-		UserVo repp=userservice.Join(vo); //유저 조회
-		
-		model.addObject("repp",repp);
-		model.setViewName("User");
 		return model;
 		
 		

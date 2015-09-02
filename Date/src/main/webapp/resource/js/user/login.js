@@ -13,9 +13,9 @@
 	// 유저정보
 	var userVO = {
 		// ID (이메일)
-		id : "adventurez",
+		id : "adventurez@exntu.com",
 		// 비밀번호
-		password : "test1234"
+		pass : "test1234"
 	};
 	
 	
@@ -63,7 +63,7 @@
 	        	//////////////////////////////////////////////////
 	        	
 	        	// ID 체크
-	        	if( !$scope.userVO.id  || $scope.userVO.id == "" ){
+	        	if( !$scope.userVO.email  || $scope.userVO.email == "" ){
 	        		
 	        		// Alert
 	        		_alert.warning("ID를 입력해주세요.");
@@ -71,7 +71,7 @@
 	        	}
 	        	
 	        	// PW 체크
-	        	if( !$scope.userVO.password  || $scope.userVO.password == "" ){
+	        	if( !$scope.userVO.pass  || $scope.userVO.pass == "" ){
 	        		
 	        		// Alert
 	        		_alert.warning("비밀번호를 입력해주세요.");
@@ -90,8 +90,8 @@
 	        		url	 : _ctx + "/service/login",
 	        		// 파라미터
 	        		data : {
-	        			id : $scope.userVO.id.toLowerCase(),
-	    				password : $scope.userVO.password
+	        			email : $scope.userVO.email.toLowerCase(),
+	    				pass : $scope.userVO.pass
 	        		}
 	        	})
 	        	// 성공콜백
@@ -107,6 +107,14 @@
     					else{
     						window.location.href = _ctx + _defaultUrl;
     					}
+    				}
+    				// ID/PW 틀림
+    				else if( data.code == "INVALID" ){
+    					
+    					_loading.hide();
+    					
+    					// Alert
+        				_alert.error("ID/PW를 확인해주세요.");
     				}
     				// 로그인 서비스 실패
     				else{

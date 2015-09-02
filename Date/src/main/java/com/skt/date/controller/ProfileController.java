@@ -1,23 +1,25 @@
-package com.skt.date.vo;
+package com.skt.date.controller;
 
-public class UserVo extends CommonVo{
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+
+@Controller
+public class ProfileController {
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Variables
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
 	
-	/** 아이디(이메일) */
-	private String email;
-	
-	/** 패스워드 */
-	private String pass;
-	
-	/** 성별 */
-	private String gender;
-	
-	/** 닉네임 */
-	private String nickname;
-	
+	private Logger logger = LoggerFactory.getLogger( ProfileController.class );	
+
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Variables
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -33,42 +35,36 @@ public class UserVo extends CommonVo{
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Getter & Setter Method ( DI Method )
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+	
+	/**
+	 * 프로필 수정 페이지
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.PROFILE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView profileCardView(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		
+		// JSP포워드
+		model.setViewName(Path.PROFILE_JSP);
+		
+		return model;
+	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Implement Method
@@ -77,12 +73,6 @@ public class UserVo extends CommonVo{
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Override Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
-	
-
-	@Override
-	public String toString() {
-		return "UserVo [email=" + email + ", pass=" + pass + ", gender=" + gender + ", nickname=" + nickname + "]";
-	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Method
@@ -91,6 +81,5 @@ public class UserVo extends CommonVo{
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-	
 	
 }

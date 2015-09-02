@@ -21,16 +21,30 @@
 <body ng-controller="AppController">
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
-			<form>
+			<form name="loginForm">
 				<div class="form-group">
 					<label for="txtId">ID</label> 
-					<input id="txtId" type="text" class="form-control" placeholder="ID">
+					<input	ng-model="userVO.email" 
+							id="txtId" 
+							type="email" 
+							class="form-control" 
+							placeholder="ID" 
+							required="required">
 				</div>
 				<div class="form-group">
 					<label for="txtPassword">비밀번호</label> 
-					<input id="txtPassword" type="password" class="form-control" placeholder="PW">
+					<input	ng-keyup="$event.keyCode == 13 ? login() : null;" 
+							ng-model="userVO.pass" 
+							id="txtPassword" 
+							type="password" 
+							class="form-control" 
+							placeholder="PW" 
+							required="required">
 				</div>
-				<button type="submit" class="btn btn-default">로그인</button>
+				<button	ng-click="login()" 
+						ng-disabled="loginForm.$invalid" 
+						type="submit" 
+						class="btn btn-default">로그인</button>
 			</form>
 		</div>
 	</div>

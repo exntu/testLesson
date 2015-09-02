@@ -61,13 +61,14 @@
 			<!-- Root(/)는 인터셉터 제외 -->
 			<exclude-mapping path="/" />
 			<!-- 에러 페이지는 인터셉터 제외 -->
+			<exclude-mapping path="/error" />
 			<exclude-mapping path="/error/**" />
 			<!-- 로그인 페이지는 인터셉터 제외 -->
-			<exclude-mapping path="/login**" />
+			<exclude-mapping path="/login" />
 			<!-- 가입신청 페이지는 인터셉터 제외 -->
-			<exclude-mapping path="/join/**" />
+			<exclude-mapping path="/join" />
 			<!-- 서비스 경로는 인터셉터 제외 -->
-			<exclude-mapping path="/service**" /> 
+			<exclude-mapping path="/service/**" /> 
 			<!-- Resource 경로는 인터셉터 제외 -->
 			<exclude-mapping path="/resource/**" />
 			<!-- 프론트 인터셉터 -->

@@ -13,6 +13,41 @@
 	/////////////////////////////////////////////// SELECT /////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	
+	<!-- //////////////////////////////////////////////////
+	//
+	// 유저를 조회한다. (로그인용)
+	//
+	////////////////////////////////////////////////// -->
+	<select id="selectLoginUser" parameterType="UserVo" resultType="UserVo">
+		/* com.skt.date.sql.user.selectUser */
+		SELECT		EMAIL		AS email,
+					PASS		AS pass,
+					GENDER		AS gender,	
+					NICKNAME	AS nickname
+					
+		FROM		T_USER
+		
+		WHERE		EMAIL 	= #{email}
+		AND			PASS	= #{pass}
+	</select>
+	
+	<!-- //////////////////////////////////////////////////
+	//
+	// 유저를 조회한다.
+	//
+	////////////////////////////////////////////////// -->
+	<select id="selectUser" parameterType="UserVo" resultType="UserVo">
+		/* com.skt.date.sql.user.selectUser */
+		SELECT		EMAIL		AS email,
+					PASS		AS pass,
+					GENDER		AS gender,	
+					NICKNAME	AS nickname
+					
+		FROM		T_USER
+		
+		WHERE		EMAIL 	= #{email}
+	</select>
+	
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////// MERGE //////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -26,50 +61,26 @@
 	// 가입신청을 처리한다.
 	//
 	////////////////////////////////////////////////// -->
-	<insert id="insertUser" parameterType="AuthVO">
+	<insert id="insertUser" parameterType="UserVo">
 		<selectKey keyProperty="id" resultType="String" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 		/* com.skt.date.sql.user.insertUser */
 		INSERT INTO T_USER(
-			USER_ID,
-			USER_UUID,
-			OS_UUID,
-			HDP_UUID,
-			USER_NM,
-			USER_EMAIL,
-			ROLE_ID,
-			USER_AUTH_LEVEL_CODE,
-			USER_TYPE_CODE,
-			USER_USE_FL,
-			SERVICE_START_DT,
-			SERVICE_END_DT,
-			JOIN_APPROVAL_CODE,
-			<if test="companyName != null and companyName != ''">BP_COMPANY_NM,</if>
-			<if test="recommenderId != null and recommenderId != ''">SKT_RECOMMEND_ID,</if>
-			SKT_APPROVAL_FL,
+			EMAIL,
+			PASS,
+			GENDER,
+			NICKNAME,
 			CREATED_USER_ID,
 			CREATED_DT,
 			UPDATED_USER_ID,
 			UPDATED_DT
 		)
 		VALUES(
-			#{id},
-			#{password},
-			#{password},
-			#{password},
-			#{name},
 			#{email},
-			#{roleId},
-			#{authLevelCode},
-			#{type},
-			'Y',
-			CURRENT_TIMESTAMP(),
-			DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL CAST(#{serviceEndDateStr} AS INT) MONTH),
-			#{joinApprovalCode},
-			<if test="companyName != null and companyName != ''">#{companyName},</if>
-			<if test="recommenderId != null and recommenderId != ''">#{recommenderId},</if>
-			'N',
+			#{pass},
+			#{gender},
+			#{nickname},
 			#{createdUserId},
 			CURRENT_TIMESTAMP(),
 			#{updatedUserId},

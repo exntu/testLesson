@@ -40,5 +40,41 @@ public class Path {
 	public static final String JOIN							= "/join";
 	public static final String JOIN_SERVICE					= SERVICE + "/join";
 	public static final String JOIN_JSP						= "/user/join";
+	
+	
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| 오늘의 카드
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+	public static final String TODAY_CARD					= "/card/today";
+	public static final String TODAY_CARD_SERVICE			= SERVICE + "/card/today";
+	public static final String TODAY_CARD_JSP				= "/card/today";
+	
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| All of 카드
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+	public static final String ALL_CARD						= "/card/all";
+	public static final String ALL_CARD_SERVICE				= SERVICE + "/card/all";
+	public static final String ALL_CARD_JSP					= "/card/all";
+	
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| 프로필
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+	public static final String PROFILE						= "/profile";
+	public static final String PROFILE_SERVICE				= SERVICE + "/profile";
+	public static final String PROFILE_JSP					= "/profile/profile";
+	
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| 관심표현 보내기
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+	public static final String SEND_MEET					= "/meet";
+	public static final String SEND_MEET_SERVICE			= SERVICE + "/meet";
+	public static final String SEND_MEET_JSP				= "/send/meet";
+	
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| 대화하기
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+	public static final String SEND_MESSAGE					= "/message";
+	public static final String SEND_MESSAGE_SERVICE			= SERVICE + "/message";
+	public static final String SEND_MESSAGE_JSP				= "/send/message";
 
 }

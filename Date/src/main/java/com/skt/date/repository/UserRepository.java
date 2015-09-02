@@ -5,6 +5,13 @@ import java.util.List;
 import com.skt.date.vo.UserVo;
 
 public interface UserRepository {
+	
+	/**
+	 * 유저를 조회한다. (로그인용)
+	 * @param vo
+	 * @return
+	 */
+	public UserVo selectLoginUser(UserVo vo);
 
 	/**
 	 * 유저를 조회한다.

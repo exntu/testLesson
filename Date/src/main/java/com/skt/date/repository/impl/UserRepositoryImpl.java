@@ -1,8 +1,5 @@
 package com.skt.date.repository.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,28 +9,86 @@ import com.skt.date.vo.UserVo;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+	
+	
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Private Variables
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+	
+	// MyBatis 객체
+	@Autowired
+	private SqlSession sqlSession;
 
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Protected Variables
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
-	public UserVo selectUser(UserVo vo){ //기존의사용자인지 확인
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Public Variables
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
 
-		//UserVo result=(UserVO) sqlsession.selectOne("",vo);
-		return null; 
-	}
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Constructor
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
 
-	public void insertUser(UserVo vo){ //신규가입
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Getter & Setter Method ( DI Method )
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+	
+	/**
+	 * 사용자 조회 (로그인용)
+	 */
+	public UserVo selectLoginUser(UserVo vo){ 
+
+		UserVo result = (UserVo) sqlSession.selectOne("com.skt.date.sql.user.selectLoginUser",vo);
 		
-		//sqlsession.insert("",vo);
+		return result; 
 	}
 	
-	public void deleteUser(UserVo vo){ //사용자 삭제
-		//sqlsession.delete("",vo);
-	}
-	
-	public void updateUser(UserVo vo){ //회원수정
-		//sqlsession.update("",vo);
+	/**
+	 * 사용자 조회
+	 */
+	public UserVo selectUser(UserVo vo){ 
+
+		UserVo result = (UserVo) sqlSession.selectOne("com.skt.date.sql.user.selectUser",vo);
 		
+		return result; 
 	}
 	
+	/**
+	 * 사용자 가입
+	 */
+	public void insertUser(UserVo vo){
+		
+		sqlSession.insert("com.skt.date.sql.user.insertUser",vo);
+	}
 	
+	/**
+	 * 사용자 정보수정
+	 */
+	public void updateUser(UserVo vo){
+		
+		sqlSession.insert("com.skt.date.sql.user.updateUser",vo);
+	}
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Public Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Implement Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Override Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Protected Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Private Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 	
 }
