@@ -13,7 +13,7 @@
 		// 이전에 가려고 했던 URL
 		var _forwardUrl = "${_forwardUrl}<c:if test="${!empty _forwardParam}">?${_forwardParam}</c:if>";
 		// 이전에 가려고 했던 URL이 없을때 기본으로 갈 페이지
-		var _defaultUrl = "/main";
+		var _defaultUrl = "/card/today";
 	</script>
     <script src="${_resource}/js/user/login.js"></script>
     <%-- //스크립트 --%>
