@@ -26,6 +26,13 @@ public class Path {
 	
 	// 반환메시지 KEY
 	public static final String MESSAGE		= "message";
+	
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| 메인
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+	public static final String MAIN							= ROOT;
+	public static final String MAIN_SERVICE					= SERVICE + "/main";
+	public static final String MAIN_JSP						= "/main/main";
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| 로그인

@@ -62,19 +62,16 @@
 	//
 	////////////////////////////////////////////////// -->
 	<insert id="insertUser" parameterType="UserVo">
-		<selectKey keyProperty="id" resultType="String" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 		/* com.skt.date.sql.user.insertUser */
 		INSERT INTO T_USER(
 			EMAIL,
 			PASS,
 			GENDER,
 			NICKNAME,
-			CREATED_USER_ID,
-			CREATED_DT,
-			UPDATED_USER_ID,
-			UPDATED_DT
+			CREATE_BY,
+			CREATE_DT,
+			UPDATE_BY,
+			UPDATE_DT
 		)
 		VALUES(
 			#{email},

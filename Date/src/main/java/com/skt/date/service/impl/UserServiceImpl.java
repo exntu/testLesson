@@ -71,26 +71,10 @@ public class UserServiceImpl implements UserService{
 	 * @param vo
 	 * @return
 	 */
-	public UserVo insertUser(UserVo vo){
+	public void insertUser(UserVo vo){
 		
-		//이미 가입한 사용자인지 확인
-		UserVo result = userRepository.selectUser(vo); 
-		
-		//이미 가입한 사용자인 경우
-		if(result != null){ 
-			
-		}
-		//신규 가입인경우
-		else{ 
-			
-			// 가입
-			userRepository.insertUser(vo);
-			
-			// 재조회
-			result = userRepository.selectUser(vo); 
-		}
-		
-		return result;
+		// 가입
+		userRepository.insertUser(vo);
 	}
 	
 	/**
@@ -100,6 +84,7 @@ public class UserServiceImpl implements UserService{
 	 */
 	public void updateUser(UserVo vo){
 		
+		// 수정
 		userRepository.updateUser(vo);
 	}
 
