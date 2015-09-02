@@ -25,7 +25,7 @@ public interface UserService {
 	 * @param vo
 	 * @return
 	 */
-	public UserVo insertUser(UserVo vo);
+	public void insertUser(UserVo vo);
 	
 	/**
 	 * 유저를 수정한다.

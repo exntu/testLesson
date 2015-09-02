@@ -21,7 +21,7 @@ import com.skt.date.service.UserService;
 import com.skt.date.vo.UserVo;
 
 @Controller
-public class UserController {
+public class UserController extends AbstractBaseController{
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Variables
@@ -145,7 +145,7 @@ public class UserController {
 		// ID/PW에 해당하는 유저가 있을경우
 		if( userVO != null ){
 			
-			// 로그인정보만 세션에 담음
+			// 로그인정보 세션에 담음
 			HttpSession session = request.getSession();
 			session.setAttribute(Session.LOGIN_KEY, userVO);
 			
@@ -157,6 +157,112 @@ public class UserController {
 			
 			// ID/PW 오류코드
 			result = "INVALID";
+		}
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model	= new ModelAndView();
+		
+		// JSON
+		model.setViewName(Path.JSON);
+		
+		// 반환코드
+		model.addObject(Path.CODE, result);
+		
+		// 반환메시지
+		model.addObject(Path.MESSAGE, "");
+		
+		return model;
+	}
+	
+	
+	/**
+	 * 회원가입 페이지
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.JOIN}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView joinView(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		
+		// JSP포워드
+		model.setViewName(Path.JOIN_JSP);
+		
+		return model;
+	}
+	
+	
+	/**
+	 * 회언가입 처리 서비스
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.JOIN_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView joinService(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestBody UserVo param ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// 반환 세팅
+		//
+		//////////////////////////////////////////////////
+		
+		// 반환값
+		String result = "FAIL";
+		
+		//////////////////////////////////////////////////
+		//
+		// ID/PW 조회
+		//
+		//////////////////////////////////////////////////
+		
+		// 사용자정보 조회
+		UserVo userVO = userService.selectUser(param);
+		
+		// ID에 해당하는 유저가 있을경우
+		if( userVO != null ){
+			
+			// 이미 가입된 유저임
+			result = "ALREADY";
+		}
+		// ID/PW에 해당하는 유저가 없을경우
+		else{
+			
+			// 작성자저보 담음
+			param.setCreatedUserId(param.getEmail());
+			param.setUpdatedUserId(param.getEmail());
+			
+			// 회원가입
+			userService.insertUser(param);
+			
+			// 사용자정보 재조회
+			userVO = userService.selectUser(param);
+			
+			// 로그인정보 세션에 담음
+			HttpSession session = request.getSession();
+			session.setAttribute(Session.LOGIN_KEY, userVO);
+			
+			// 가입 성공
+			result = "SUCCESS";
 		}
 		
 		//////////////////////////////////////////////////

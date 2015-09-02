@@ -13,7 +13,7 @@
 	// 유저정보
 	var userVO = {
 		// ID (이메일)
-		id : "adventurez@exntu.com",
+		email : "adventurez@exntu.com",
 		// 비밀번호
 		pass : "test1234"
 	};
@@ -133,6 +133,6 @@
     				// Alert
     				_alert.error("로그인에 실패하였습니다.");
 	    		});
-	        }
+	        };
 		});
 })();
