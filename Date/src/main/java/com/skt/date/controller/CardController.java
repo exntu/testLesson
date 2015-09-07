@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skt.date.service.CardService;
+import com.skt.date.service.PeopleService;
 import com.skt.date.vo.PeopleVo;
 
 
@@ -25,6 +26,8 @@ public class CardController extends AbstractBaseController {
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
 	@Autowired
 	private CardService cardservice;
+	@Autowired
+	private PeopleService peopleService;
 	
 	private Logger logger = LoggerFactory.getLogger( CardController.class );	
 
@@ -104,6 +107,118 @@ public class CardController extends AbstractBaseController {
 		return model;
 	}
 
+	/**
+	 * 사람 가져오기
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.PEOPLE_SERVICE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView people(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// 사람 정보
+		//
+		//////////////////////////////////////////////////
+		
+		int howmanyPeople = 30;
+		List<PeopleVo> people = peopleService.createPeople(howmanyPeople);
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		
+		model.setViewName(Path.JSON);
+		// 데이터
+		model.addObject("people", people);
+		
+		return model;
+	}
+	
+	/**
+	 * 카드 상세 페이지
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.TODAY_CARD_DETAIL}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView todayCardViewDetail(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		
+		// JSP포워드
+		model.setViewName(Path.TODAY_CARD_DETAIL_JSP);
+		
+		return model;
+	}
+	
+	/**
+	 * 사람 가져오기
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.TODAY_CARD_DETAIL_SERVICE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView todayCardViewDetailService(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		//JSON
+		model.setViewName(Path.JSON);
+		
+		return model;
+	}
+	
+	/**
+	 * 랜덤 카드 선택
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.TODAY_CARD_SERVICE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView todayCardViewService(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		//JSON
+		model.setViewName(Path.JSON);
+		
+		return model;
+	}
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Implement Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/

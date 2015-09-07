@@ -10,10 +10,34 @@ import org.springframework.stereotype.Repository;
 
 import com.skt.date.repository.CardRepository;
 import com.skt.date.vo.CardVo;
+import com.skt.date.vo.MatchingVo;
 import com.skt.date.vo.PeopleVo;
 @Repository
 public class CardRepositoryImpl implements CardRepository {
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Private Variables
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
 
+	// MyBatis 객체
+	@Autowired
+	private SqlSession sqlSession;
+
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Protected Variables
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Public Variables
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Constructor
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Getter & Setter Method ( DI Method )
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 	public List<CardVo> selectTodayCard(CardVo vo){ //오늘의 카드 조회
 		List<CardVo> result=new ArrayList<CardVo>();
@@ -36,9 +60,7 @@ public class CardRepositoryImpl implements CardRepository {
 		
 		return result;
 	}
-	
 
-	
 	public List<CardVo> selectExtra(CardVo vo){ // 오늘의 추가 카드 조회
 		List<CardVo> result=new ArrayList<CardVo>();
 		return result;
@@ -58,5 +80,34 @@ public class CardRepositoryImpl implements CardRepository {
 
 		return result;
 	}
+	/**
+	 * 두장의 카드 뽑기
+	 */
+	public List<MatchingVo> selectTwoCard(MatchingVo vo) {
+
+		MatchingVo result = (MatchingVo) sqlSession.selectOne("com.skt.date.sql.user.select...",vo);
+		
+		return null; 
+	}
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Public Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Implement Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Override Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Protected Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Private Method
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 	
 }

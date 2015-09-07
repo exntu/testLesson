@@ -55,6 +55,14 @@ public class Path {
 	public static final String TODAY_CARD					= "/card/today";
 	public static final String TODAY_CARD_SERVICE			= SERVICE + "/card/today";
 	public static final String TODAY_CARD_JSP				= "/card/today";
+	//사람 랜덤으로 생성
+	public static final String PEOPLE_SERVICE				=	SERVICE + "/card/today";
+	public static final String PEOPLE_JSP					=	"/card/today";
+	//카드 상세보기
+	public static final String TODAY_CARD_DETAIL			=	"/card/today/detail";
+	public static final String TODAY_CARD_DETAIL_SERVICE	=	SERVICE + "/card/today/detail";
+	public static final String TODAY_CARD_DETAIL_JSP	=	"/card/today/detail";
+	
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| All of 카드
@@ -83,5 +91,6 @@ public class Path {
 	public static final String SEND_MESSAGE					= "/message";
 	public static final String SEND_MESSAGE_SERVICE			= SERVICE + "/message";
 	public static final String SEND_MESSAGE_JSP				= "/send/message";
+
 
 }

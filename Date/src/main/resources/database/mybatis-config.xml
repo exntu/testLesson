@@ -22,6 +22,7 @@
 		//
 		////////////////////////////////////////////////// -->
 		<typeAlias alias="UserVo" 		type="com.skt.date.vo.UserVo" />
+		<typeAlias alias="MatchingVo" 		type="com.skt.date.vo.MatchingVo" />
     </typeAliases>
  	
     <typeHandlers>
