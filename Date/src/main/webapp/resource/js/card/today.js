@@ -23,6 +23,8 @@
 					method : 'GET',
 					// URL
 					url : _ctx + '/service/card/today'
+					// 데이터
+//					params: {email:"test@test.com"}
 				})
 				// 성공콜백
 				.success(
@@ -47,10 +49,10 @@
 					  		//////////////////////////////////////////////////
 				    		// 사람랜덤 구하기
 				    		//////////////////////////////////////////////////
-				  			$scope.person1 = (data[0].name);
-							$scope.person2 = (data[1].name);
-							$scope.person3 = (data[2].name);
-							$scope.person4 = (data[3].name);
+//				  			$scope.person1 = (data[0].name);
+//							$scope.person2 = (data[1].name);
+//							$scope.person3 = (data[2].name);
+//							$scope.person4 = (data[3].name);
 							
 					  		//////////////////////////////////////////////////
 				    		// 페이지 refresh

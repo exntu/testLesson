@@ -85,9 +85,9 @@ public class CardRepositoryImpl implements CardRepository {
 	 */
 	public List<MatchingVo> selectTwoCard(MatchingVo vo) {
 
-		MatchingVo result = (MatchingVo) sqlSession.selectOne("com.skt.date.sql.user.select...",vo);
-		
-		return null; 
+//		MatchingVo result = (MatchingVo) sqlSession.selectOne("com.skt.date.sql.matching.matchingUser",vo);
+		List<MatchingVo> result = (List<MatchingVo>) sqlSession.selectList("com.skt.date.sql.matching.matchingUser", vo);
+		return result; 
 	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
