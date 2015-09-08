@@ -21,11 +21,12 @@
 		// VO정의
 		//
 		////////////////////////////////////////////////// -->
-		<typeAlias alias="UserVo" 		type="com.skt.date.vo.UserVo" />
-		<typeAlias alias="MatchingVo" 		type="com.skt.date.vo.MatchingVo" />
-		<typeAlias alias="ProfileVo"     type="com.skt.date.vo.ProfileVo"/>
-		<typeAlias alias="UploadVo"     type="com.skt.date.vo.UploadVo"/>
-		<typeAlias alias="PeopleVo"     type="com.skt.date.vo.PeopleVo"/>
+		<typeAlias alias="UserVo" 			type="com.skt.date.vo.UserVo" />
+		<typeAlias alias="MatchingVo" 	type="com.skt.date.vo.MatchingVo" />
+		<typeAlias alias="FromToVo" 		type="com.skt.date.vo.FromToVo" />
+		<typeAlias alias="ProfileVo"     	type="com.skt.date.vo.ProfileVo"/>
+		<typeAlias alias="UploadVo"     	type="com.skt.date.vo.UploadVo"/>
+		<typeAlias alias="PeopleVo"     	type="com.skt.date.vo.PeopleVo"/>
     </typeAliases>
  	
     <typeHandlers>

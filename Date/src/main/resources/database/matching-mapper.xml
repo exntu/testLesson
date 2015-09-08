@@ -29,13 +29,12 @@
 	// 오늘 카드 날짜 조회
 	//
 	////////////////////////////////////////////////// -->	
-	<select id="matchingPickToday" resultType="String">
+	<select id="matchingPickToday" resultType="FromToVo">
 		/* com.skt.date.sql.matching.matchingPickToday*/
 		<![CDATA[
-			SELECT			`TO`				AS		email
+			SELECT			`TO`				AS		`to`
 			FROM				T_MATCHING
 			WHERE			CREATE_DT		=		CURDATE()
-			limit 				1
 		]]>
 	</select>
 	
@@ -46,15 +45,15 @@
 	//		2. T_MATCHING 에서 전에 만났던 사람 제외
 	//
 	////////////////////////////////////////////////// -->
-	<select id="matchingUser" parameterType="MatchingVo" resultType="MatchingVo">
-		/* com.skt.date.sql.matching.matchingUser*/
+	<select id="selectTwoCard" parameterType="MatchingVo" resultType="MatchingVo">
+		/* com.skt.date.sql.matching.selectTwoCard*/
 		<![CDATA[
 				SELECT 			EMAIL			AS				email
 								,	GENDER 			AS 			gender
 								,	NICKNAME		AS				nickname
 				FROM 			T_USER
 				WHERE			GENDER 			!=				#{ gender }
-				AND 				EMAIL 			NOT IN 	(	SELECT	 	`TO` 				AS			 email
+				AND 				EMAIL 			NOT IN 	(	SELECT	 	`TO` 				AS			 otheremail
 																		FROM 		T_MATCHING
 																		WHERE 		`FROM`	 			=			#{ email }	)
 				limit 				2
@@ -68,14 +67,14 @@
 	//		2. 위에 두개 뽑기
 	//
 	////////////////////////////////////////////////// -->
-	<select id="matchingUserAlready" parameterType="MatchingVo" resultType="MatchingVo">
+	<select id="matchingUserAlready" resultType="MatchingVo">
 		/* com.skt.date.sql.matching.matchingUserAlready*/
 		<![CDATA[
 				SELECT 			EMAIL			AS				email
 								,	GENDER 			AS 			gender
 								,	NICKNAME		AS				nickname
 				FROM 			T_USER
-				WHERE			(	SELECT			`TO`				AS		email
+				WHERE			EMAIL IN (	SELECT			`TO`		
 										FROM				T_MATCHING
 										WHERE			CREATE_DT		=		CURDATE()		)
 		]]>
@@ -94,11 +93,18 @@
 	// INSERT 만난 사람
 	//
 	////////////////////////////////////////////////// -->
-	<insert id="insertMatchedCard" parameterType="MatchingVo">
+	<insert id="insertMatchedCard" parameterType="FromToVo" >
 		/*	com.skt.date.sql.matching.insertMatchedCard*/
 		<![CDATA[
-			INSERT	INTO	T_MATCHING ( `FROM`, `TO` ) 
-						VALUES				 ( #{ email },  #{ otherEmail } )
+			INSERT	INTO	T_MATCHING (
+			 						`FROM`
+			 					,	 `TO`
+			 					,	CREATE_DT 
+			)	VALUES	(
+			 						 #{ from }
+			 					,	 #{ to }
+			 					,	CURRENT_TIMESTAMP()
+			)
 		]]>
 	</insert>
 

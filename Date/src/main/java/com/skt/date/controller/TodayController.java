@@ -1,7 +1,5 @@
 package com.skt.date.controller;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skt.date.service.TodayService;
+import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
 import com.skt.date.vo.UserVo;
 
@@ -29,7 +28,9 @@ public class TodayController extends AbstractBaseController {
 	@Autowired
 	private TodayService todayService;
 
-	private Logger logger = LoggerFactory.getLogger( TodayController.class );	
+	private Logger logger = LoggerFactory.getLogger( TodayController.class );
+
+	private List<MatchingVo> result;	
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Variables
@@ -157,6 +158,23 @@ public class TodayController extends AbstractBaseController {
 		//이메일로 정보 추출
 		List<MatchingVo> matchingCard = todayService.selectTwoCard(matchingVo);
 		
+		//오늘 카드 확인
+//		if( todayService.matchingPickToday().isEmpty() ){
+			//insert
+			FromToVo fromtoVo = new FromToVo();
+			for(int i=0; i<matchingCard.size(); i++){
+				fromtoVo.setFrom(userInfo.getEmail());
+				fromtoVo.setTo(matchingCard.get(i).getEmail());
+				todayService.insertTwoCardSelected(fromtoVo);
+			}
+			result = matchingCard;
+//		} else {
+//			result = todayService.selectTwoCardAlready();
+//		}
+		
+		//두장카드 확인
+		
+		
 		//////////////////////////////////////////////////
 		//
 		// ModelAndView 반환
@@ -166,7 +184,7 @@ public class TodayController extends AbstractBaseController {
 		
 		//JSON
 		model.setViewName(Path.JSON);
-		model.addObject("matchingTwoCard", matchingCard);
+		model.addObject("result", result );
 		model.addObject("currentTime", currentTime);
 		
 		return model;

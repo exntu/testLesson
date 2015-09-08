@@ -2,6 +2,7 @@ package com.skt.date.service;
 
 import java.util.List;
 
+import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
 
 public interface TodayService {
@@ -16,7 +17,7 @@ public interface TodayService {
 	 * 오늘 뽑혔는지 확인
 	 * @return
 	 */
-	public String matchingPickToday();
+	public List<MatchingVo> matchingPickToday();
 	
 	/**
 	 * 유저를 조회한다.
@@ -26,9 +27,16 @@ public interface TodayService {
 	public List<MatchingVo> selectTwoCard(MatchingVo vo);
 	
 	/**
-	 * 뽑힌 두장의 카드 넣는다.
-	 * @param matchingCard
+	 * 뽑힌 두장의 카드를 뽑는다.
+	 * @param vo
+	 * @return
 	 */
-	public void insertTwoCardSelected( MatchingVo matchingCard );
+	public List<MatchingVo> selectTwoCardAlready();
+	
+	/**
+	 * 뽑힌 두장의 카드 넣는다.
+	 * @param fromtoVo
+	 */
+	public void insertTwoCardSelected( FromToVo fromtoVo );
 
 }

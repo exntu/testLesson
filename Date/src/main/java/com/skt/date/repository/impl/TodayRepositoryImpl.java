@@ -1,15 +1,13 @@
 package com.skt.date.repository.impl;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.net.SyslogAppender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.skt.date.repository.TodayRepository;
+import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
 @Repository
 public class TodayRepositoryImpl implements TodayRepository {
@@ -51,8 +49,8 @@ public class TodayRepositoryImpl implements TodayRepository {
 	 * 오늘 카드가 뽑혔는지 확인
 	 * @return
 	 */
-	public String matchingPickToday() {
-		String result = (String) sqlSession.selectOne("com.skt.date.sql.matching.matchingPickToday");
+	public List<MatchingVo> matchingPickToday() {
+		List<MatchingVo> result = (List<MatchingVo>) sqlSession.selectOne("com.skt.date.sql.matching.matchingPickToday");
 		return result;
 	}
 	
@@ -60,23 +58,23 @@ public class TodayRepositoryImpl implements TodayRepository {
 	 * 두장의 카드 뽑기
 	 */
 	public List<MatchingVo> selectTwoCard( MatchingVo vo ) {
-		List<MatchingVo> result = sqlSession.selectList("com.skt.date.sql.matching.matchingUser", vo);
+		List<MatchingVo> result = sqlSession.selectList("com.skt.date.sql.matching.selectTwoCard", vo);
 		return result; 
 	}
 	
 	/**
 	 * 뿁혔던 두장의 카드 뽑기
 	 */
-	public List<MatchingVo> selectTwoCardAlready( MatchingVo vo ) {
-		List<MatchingVo> result = sqlSession.selectList("com.skt.date.sql.matching.matchingUserAlready", vo);
+	public List<MatchingVo> selectTwoCardAlready() {
+		List<MatchingVo> result = sqlSession.selectList("com.skt.date.sql.matching.matchingUserAlready");
 		return result; 
 	}
 	
 	/**
 	 * 두장의 뽑힌 카드 넣기
 	 */
-	public void insertTwoCardSelected( MatchingVo matchingCard ) {
-		sqlSession.insert( "com.skt.date.sql.matching.insertMatchedCard", matchingCard );
+	public void insertTwoCardSelected( FromToVo vo ) {
+		sqlSession.insert( "com.skt.date.sql.matching.insertMatchedCard", vo );
 	}
 
 	

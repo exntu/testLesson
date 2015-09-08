@@ -2,6 +2,7 @@ package com.skt.date.repository;
 
 import java.util.List;
 
+import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
 
 public interface TodayRepository {
@@ -16,7 +17,7 @@ public interface TodayRepository {
 	 * 오늘 카드가 뽑혔는지 확인
 	 * @return
 	 */
-	public String matchingPickToday();
+	public List<MatchingVo> matchingPickToday();
 	
 	/**
 	 * 두장의 카드를 뽑는다.
@@ -30,13 +31,13 @@ public interface TodayRepository {
 	 * @param vo
 	 * @return
 	 */
-	public List<MatchingVo> selectTwoCardAlready( MatchingVo vo );
+	public List<MatchingVo> selectTwoCardAlready();
 	
 	/**
 	 * 뽑힌 두장의 카드 넣는다.
-	 * @param param
+	 * @param vo
 	 */
-	public void insertTwoCardSelected( MatchingVo param );
+	public void insertTwoCardSelected( FromToVo vo );
 
 
 }

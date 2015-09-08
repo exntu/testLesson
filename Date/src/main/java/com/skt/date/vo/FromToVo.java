@@ -4,18 +4,17 @@ package com.skt.date.vo;
  * @author choonghyun
  *
  */
-public class MatchingVo {
+
+public class FromToVo {
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Variables
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-	/** 아이디 (이메일) */
-	private String email;
-	/** 성별 */
-	private String gender;
-	/** 닉네임 */
-	private String nickname;
+	
+	/** 아이디 (이메일) 로그인 사람 */
+	private String from;
+	/** 아이디 (이메일) 상대 사람 */
+	private String to;
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Variables
@@ -32,26 +31,20 @@ public class MatchingVo {
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Getter & Setter Method ( DI Method )
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-	public String getEmail() {
-		return email;
+	
+	public String getFrom() {
+		return from;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setFrom(String from) {
+		this.from = from;
 	}
-	public String getGender() {
-		return gender;
+	public String getTo() {
+		return to;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setTo(String to) {
+		this.to = to;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -66,11 +59,11 @@ public class MatchingVo {
 	
 	@Override
 	public String toString() {
-		return "MatchingVo [email=" + email + ", gender=" + gender + ", nickname=" + nickname + ", getEmail()="
-				+ getEmail() + ", getGender()=" + getGender() + ", getNickname()=" + getNickname() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+		return "FromToVo [from=" + from + ", to=" + to + ", getFrom()=" + getFrom() + ", getTo()=" + getTo()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
-	
+
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -78,6 +71,5 @@ public class MatchingVo {
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-
+	
 }
