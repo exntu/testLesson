@@ -7,17 +7,13 @@
 	var vo={};
 	var result={};
 	var ProfileVo={};
-	var $profile=null; //프로필 이미지
 
-	
 	var App=angular.module('App', [ 'ngFileUpload' ])
-		.run(function(){
-			//프로필 이미지정보
-			$profile=$("#imgprofile");
-		})
+		.run(
+				)
 		.controller(
 			'AppController', function($scope, $http, Upload) {
-				//$scope.profileVo=profileVo;
+
 				//////////////////////////////////////////////////
 				// 데이터 로드//프로필 로드
 				//////////////////////////////////////////////////
@@ -25,20 +21,18 @@
 					// Method
 					method: 'POST',
 					// URL
-					url	: _ctx+'/service/profile'
+					url	: _ctx+'/service/profile',
 				})
 				// 성공콜백
 				.success(function(data, status, headers, config){
 					_loading.hide();
-					//if(console) console.info( data );
 					
-					//프로필을  profileVo에 저장
-					
-					
-					//$scope.profileVo=data.repp;
-					
-					$scope.result=data.repp;
-		
+					if(console) console.info( data );
+
+					$scope.result      = data.repp;
+					$scope.result_img  = data.repp_img;
+					$scope.result_add  = data.repp_add;
+
 				})
 				// 에러콜백
 				.error(function(data, status, headers, config){
@@ -68,7 +62,7 @@
 			                var file = files[i];
 			                
 			                file.upload=Upload.upload({
-			                    url: _ctx + '/service/profile',
+			                    url: _ctx + '/service/profile/upload',
 			                    method: 'POST',
 			                    file: file,
 			                    fileFormDataName : 'profile'

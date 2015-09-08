@@ -1,6 +1,6 @@
 package com.skt.date.vo;
 
-public class PeopleVo {
+public class PeopleVo extends CommonVo {
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Variables
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
@@ -8,11 +8,11 @@ public class PeopleVo {
 	//이름
 	private String name;
 	//나이
-	private int age;
+	private String age;
 	//이메일
 	private String email;
 	//키
-	private int height;
+	private String height;
 	//몸매
 	private String bodyShape;
 	//성별
@@ -52,11 +52,17 @@ public class PeopleVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public String getHeight() {
+		return height;
+	}
+	public void setAge(String age) {
 		this.age = age;
+	}
+	public void setHeight(String height) {
+		this.height = height;
 	}
 	public String getEmail() {
 		return email;
@@ -64,12 +70,7 @@ public class PeopleVo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
+
 	public String getBodyShape() {
 		return bodyShape;
 	}
@@ -123,12 +124,7 @@ public class PeopleVo {
 	| Public Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
-	@Override
-	public String toString() {
-		return "PeopleVo [name=" + name + ", age=" + age + ", email=" + email + ", height=" + height + ", bodyShape="
-				+ bodyShape + ", sex=" + sex + ", job=" + job + ", bloodType=" + bloodType + ", religion=" + religion
-				+ ", smoking=" + smoking + ", drink=" + drink + ", style=" + style + "]";
-	}
+
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Implement Method

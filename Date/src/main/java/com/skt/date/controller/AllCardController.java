@@ -74,8 +74,8 @@ public class AllCardController {
 		
 		ModelAndView model = new ModelAndView();
 		
-		List<PeopleVo> repp=cardService.selectAllCard();
-		model.addObject("repp",repp);
+		//List<PeopleVo> repp=cardService.selectAllCard();
+		//model.addObject("repp",repp);
 		
 		// JSP포워드
 		model.setViewName(Path.JSON);

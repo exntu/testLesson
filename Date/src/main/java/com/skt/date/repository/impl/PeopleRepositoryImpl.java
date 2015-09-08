@@ -79,7 +79,7 @@ public class PeopleRepositoryImpl implements PeopleRepository{
 			int drinkRan = random.nextInt( drink.length );
 			int styleRan = random.nextInt( style.length );
 			
-			PeopleVo vo = new PeopleVo();
+/*			PeopleVo vo = new PeopleVo();
 			vo.setName( name[nameRan] );
 			vo.setAge( age[ageRan] );
 			vo.setEmail( email[emailRan] );
@@ -92,7 +92,7 @@ public class PeopleRepositoryImpl implements PeopleRepository{
 			vo.setSmoking( smoking[smokingRan] );
 			vo.setDrink( drink[drinkRan] );
 			vo.setStyle( style[styleRan] );
-			result.add(vo);
+			result.add(vo);*/
 		}
 		return result;
 	}

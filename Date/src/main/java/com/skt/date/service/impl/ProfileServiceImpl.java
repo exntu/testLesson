@@ -1,6 +1,8 @@
 package com.skt.date.service.impl;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.skt.date.repository.ProfileRepository;
 import com.skt.date.service.ProfileService;
 import com.skt.date.vo.PeopleVo;
+import com.skt.date.vo.ProfileVo;
 import com.skt.date.vo.UploadVo;
+import com.skt.date.vo.UserVo;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -20,15 +24,26 @@ public class ProfileServiceImpl implements ProfileService {
 	@Inject
 	private ProfileRepository profilerepository;
 	
-/*	public void updateProfile(PeopleVo vo) { // 프로필 수정
-		profilerepository.updateProfile(vo);
-	}*/
 	
-	public List<PeopleVo> selectProfile(PeopleVo vo){
+	public UserVo selectProfile(String param){
 		
-		List<PeopleVo> list=profilerepository.selectProfile(vo);
+		UserVo list=(UserVo)profilerepository.selectProfile(param);
 		return list;
 	}
+	
+	public List<UploadVo> selectImg(String param){
+		List<UploadVo> list=profilerepository.selectImg(param);
+		return list;
+	}
+	
+	public List<ProfileVo> selectAdd(String param){
+
+		List<ProfileVo> list=profilerepository.selectAdd(param);
+
+		return list;
+	}
+	
+	
 	
 	public List<PeopleVo> selectAllCard(){ //모든카드 조회
 		List<PeopleVo> result=profilerepository.selectAllCard();

@@ -50,93 +50,31 @@
 
 			</div>
 			<div class="col-sm-2">
-			<label for="image">프로필 사진</label>
-			<img style="width:144px; height:144px;" data-ng-src="data:image/jpeg;base64,{{vo}}"/>
-<!-- 				<div ng-repeat="img in vo track by img.filename"  >
-					<img style="width:144px; height:144px;" data-ng-src="data:image/jpeg;base64,{{img}}"/>
-				</div> -->
-				
-<!-- 				사진 업로드 상태바
-				<span class="progress" ng-show="f.progress>=0">
-					<div style="width:{{f.progress}}%">{{f.progress}}%</div>
-				</span> -->
-				
-									
+				<label for="image">프로필 사진</label>
+				<div ng-repeat="img in result_img track by $index"  >
+					<img style="width:144px; height:144px;" data-ng-src="data:image/jpeg;base64,{{img.filestream}}"/>
+				</div> 
+								
 				<button ngf-select ngf-change="uploadPhoto($files)" class="btn">
-				<i class="fa-picture-o"></i>
 				<span>사진 올리기</span>
 				</button>
 
 				<table class="table table-striped">
-					<th>이름</th>
-					<th>나이</th>
-					<th>이메일</th>
-					<th>키</th>
-					<th>몸매</th>
-					<th>성별</th>
-					<th>직업</th>
-					<th>혈액형</th>
-					<th>종교</th>
-					<th>흡연</th>
-					<th>술</th>
-					<th>스타일</th>
-					<tr ng-repeat="person in result track by $index">
+					<tr ng-repeat="person in result_add track by $index">
 				    	<td>
-					    	<span ng-hide="editMode">{{ person.name }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.name"/>
+					    	<span ng-hide="editMode">{{ person.classify }}</span>
+					    	<input type="text" ng-show="editMode" ng-model="person.classify"/>
+				    	</td>
+				    	<td>
+					    	<span ng-hide="editMode">{{ person.data }}</span>
+					    	<input type="text" ng-show="editMode" ng-model="person.data"/>
 				    	</td>
 				    	
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.age }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.age"/>
-				    	</td>
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.email }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.email"/>
-				    	</td>
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.height }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.height"/>
-				    	</td>
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.bodyShape }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.bodyShape"/>
-				    	</td>
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.sex }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.sex"/>
-				    	</td>
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.job }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.job"/>
-					    	
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.bloodType }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.bloodType"/>
-					    	
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.religion }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.religion"/>
-					    	
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.smoking }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.smoking"/>
-					    	
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.drink }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.drink"/>
-					    	</td>
-				    	<td>
-					    	<span ng-hide="editMode">{{ person.style }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.style"/>
-				    	</td>
 				    </tr>
 			    </table>	
 			</div>
 		</div>
 	</div>
-
-
 	<%-- 공통 Footer --%>
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 	<%-- //공통 Footer --%>

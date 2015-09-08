@@ -32,7 +32,7 @@
 				_loading.hide();
 				
 				
-				$scope.result=data.repp;
+				$scope.result=data;
 	
 			})
 			// 에러콜백

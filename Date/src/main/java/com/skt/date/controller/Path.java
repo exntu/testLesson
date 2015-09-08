@@ -77,6 +77,7 @@ public class Path {
 	public static final String PROFILE						= "/profile";
 	public static final String PROFILE_SERVICE				= SERVICE + "/profile";
 	public static final String PROFILE_JSP					= "/profile/profile";
+	public static final String PROFILE_UPLOAD_SERVICE		= SERVICE +"/profile/upload";
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| 관심표현 보내기

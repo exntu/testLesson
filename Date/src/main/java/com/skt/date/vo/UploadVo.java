@@ -1,11 +1,11 @@
 package com.skt.date.vo;
 
-import java.util.Arrays;
-
 import org.springframework.web.multipart.MultipartFile;
 
-public class UploadVo extends CommonVo {
+/** PeopleVo의 additional 정보를  upload로 상속(join쿼리를 list로 받기위해서) */
+public class UploadVo extends PeopleVo {
 
+	
 	private MultipartFile profile;
 
 	private String filename; //파일이름
