@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.skt.date.repository.CardRepository;
+import com.skt.date.repository.impl.PeopleRepositoryImpl;
 import com.skt.date.service.CardService;
 import com.skt.date.vo.CardVo;
 import com.skt.date.vo.MatchingVo;
@@ -52,9 +53,14 @@ public class CardServiceImpl implements CardService {
 		return result;
 	}
 	public List<PeopleVo> selectAllCard(){ //모든카드 조회
-		List<PeopleVo> result=cardrepository.selectAllCard();
 		
+		PeopleRepositoryImpl pe=new PeopleRepositoryImpl();
+		
+		
+		List<PeopleVo> result=pe.createPeople(4);
+
 		return result;
+		
 				
 	}
 	
@@ -71,7 +77,6 @@ public class CardServiceImpl implements CardService {
 		List<CardVo> result=cardrepository.selectPopular(vo);
 		
 		return result;
-		
 
 	}
 	

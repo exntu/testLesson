@@ -83,17 +83,28 @@ public class CardController extends AbstractBaseController {
 	}
 	
 	
+	
+
 	/**
-	 * All of 카드 페이지
+	 * 사람 가져오기
 	 * @param request
 	 * @param response
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping( value={Path.ALL_CARD}, method={RequestMethod.GET,RequestMethod.POST} )
-	public ModelAndView allCardView(
+	@RequestMapping( value={Path.PEOPLE_SERVICE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView people(
 			HttpServletRequest request,
 			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// 사람 정보
+		//
+		//////////////////////////////////////////////////
+		
+		int howmanyPeople = 30;
+		List<PeopleVo> people = peopleService.createPeople(howmanyPeople);
 		
 		//////////////////////////////////////////////////
 		//
@@ -103,50 +114,12 @@ public class CardController extends AbstractBaseController {
 		
 		ModelAndView model = new ModelAndView();
 		
-		List<PeopleVo> repp=cardService.selectAllCard();
-		model.addObject("repp",repp);
-		
-		// JSP포워드
-		model.setViewName(Path.ALL_CARD_JSP);
+		model.setViewName(Path.JSON);
+		// 데이터
+		model.addObject("people", people);
 		
 		return model;
 	}
-
-//	/**
-//	 * 사람 가져오기
-//	 * @param request
-//	 * @param response
-//	 * @return
-//	 * @throws Exception
-//	 */
-//	@RequestMapping( value={Path.PEOPLE_SERVICE}, method={RequestMethod.GET,RequestMethod.POST} )
-//	public ModelAndView people(
-//			HttpServletRequest request,
-//			HttpServletResponse response ) throws Exception {
-//		
-//		//////////////////////////////////////////////////
-//		//
-//		// 사람 정보
-//		//
-//		//////////////////////////////////////////////////
-//		
-//		int howmanyPeople = 30;
-//		List<PeopleVo> people = peopleService.createPeople(howmanyPeople);
-//		
-//		//////////////////////////////////////////////////
-//		//
-//		// ModelAndView 반환
-//		//
-//		//////////////////////////////////////////////////
-//		
-//		ModelAndView model = new ModelAndView();
-//		
-//		model.setViewName(Path.JSON);
-//		// 데이터
-//		model.addObject("people", people);
-//		
-//		return model;
-//	}
 	
 	/**
 	 * 카드 상세 페이지
@@ -199,53 +172,53 @@ public class CardController extends AbstractBaseController {
 		return model;
 	}
 	
-	/**
-	 * 랜덤 카드 선택
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping( value={Path.TODAY_CARD_SERVICE}, method={RequestMethod.GET} )
-	public ModelAndView todayCardViewService(
-			HttpServletRequest request,
-			HttpServletResponse response ) throws Exception {
-
-//			ModelMap modelMap,
-//			@ModelAttribute MatchingVo param ) throws Exception {
-		
-		//리턴결과에 자동매핑 파라미터를 제거
-//		modelMap.remove("matchingVo");
-		
-		//로그인 정보 가져오기
-		UserVo userInfo = this.getLoginInfo(request);
-		
-		//matchingVo 셋팅
-		MatchingVo matchingVo = new MatchingVo();
-		matchingVo.setEmail(userInfo.getEmail());
-		matchingVo.setGender(userInfo.getGender());
-		matchingVo.setNickname(userInfo.getNickname());
-		
-		//이메일로 정보 추출
-		List<MatchingVo> matchingCard = cardService.selectTwoCard(matchingVo);
-
-		//list로 전체 다 받기
-		List<MatchingVo>matchingAllCard = new ArrayList<MatchingVo>();
-		matchingAllCard.addAll(matchingCard);
-		
-		//////////////////////////////////////////////////
-		//
-		// ModelAndView 반환
-		//
-		//////////////////////////////////////////////////
-		ModelAndView model = new ModelAndView();
-		
-		//JSON
-		model.setViewName(Path.JSON);
-		model.addObject("matchingAllCard", matchingAllCard);
-		
-		return model;
-	}
+//	/**
+//	 * 랜덤 카드 선택
+//	 * @param request
+//	 * @param response
+//	 * @return
+//	 * @throws Exception
+//	 */
+//	@RequestMapping( value={Path.TODAY_CARD_SERVICE}, method={RequestMethod.GET} )
+//	public ModelAndView todayCardViewService(
+//			HttpServletRequest request,
+//			HttpServletResponse response ) throws Exception {
+//
+////			ModelMap modelMap,
+////			@ModelAttribute MatchingVo param ) throws Exception {
+//		
+//		//리턴결과에 자동매핑 파라미터를 제거
+////		modelMap.remove("matchingVo");
+//		
+//		//로그인 정보 가져오기
+//		UserVo userInfo = this.getLoginInfo(request);
+//		
+//		//matchingVo 셋팅
+//		MatchingVo matchingVo = new MatchingVo();
+//		matchingVo.setEmail(userInfo.getEmail());
+//		matchingVo.setGender(userInfo.getGender());
+//		matchingVo.setNickname(userInfo.getNickname());
+//		
+//		//이메일로 정보 추출
+//		List<MatchingVo> matchingCard = cardService.selectTwoCard(matchingVo);
+//
+//		//list로 전체 다 받기
+//		List<MatchingVo>matchingAllCard = new ArrayList<MatchingVo>();
+//		matchingAllCard.addAll(matchingCard);
+//		
+//		//////////////////////////////////////////////////
+//		//
+//		// ModelAndView 반환
+//		//
+//		//////////////////////////////////////////////////
+//		ModelAndView model = new ModelAndView();
+//		
+//		//JSON
+//		model.setViewName(Path.JSON);
+//		model.addObject("matchingAllCard", matchingAllCard);
+//		
+//		return model;
+//	}
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Implement Method
