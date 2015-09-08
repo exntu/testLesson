@@ -16,11 +16,11 @@ public interface CardRepository {
 	
 	public List<CardVo> selectPopular(CardVo vo);
 	
-	/**
-	 * 두장의 카드를 뽑는다.
-	 * @param vo
-	 * @return
-	 */
-	public List<MatchingVo> selectTwoCard(MatchingVo vo);
+//	/**
+//	 * 두장의 카드를 뽑는다.
+//	 * @param vo
+//	 * @return
+//	 */
+//	public List<MatchingVo> selectTwoCard(MatchingVo vo);
 
 }

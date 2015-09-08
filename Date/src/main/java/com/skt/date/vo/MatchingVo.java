@@ -16,6 +16,8 @@ public class MatchingVo {
 	private String gender;
 	/** 닉네임 */
 	private String nickname;
+	
+	private String otherEmail;
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Variables
@@ -51,6 +53,12 @@ public class MatchingVo {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	public String getOtherEmail() {
+		return otherEmail;
+	}
+	public void setOtherEmail(String otherEmail) {
+		this.otherEmail = otherEmail;
+	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method
@@ -66,7 +74,10 @@ public class MatchingVo {
 	
 	@Override
 	public String toString() {
-		return "MatchingVo [email=" + email + ", gender=" + gender + ", nickname=" + nickname + "]";
+		return "MatchingVo [email=" + email + ", gender=" + gender + ", nickname=" + nickname + ", otherEmail="
+				+ otherEmail + ", getEmail()=" + getEmail() + ", getGender()=" + getGender() + ", getNickname()="
+				+ getNickname() + ", getOtherEmail()=" + getOtherEmail() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

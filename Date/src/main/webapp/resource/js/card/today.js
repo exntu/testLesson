@@ -30,14 +30,18 @@
 				.success(
 						function(data, status, headers, config) {
 							
-							if(console)console.info(data); //~~~~~s
+							//data 넘어온 값 설정
+							var currentTime = data.currentTime;
+							var twoCard = data.matchingTwoCard;
 							
 					  		//////////////////////////////////////////////////
 				    		// 남은 시간 구하기
 				    		//////////////////////////////////////////////////
+							var serverCurrentTime = new Date( currentTime);
+							var now = new Date ( serverCurrentTime );
 							function remain() {
-								var now = (new Date());
-								var remainHour = 24 - now.getHours();
+								now.setSeconds(now.getSeconds()+1);
+								var remainHour = 23 - now.getHours();
 								var remainMin = 59 - now.getMinutes();
 								var remainSec = 59 - now.getSeconds();
 								var remain = (("0" + remainHour).slice(-2))
@@ -47,19 +51,29 @@
 							}// remain
 							
 					  		//////////////////////////////////////////////////
-				    		// 사람랜덤 구하기
+				    		// 사람 2명 카드
 				    		//////////////////////////////////////////////////
-//				  			$scope.person1 = (data[0].name);
-//							$scope.person2 = (data[1].name);
-//							$scope.person3 = (data[2].name);
-//							$scope.person4 = (data[3].name);
+
+							//1번 카드 2번 카드
+							for(var i=0; i<twoCard.length; i++ ){
+								//첫번째 카드
+								var firstCard = twoCard[0];
+								$scope.firstEmail = firstCard.email;
+								$scope.firstGender = firstCard.gender;
+								$scope.firstNickname = firstCard.nickname;
+								//두번째 카드
+								var secondCard = twoCard[1];
+								$scope.secondEmail = secondCard.email;
+								$scope.secondGender = secondCard.gender;
+								$scope.secondNickname = secondCard.nickname;
+							}
 							
 					  		//////////////////////////////////////////////////
 				    		// 페이지 refresh
 				    		//////////////////////////////////////////////////
 				  			$interval (function () {
-								$scope.test = remain();
-							}, 1 );
+								$scope.displayTime = remain();
+							}, 1000 );
 							
 				  	  		//////////////////////////////////////////////////
 				    		// detail 페이지 이동

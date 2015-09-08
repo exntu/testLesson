@@ -10,7 +10,6 @@ import com.skt.date.repository.CardRepository;
 import com.skt.date.repository.impl.PeopleRepositoryImpl;
 import com.skt.date.service.CardService;
 import com.skt.date.vo.CardVo;
-import com.skt.date.vo.MatchingVo;
 import com.skt.date.vo.PeopleVo;
 
 @Service
@@ -81,17 +80,17 @@ public class CardServiceImpl implements CardService {
 	}
 	
 
-	/**
-	 * 유저를 조회한다.
-	 * @param vo
-	 * @return
-	 */
-	public List<MatchingVo> selectTwoCard(MatchingVo vo){
-		
-		List<MatchingVo> result = cardrepository.selectTwoCard(vo);
-		
-		return result;
-	}
+//	/**
+//	 * 유저를 조회한다.
+//	 * @param vo
+//	 * @return
+//	 */
+//	public List<MatchingVo> selectTwoCard(MatchingVo vo){
+//		
+//		List<MatchingVo> result = cardrepository.selectTwoCard(vo);
+//		
+//		return result;
+//	}
 
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
