@@ -80,7 +80,69 @@ public class TodayController extends AbstractBaseController {
 		
 		return model;
 	}
-	
+
+	/**
+	 * 랜덤 카드 선택
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.TODAY_CARD_SERVICE}, method={RequestMethod.GET} )
+	public ModelAndView todayCardViewSelect(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		String currentTime = todayService.currentTime();
+		
+		//로그인 정보 가져오기
+		UserVo userInfo = this.getLoginInfo(request);
+		
+		//matchingVo 셋팅
+		MatchingVo matchingVo = new MatchingVo();
+		matchingVo.setEmail(userInfo.getEmail());
+		matchingVo.setGender(userInfo.getGender());
+		matchingVo.setNickname(userInfo.getNickname());
+		
+		//오늘 카드 확인
+		if( todayService.matchingPickToday().isEmpty() ){
+			//이메일로 정보 추출
+			List<MatchingVo> matchingCard = todayService.selectTwoCard(matchingVo);
+			//insert
+			FromToVo fromtoVo = new FromToVo();
+			for(int i=0; i<matchingCard.size(); i++){
+				fromtoVo.setFrom(userInfo.getEmail());
+				fromtoVo.setTo(matchingCard.get(i).getEmail());
+				todayService.insertTwoCardSelected(fromtoVo);
+			}
+			result = matchingCard;
+		} else {
+			result = todayService.selectTwoCardAlready();
+		}
+		
+		//History 카드 보여주기
+		List<FromToVo> matchingHistory = todayService.matchingHistory();
+		matchingHistory.get(0).getTo();
+		matchingHistory.get(1).getTo();
+		
+		
+		System.out.println(matchingHistory);
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		ModelAndView model = new ModelAndView();
+		
+		//JSON
+		model.setViewName(Path.JSON);
+		model.addObject("result", result );
+		model.addObject("currentTime", currentTime);
+		model.addObject("matchingHistory", matchingHistory);
+		
+		return model;
+	}
+
 	/**
 	 * 카드 상세 페이지
 	 * @param request
@@ -132,66 +194,6 @@ public class TodayController extends AbstractBaseController {
 		return model;
 	}
 	
-	/**
-	 * 랜덤 카드 선택
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping( value={Path.TODAY_CARD_SERVICE}, method={RequestMethod.GET} )
-	public ModelAndView todayCardViewSelect(
-			HttpServletRequest request,
-			HttpServletResponse response ) throws Exception {
-		
-		String currentTime = todayService.currentTime();
-
-		//로그인 정보 가져오기
-		UserVo userInfo = this.getLoginInfo(request);
-		
-		//matchingVo 셋팅
-		MatchingVo matchingVo = new MatchingVo();
-		matchingVo.setEmail(userInfo.getEmail());
-		matchingVo.setGender(userInfo.getGender());
-		matchingVo.setNickname(userInfo.getNickname());
-		
-		//이메일로 정보 추출
-		List<MatchingVo> matchingCard = todayService.selectTwoCard(matchingVo);
-		
-		//오늘 카드 확인
-		if( todayService.matchingPickToday().isEmpty() ){
-			//insert
-			FromToVo fromtoVo = new FromToVo();
-			for(int i=0; i<matchingCard.size(); i++){
-				fromtoVo.setFrom(userInfo.getEmail());
-				fromtoVo.setTo(matchingCard.get(i).getEmail());
-				todayService.insertTwoCardSelected(fromtoVo);
-			}
-			result = matchingCard;
-		} else {
-			result = todayService.selectTwoCardAlready();
-		}
-		
-		//History 카드 보여주기
-		List<FromToVo> matchingHistory = todayService.matchingHistory();
-		
-		
-		System.out.println(matchingHistory);
-		//////////////////////////////////////////////////
-		//
-		// ModelAndView 반환
-		//
-		//////////////////////////////////////////////////
-		ModelAndView model = new ModelAndView();
-		
-		//JSON
-		model.setViewName(Path.JSON);
-		model.addObject("result", result );
-		model.addObject("currentTime", currentTime);
-		model.addObject("matchingHistory", matchingHistory);
-		
-		return model;
-	}
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Implement Method

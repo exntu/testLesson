@@ -20,8 +20,7 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-		
-		asdfasdf
+					
 		</div>
 	</div>
 	<%-- 공통 Footer --%>

@@ -1,4 +1,5 @@
 /**
+ * today js
  * author choong
  */
 
@@ -30,8 +31,6 @@
 				.success(
 						function(data, status, headers, config) {
 							
-							if(console)console.info(data);//~~~
-							
 							//data 넘어온 값 설정
 							var currentTime = data.currentTime;
 							var twoCard = data.result;
@@ -60,11 +59,13 @@
 							//1번 카드 2번 카드
 							for(var i=0; i<twoCard.length; i++ ){
 								//첫번째 카드
+								$scope.firstCard = twoCard[0];
 								var firstCard = twoCard[0];
 								$scope.firstEmail = firstCard.email;
 								$scope.firstGender = firstCard.gender;
 								$scope.firstNickname = firstCard.nickname;
 								//두번째 카드
+								$scope.secondCard = twoCard[1];
 								var secondCard = twoCard[1];
 								$scope.secondEmail = secondCard.email;
 								$scope.secondGender = secondCard.gender;
@@ -77,10 +78,10 @@
 							for(var i=0; i<matchingHistory.length; i++){
 								//첫번째 카드
 								var firstHistory= matchingHistory[0];
-								$scope.firstHistory = firstHistory;
+								$scope.firstHistory = firstHistory.to;
 								//두번째 카드
 								var secondHistory = matchingHistory[1];
-								$scope.secondHistory= secondHistory;
+								$scope.secondHistory= secondHistory.to;
 							}
 							
 							
@@ -94,10 +95,10 @@
 				  	  		//////////////////////////////////////////////////
 				    		// detail 페이지 이동
 				    		//////////////////////////////////////////////////
-							var path = $location.absUrl();
-							$scope.todayDetail = function () {
-								window.location.href = path + '/detail';
-							} 
+				  			var path = $location.absUrl();
+				  			$scope.detailClick= function( email ){
+				  				window.location.href = path + '/detail?'+email;
+				  			}
 						})
 				// 에러콜백
 				.error(function(data, status, headers, config) {

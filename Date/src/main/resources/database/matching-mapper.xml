@@ -46,9 +46,9 @@
 	<select id="matchingHistory" resultType="FromToVo">
 		/* com.skt.date.sql.matching.matchingHistory*/
 		<![CDATA[
-			SELECT				`TO`				as 		othermeail
+			SELECT				`TO`
 			FROM					T_MATCHING
-			limit 					2
+			limit					2
 		]]>
 	</select>
 	
