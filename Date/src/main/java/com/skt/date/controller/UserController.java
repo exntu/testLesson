@@ -52,64 +52,6 @@ public class UserController extends AbstractBaseController{
 	| Public Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 	
-	/**
-	 * 로그인 페이지
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping( value={Path.LOGIN}, method={RequestMethod.GET,RequestMethod.POST} )
-	public ModelAndView loginView(
-			HttpServletRequest request,
-			HttpServletResponse response ) throws Exception {
-		
-		//////////////////////////////////////////////////
-		//
-		// 이전에 가려고 했던 URL정보
-		//
-		//////////////////////////////////////////////////
-		
-		String forwardUrl = "";
-		String forwardMethod = "";
-		String forwardParam = "";
-		
-		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
-		if(flashMap != null) {
-
-			forwardUrl = (String) flashMap.get("_forwardUrl");
-			forwardMethod = (String) flashMap.get("_forwardMethod");
-			forwardParam = (String) flashMap.get("_forwardParam");
-		}
-		
-		//////////////////////////////////////////////////
-		//
-		// 세션에 기본정보 삭제
-		//
-		//////////////////////////////////////////////////
-		
-		HttpSession session = request.getSession();
-		session.setAttribute(Session.LOGIN_KEY, null);
-		
-		//////////////////////////////////////////////////
-		//
-		// ModelAndView 반환
-		//
-		//////////////////////////////////////////////////
-		
-		ModelAndView model = new ModelAndView();
-		
-		// JSP포워드
-		model.setViewName(Path.LOGIN_JSP);
-		
-		// 데이터
-		model.addObject("_forwardUrl", forwardUrl);
-		model.addObject("_forwardMethod", forwardMethod);
-		model.addObject("_forwardParam", forwardParam);
-		
-		return model;
-	}
-	
 	
 	/**
 	 * 로그인 처리 서비스
@@ -175,33 +117,6 @@ public class UserController extends AbstractBaseController{
 		
 		// 반환메시지
 		model.addObject(Path.MESSAGE, "");
-		
-		return model;
-	}
-	
-	
-	/**
-	 * 회원가입 페이지
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping( value={Path.JOIN}, method={RequestMethod.GET,RequestMethod.POST} )
-	public ModelAndView joinView(
-			HttpServletRequest request,
-			HttpServletResponse response ) throws Exception {
-		
-		//////////////////////////////////////////////////
-		//
-		// ModelAndView 반환
-		//
-		//////////////////////////////////////////////////
-		
-		ModelAndView model = new ModelAndView();
-		
-		// JSP포워드
-		model.setViewName(Path.JOIN_JSP);
 		
 		return model;
 	}

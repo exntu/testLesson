@@ -1,5 +1,7 @@
 package com.skt.date.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.skt.date.common.Session;
 
@@ -57,6 +60,24 @@ public class MainController extends AbstractBaseController {
 		
 		//////////////////////////////////////////////////
 		//
+		// 이전에 가려고 했던 URL정보
+		//
+		//////////////////////////////////////////////////
+		
+		String forwardUrl = "";
+		String forwardMethod = "";
+		String forwardParam = "";
+		
+		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+		if(flashMap != null) {
+
+			forwardUrl = (String) flashMap.get("_forwardUrl");
+			forwardMethod = (String) flashMap.get("_forwardMethod");
+			forwardParam = (String) flashMap.get("_forwardParam");
+		}
+		
+		//////////////////////////////////////////////////
+		//
 		// 세션에 기본정보 삭제
 		//
 		//////////////////////////////////////////////////
@@ -74,6 +95,11 @@ public class MainController extends AbstractBaseController {
 		
 		// JSP포워드
 		model.setViewName(Path.MAIN_JSP);
+		
+		// 데이터
+		model.addObject("_forwardUrl", forwardUrl);
+		model.addObject("_forwardMethod", forwardMethod);
+		model.addObject("_forwardParam", forwardParam);
 		
 		return model;
 	}
