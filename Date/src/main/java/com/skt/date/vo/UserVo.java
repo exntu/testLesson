@@ -18,6 +18,15 @@ public class UserVo extends CommonVo{
 	/** 닉네임 */
 	private String nickname;
 	
+	/** 생년월일: 년 */
+	private String year;
+	
+	/** 생년월일: 월 */
+	private String month;
+	
+	/** 생년월일: 일 */
+	private String date;
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Variables
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -62,6 +71,30 @@ public class UserVo extends CommonVo{
 		return nickname;
 	}
 
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
@@ -81,7 +114,8 @@ public class UserVo extends CommonVo{
 
 	@Override
 	public String toString() {
-		return "UserVo [email=" + email + ", pass=" + pass + ", gender=" + gender + ", nickname=" + nickname + "]";
+		return "UserVo [email=" + email + ", pass=" + pass + ", gender=" + gender + ", nickname=" + nickname + ", year="
+				+ year + ", month=" + month + ", date=" + date + "]";
 	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

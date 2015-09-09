@@ -235,14 +235,22 @@ public class UserController extends AbstractBaseController{
 		//
 		//////////////////////////////////////////////////
 		
-		// 사용자정보 조회
+		// (Email) 사용자정보 조회
 		UserVo userVO = userService.selectUser(param);
+		
+		// (Nickname) 사용자정보 조회
+		UserVo userVO2 = userService.selectUserByNickname(param);
 		
 		// ID에 해당하는 유저가 있을경우
 		if( userVO != null ){
 			
 			// 이미 가입된 유저임
 			result = "ALREADY";
+		}
+		else if( userVO2 != null ){
+			
+			// 이미 존재하는 닉네임임
+			result = "ALREADY2";
 		}
 		// ID/PW에 해당하는 유저가 없을경우
 		else{
@@ -263,6 +271,123 @@ public class UserController extends AbstractBaseController{
 			
 			// 가입 성공
 			result = "SUCCESS";
+		}
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model	= new ModelAndView();
+		
+		// JSON
+		model.setViewName(Path.JSON);
+		
+		// 반환코드
+		model.addObject(Path.CODE, result);
+		
+		// 반환메시지
+		model.addObject(Path.MESSAGE, "");
+		
+		return model;
+	}
+	
+	
+	/**
+	 * 회언가입 이메일 중복체크 서비스
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.JOIN_EMAIL_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView joinEmailCheckService(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestBody UserVo param ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// 반환 세팅
+		//
+		//////////////////////////////////////////////////
+		
+		// 반환값
+		String result = "SUCCESS";
+		
+		//////////////////////////////////////////////////
+		//
+		// 중복 조회
+		//
+		//////////////////////////////////////////////////
+		
+		// (Email) 사용자정보 조회
+		UserVo userVO = userService.selectUser(param);
+		
+		// ID에 해당하는 유저가 있을경우
+		if( userVO != null ){
+			
+			// 이미 가입된 유저임
+			result = "ALREADY";
+		}
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model	= new ModelAndView();
+		
+		// JSON
+		model.setViewName(Path.JSON);
+		
+		// 반환코드
+		model.addObject(Path.CODE, result);
+		
+		// 반환메시지
+		model.addObject(Path.MESSAGE, "");
+		
+		return model;
+	}
+	
+	
+	/**
+	 * 회언가입 닉네임 중복체크 서비스
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.JOIN_NICKNAME_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView joinNicknameCheckService(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestBody UserVo param ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// 반환 세팅
+		//
+		//////////////////////////////////////////////////
+		
+		// 반환값
+		String result = "SUCCESS";
+		
+		//////////////////////////////////////////////////
+		//
+		// 중복 조회
+		//
+		//////////////////////////////////////////////////
+		
+		// (Nickname) 사용자정보 조회
+		UserVo userVO = userService.selectUserByNickname(param);
+		
+		 if( userVO != null ){
+			
+			// 이미 존재하는 닉네임임
+			result = "ALREADY2";
 		}
 		
 		//////////////////////////////////////////////////

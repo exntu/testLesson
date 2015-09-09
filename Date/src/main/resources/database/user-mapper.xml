@@ -19,7 +19,7 @@
 	//
 	////////////////////////////////////////////////// -->
 	<select id="selectLoginUser" parameterType="UserVo" resultType="UserVo">
-		/* com.skt.date.sql.user.selectUser */
+		/* com.skt.date.sql.user.selectLoginUser */
 		SELECT		EMAIL		AS email,
 					PASS		AS pass,
 					GENDER		AS gender,	
@@ -48,6 +48,23 @@
 		WHERE		EMAIL 	= #{email}
 	</select>
 	
+	<!-- //////////////////////////////////////////////////
+	//
+	// 닉네임에 해당하는 유저를 조회한다.
+	//
+	////////////////////////////////////////////////// -->
+	<select id="selectUserByNickname" parameterType="UserVo" resultType="UserVo">
+		/* com.skt.date.sql.user.selectUserByNickname */
+		SELECT		EMAIL		AS email,
+					PASS		AS pass,
+					GENDER		AS gender,	
+					NICKNAME	AS nickname
+					
+		FROM		T_USER
+		
+		WHERE		NICKNAME = #{nickname}
+	</select>
+	
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////// MERGE //////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -68,6 +85,9 @@
 			PASS,
 			GENDER,
 			NICKNAME,
+			YEAR,
+			MONTH,
+			DATE,
 			CREATE_BY,
 			CREATE_DT,
 			UPDATE_BY,
@@ -78,6 +98,9 @@
 			#{pass},
 			#{gender},
 			#{nickname},
+			#{year},
+			#{month},
+			#{date},
 			#{createdUserId},
 			CURRENT_TIMESTAMP(),
 			#{updatedUserId},

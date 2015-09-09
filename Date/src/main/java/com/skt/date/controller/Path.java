@@ -46,6 +46,8 @@ public class Path {
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
 	public static final String JOIN							= "/join";
 	public static final String JOIN_SERVICE					= SERVICE + "/join";
+	public static final String JOIN_EMAIL_SERVICE			= SERVICE + "/join/email";
+	public static final String JOIN_NICKNAME_SERVICE		= SERVICE + "/join/nickname";
 	public static final String JOIN_JSP						= "/user/join";
 	
 	
