@@ -5,7 +5,7 @@
 <%-- //스크립트 --%>
 
 <!-- loading bar -->
-<div class="page-loading-overlay" style="display:none;">
+<div id="_loading" class="page-loading-overlay" style="display:none;">
     <div class="loader-2"></div>
 </div>
 <!-- //loading bar -->

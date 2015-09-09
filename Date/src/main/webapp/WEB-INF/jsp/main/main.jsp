@@ -19,6 +19,12 @@
     <%-- //스크립트 --%>
 </head>
 <body ng-controller="AppController">
+	<!-- loading bar -->
+	<div id="_loading" class="page-loading-overlay" style="display:none;">
+	    <div class="loader-2"></div>
+	</div>
+	<!-- //loading bar -->
+
 	<div class="sa-layout-wrap">
 		<!-- header -->
 		<div class="sa-layout-main-header">
