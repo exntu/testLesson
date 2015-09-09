@@ -1,5 +1,5 @@
 /**
- * Today
+ * author choong
  */
 
 (function() {
@@ -30,9 +30,12 @@
 				.success(
 						function(data, status, headers, config) {
 							
+							if(console)console.info(data);//~~~
+							
 							//data 넘어온 값 설정
 							var currentTime = data.currentTime;
-							var twoCard = data.matchingTwoCard;
+							var twoCard = data.result;
+							var matchingHistory = data.matchingHistory;
 							
 					  		//////////////////////////////////////////////////
 				    		// 남은 시간 구하기
@@ -67,6 +70,19 @@
 								$scope.secondGender = secondCard.gender;
 								$scope.secondNickname = secondCard.nickname;
 							}
+							
+							//////////////////////////////////////////////////
+							// matchingHistory 2장카드 보여주
+							//////////////////////////////////////////////////
+							for(var i=0; i<matchingHistory.length; i++){
+								//첫번째 카드
+								var firstHistory= matchingHistory[0];
+								$scope.firstHistory = firstHistory;
+								//두번째 카드
+								var secondHistory = matchingHistory[1];
+								$scope.secondHistory= secondHistory;
+							}
+							
 							
 					  		//////////////////////////////////////////////////
 				    		// 페이지 refresh

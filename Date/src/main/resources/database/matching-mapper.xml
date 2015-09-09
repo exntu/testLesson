@@ -40,6 +40,20 @@
 	
 	<!-- //////////////////////////////////////////////////
 	//
+	// 오늘 카드 날짜 조회
+	//
+	////////////////////////////////////////////////// -->	
+	<select id="matchingHistory" resultType="FromToVo">
+		/* com.skt.date.sql.matching.matchingHistory*/
+		<![CDATA[
+			SELECT				`TO`				as 		othermeail
+			FROM					T_MATCHING
+			limit 					2
+		]]>
+	</select>
+	
+	<!-- //////////////////////////////////////////////////
+	//
 	// 유저를 조회한다.
 	//		1. 나와 다른 신분
 	//		2. T_MATCHING 에서 전에 만났던 사람 제외

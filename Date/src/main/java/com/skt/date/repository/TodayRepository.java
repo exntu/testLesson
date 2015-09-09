@@ -39,5 +39,9 @@ public interface TodayRepository {
 	 */
 	public void insertTwoCardSelected( FromToVo vo );
 
-
+	/**
+	 * history에서 2장카드 가져오기
+	 * @return
+	 */
+	public List<FromToVo>matchingHistory();
 }

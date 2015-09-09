@@ -116,6 +116,12 @@ public class TodayServiceImpl implements TodayService {
 		return result;
 	}
 	
+	
+	public List<FromToVo>matchingHistory(){
+		List<FromToVo> result = todayRepository.matchingHistory();
+		return result;
+	}
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Override Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	

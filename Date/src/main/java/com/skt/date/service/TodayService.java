@@ -38,5 +38,12 @@ public interface TodayService {
 	 * @param fromtoVo
 	 */
 	public void insertTwoCardSelected( FromToVo fromtoVo );
+	
+	/**
+	 * history에서 두장카드 가져오기
+	 * @return
+	 */
+	public List<FromToVo>matchingHistory();
+	
 
 }

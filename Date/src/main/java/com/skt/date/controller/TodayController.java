@@ -159,7 +159,7 @@ public class TodayController extends AbstractBaseController {
 		List<MatchingVo> matchingCard = todayService.selectTwoCard(matchingVo);
 		
 		//오늘 카드 확인
-//		if( todayService.matchingPickToday().isEmpty() ){
+		if( todayService.matchingPickToday().isEmpty() ){
 			//insert
 			FromToVo fromtoVo = new FromToVo();
 			for(int i=0; i<matchingCard.size(); i++){
@@ -168,13 +168,15 @@ public class TodayController extends AbstractBaseController {
 				todayService.insertTwoCardSelected(fromtoVo);
 			}
 			result = matchingCard;
-//		} else {
-//			result = todayService.selectTwoCardAlready();
-//		}
+		} else {
+			result = todayService.selectTwoCardAlready();
+		}
 		
-		//두장카드 확인
+		//History 카드 보여주기
+		List<FromToVo> matchingHistory = todayService.matchingHistory();
 		
 		
+		System.out.println(matchingHistory);
 		//////////////////////////////////////////////////
 		//
 		// ModelAndView 반환
@@ -186,6 +188,7 @@ public class TodayController extends AbstractBaseController {
 		model.setViewName(Path.JSON);
 		model.addObject("result", result );
 		model.addObject("currentTime", currentTime);
+		model.addObject("matchingHistory", matchingHistory);
 		
 		return model;
 	}

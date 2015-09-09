@@ -50,7 +50,7 @@ public class TodayRepositoryImpl implements TodayRepository {
 	 * @return
 	 */
 	public List<MatchingVo> matchingPickToday() {
-		List<MatchingVo> result = (List<MatchingVo>) sqlSession.selectOne("com.skt.date.sql.matching.matchingPickToday");
+		List<MatchingVo> result = (List<MatchingVo>) sqlSession.selectList("com.skt.date.sql.matching.matchingPickToday");
 		return result;
 	}
 	
@@ -77,6 +77,13 @@ public class TodayRepositoryImpl implements TodayRepository {
 		sqlSession.insert( "com.skt.date.sql.matching.insertMatchedCard", vo );
 	}
 
+	/**
+	 * histroy에서 두장 카드 가져오기
+	 */
+	public List<FromToVo> matchingHistory(){
+		List<FromToVo>result = sqlSession.selectList("com.skt.date.sql.matching.matchingHistory");
+		return result;
+	}
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method
