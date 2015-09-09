@@ -20,43 +20,42 @@
 	<div class="container">
 		<div class="row">
 			<!-- 목록화면 -->
-			<div class="col-sm-2"> 
+			<div class="col-md-4"> 
 				<div class="form-group">
 					<label for="allCard">모든카드</label> 
+					
+					
 					<table class="table table-striped">
+						<th>아이디</th>
 						<th>이름</th>
-						<th>나이</th>
 						<th>성별</th>
-						<tr class="sum_list" ng-click="getDetail($index)" ng-repeat="person in result track by $index">
-							<td>{{person.nickname}}</td>
-							<!-- <td>{{person.age}}</td> -->
-							<td>{{person.gender}}</td>
-						</tr>
+						<tr class="sum_list" ng-click="getDetail(person.email)" ng-repeat="person in result track by $index" >
+								<td>{{person.email}}</td>
+								<td>{{person.nickname}}</td>
+								<td>{{person.gender}}</td>
+						</tr>	
 					</table>
+			
 				</div>
 			</div>
-			
-
 			<!-- 프로필 상세화면 보여지는 화면 -->
-			<div class="col-sm-10">
+			<div class="col-md-8">
 				<div class="details">
 					<label for="detail">상세화면</label> 
+					
+					
 					<table class="table table-striped">
-					<tr ng-repeat="person in detail track by $index">
-				    	<td>{{ person.name }}</td>
-				    	<td>{{ person.age }}</td>
-				    	<td>{{ person.email }}</td>
-				    	<td>{{ person.height }}</td>
-				    	<td>{{ person.bodyShape }}</td>
-				    	<td>{{ person.sex }}</td>
-				    	<td>{{ person.job }}</td>
-				    	<td>{{ person.bloodType }}</td>
-				    	<td>{{ person.religion }}</td>
-				    	<td>{{ person.smoking }}</td>
-				    	<td>{{ person.drink }}</td>
-				    	<td>{{ person.style }}</td>
-				    </tr>
-				    </table>
+						<tr ng-repeat="person in result_add track by $index">
+							<td>						
+								<div ng-repeat="img in result_img track by $index">
+									<img style="width:50px; height:50px;" data-ng-src="data:image/jpeg;base64,{{img.filestream}}"/>
+								</div>	
+							</td>
+					    	<td>{{ person.classify }}</td>
+					    	<td>{{ person.data }}</td>
+				    	</tr>
+				    </table> 
+
 				</div>
 			</div>
 		</div>

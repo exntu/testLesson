@@ -7,11 +7,20 @@ public class UploadVo extends PeopleVo {
 
 	
 	private MultipartFile profile;
+	private String email;
 
 	private String filename; //파일이름
 	private String fileexarr; //파일확장자
 	private String filestream; //base64로 저장된 바이트
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getFilestream() {
 		return filestream;
 	}
@@ -48,9 +57,11 @@ public class UploadVo extends PeopleVo {
 
 	@Override
 	public String toString() {
-		return "UploadVo [profile=" + profile + ", filename=" + filename + ", fileexarr=" + fileexarr + ", filestream="
-				+ filestream + "]";
+		return "UploadVo [profile=" + profile + ", email=" + email + ", filename=" + filename + ", fileexarr="
+				+ fileexarr + ", filestream=" + filestream + "]";
 	}
+
+
 
 
 

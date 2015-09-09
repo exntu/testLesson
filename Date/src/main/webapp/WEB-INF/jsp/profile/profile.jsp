@@ -41,15 +41,18 @@
 	<div class="container">
 	
 		<div class="row">
-			<div class="col-sm-2">
-				<button	ng-hide="editMode" ng-click="editMode=true"
+			<!-- 프로필 수정 -->
+			<div class="col-sm-4">
+				<button	ng-hide="editMode" ng-click="editMode=true;movein()"
 						type="submit" 
 						class="btn btn-default">프로필 수정</button>
 						
-				<button class="btn btn-default" type="submit" ng-show="editMode" ng-click="editMode=false; edit()">저장</button>
+				<button class="btn btn-default" type="submit" ng-show="editMode" ng-click="editMode=false">저장</button>
 
 			</div>
-			<div class="col-sm-2">
+			
+			<!-- 프로필 사진, 사진업로드 -->
+			<div class="col-sm-4">
 				<label for="image">프로필 사진</label>
 				<div ng-repeat="img in result_img track by $index"  >
 					<img style="width:144px; height:144px;" data-ng-src="data:image/jpeg;base64,{{img.filestream}}"/>
@@ -58,7 +61,10 @@
 				<button ngf-select ngf-change="uploadPhoto($files)" class="btn">
 				<span>사진 올리기</span>
 				</button>
-
+			</div>
+			
+			<!-- 상세정보 -->
+			<div class="col-sm-4">
 				<table class="table table-striped">
 					<tr ng-repeat="person in result_add track by $index">
 				    	<td>
@@ -66,12 +72,46 @@
 				    	</td>
 				    	<td>
 					    	<span ng-hide="editMode">{{ person.data }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.data"/>
 				    	</td>
 				    	
 				    </tr>
-			    </table>	
+			    </table>
+			    
+			    
+			    <!-- 수정 입력폼 -->
+			    <table>
+				    <tr>
+					  <td><input type="text" id="age" ng-model="age"></td>
+					</tr>
+					<tr>
+				      <td><input type="text" id="bloodtype" ng-model="bloodtype"></td>
+				    </tr>
+				    <tr>
+				      <td><input type="text" id="bodyshape" ng-model="bodyshape"></td>
+				    </tr>
+				    <tr>
+				      <td><input type="text" id="drink" ng-model="drink"></td>
+				    </tr>
+				    <tr>
+				      <td><input type="text" id="height" ng-model="height"></td>
+			     	</tr>
+				    <tr>
+				      <td><input type="text" id="job" ng-model="job"></td>
+			        </tr>
+				    <tr>
+				      <td><input type="text" id="religion" ng-model="religion"></td>
+			     	</tr>
+				    <tr>
+				      <td><input type="text" id="smoking" ng-model="smoking"></td>
+			      	</tr>
+				    <tr>
+				      <td><input type="text" id="style" ng-model="style"></td>
+				    </tr>
+				</table>    
+			    
+
 			</div>
+			
 		</div>
 	</div>
 	<%-- 공통 Footer --%>

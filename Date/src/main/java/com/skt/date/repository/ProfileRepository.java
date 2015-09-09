@@ -9,10 +9,18 @@ import com.skt.date.vo.UserVo;
 
 
 public interface ProfileRepository {
+	
+	
 	public UserVo selectProfile(String param);
 	public List<UploadVo> selectImg(String param);
 	public List<ProfileVo> selectAdd(String param);
 	
-	public List<PeopleVo> selectAllCard();
+	
+	//프로필 사진수정
+	public void UploadProfile(UploadVo vo);
+	
+	//프로필 부가정보 수정
+	public void UploadAdd(PeopleVo vo);
+	
 	
 }

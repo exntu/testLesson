@@ -86,7 +86,7 @@ public class ProfileController extends AbstractBaseController {
 	}
 	
 	/**
-	 * 프로필 업로드 처리화면
+	 * 프로필 데이터 로드
 	 * @param request
 	 * @param response
 	 * @return
@@ -123,7 +123,7 @@ public class ProfileController extends AbstractBaseController {
 	}
 	
 	/**
-	 * 프로필 수정 서비스 
+	 * 프로필 정보 수정 
 	 * @param request
 	 * @param response
 	 * @return
@@ -133,7 +133,7 @@ public class ProfileController extends AbstractBaseController {
 	public ModelAndView profileUpdate(
 			HttpServletRequest request,
 			HttpServletResponse response,
-			@RequestParam ProfileVo vo) throws Exception {
+			@RequestParam PeopleVo vo) throws Exception {
 		
 		//////////////////////////////////////////////////
 		//
@@ -142,7 +142,7 @@ public class ProfileController extends AbstractBaseController {
 		//////////////////////////////////////////////////
 		ModelAndView model = new ModelAndView();
 
-
+		profileservice.UploadAdd(vo);
 	
 		model.addObject(Path.CODE, "SUCCESS" );
 		model.setViewName(Path.JSON);
@@ -150,7 +150,7 @@ public class ProfileController extends AbstractBaseController {
 		return model;
 	}
 	/**
-	 * 프로필 업로드 처리화면
+	 * 프로필 사진 수정
 	 * @param request
 	 * @param response
 	 * @return
@@ -169,7 +169,14 @@ public class ProfileController extends AbstractBaseController {
 		//////////////////////////////////////////////////
 		ModelAndView model = new ModelAndView();
 
-		profileservice.uploadProfile(vo);
+		//로그인 정보 가져오기
+		UserVo userInfo = this.getLoginInfo(request);
+		vo.setEmail(userInfo.getEmail());
+		
+		
+		profileservice.UploadProfile(vo);
+		
+		
 		model.addObject("profile",vo.getFilestream());
 		model.addObject(Path.CODE, "SUCCESS" );
 		model.setViewName(Path.JSON);

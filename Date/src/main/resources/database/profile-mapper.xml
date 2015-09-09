@@ -15,28 +15,9 @@
 	
 	<!-- //////////////////////////////////////////////////
 	//
-	// 프로필을 조회한다.
+	// 프로필 기본정보를 조회한다
 	//
 	////////////////////////////////////////////////// -->
-<!-- 	<select id="selectProfile" parameterType="String" resultType="ProfileVo">
-		/* com.skt.date.sql.profile.selectProfile */
-		SELECT		T_USER.EMAIL		AS email,
-					T_USER.PASS			AS pass,
-					T_USER.GENDER		AS sex,	
-					T_USER.NICKNAME		AS name,
-					T_USER_ADDITIONAL.CLASSIFY as classify,
-					T_USER_ADDITIONAL.DATA as data,
-					T_USER_IMG.DATA as filestream
-								
-		FROM		T_USER 
-		JOIN 		T_USER_ADDITIONAL
-		ON			T_USER.EMAIL=T_USER_ADDITIONAL.EMAIL
-		JOIN		T_USER_IMG
-		ON			T_USER_ADDITIONAL.EMAIL=T_USER_IMG.EMAIL
-		WHERE		T_USER.EMAIL 	= #{email}
-		
-	</select> -->
-	
 		<select id="selectProfile" parameterType="String" resultType="UserVo">
 		/* com.skt.date.sql.profile.selectProfile */
 		SELECT		EMAIL		AS email,
@@ -47,6 +28,11 @@
 		WHERE		EMAIL 	= #{email}
 		
 		</select>
+	<!-- //////////////////////////////////////////////////
+	//
+	// 프로필의 사진을 조회한다
+	//
+	////////////////////////////////////////////////// -->
 		
 		<select id="selectImg" parameterType="String" resultType="UploadVo">
 		/* com.skt.date.sql.profile.selectImg */
@@ -55,14 +41,48 @@
 		WHERE		EMAIL 	= #{email}
 		
 		</select>
+	<!-- //////////////////////////////////////////////////
+	//
+	// 프로필의 부가정보를 조회한다
+	//
+	////////////////////////////////////////////////// -->
 		
 		<select id="selectAdd" parameterType="String" resultType="ProfileVo">
-		/* com.skt.date.sql.profile.selectImg */
-		SELECT		CLASSIFY		AS classify,
-					DATA			AS data
-		FROM		T_USER_ADDITIONAL 
+		/* com.skt.date.sql.profile.selectAdd */
+		SELECT		CLASSIFY    AS classify,
+					DATA		AS data
+		FROM		T_USER_ADDITIONAL
 		WHERE		EMAIL 	= #{email}
+		
 		</select>
+	<!-- //////////////////////////////////////////////////
+	//
+	// 프로필 사진을 수정한다
+	//
+	////////////////////////////////////////////////// -->
+		
+		<update id="UploadProfile" parameterType="UploadVo">
+		/* com.skt.date.sql.profile.UploadProfile */
+		UPDATE		T_USER_IMG
+		SET 		DATA		= #{filestream}
+		WHERE		EMAIL 		= #{email}
+		
+		</update>
+		
+	<!-- //////////////////////////////////////////////////
+	//
+	// 프로필 부가정보를 수정한다
+	//
+	////////////////////////////////////////////////// -->
+		
+		<update id="UploadAdd" parameterType="PeopleVo">
+		/* com.skt.date.sql.profile.UploadAdd */
+		UPDATE		T_USER_ADDITIONAL
+		SET 		DATA		= #{data},
+					UPDATE_DT	= NOW()
+		WHERE		CLASSIFY 	= #{classify}
+		AND 		EMAIL 		= #{email}
+		</update>
 	
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////// UPDATE /////////////////////////////////////////////////

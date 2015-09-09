@@ -15,11 +15,10 @@
 	
 	<!-- //////////////////////////////////////////////////
 	//
-	// 매칭카드가 된 사용자 정보를 불러온다.
+	// 카드의 기본정보를 불러온다.
 	//
 	////////////////////////////////////////////////// -->
-	
-		<select id="selectAllCard" resultType="UserVo">
+		<select id="selectAllCard" parameterType="UserVo" resultType="UserVo">
 		/* com.skt.date.sql.allcard.selectAllCard */
 		SELECT		T_MATCHING.TO		AS email,
 					T_USER.GENDER		AS gender,	
@@ -31,26 +30,41 @@
 		
 		</select>
 		
-		<select id="selectAllCardImg" resultType="UploadVo">
-		/* com.skt.date.sql.allcard.selectAllCard */
-		SELECT		T_MATCHING.TO		AS email,
-					T_USER.GENDER		AS gender,	
-					T_USER.NICKNAME	AS nickname
+	<!-- //////////////////////////////////////////////////
+	//
+	// 카드의 이미지를 불러온다
+	//
+	////////////////////////////////////////////////// -->
+		
+		<select id="selectAllCardImg" parameterType="String" resultType="UploadVo">
+		/* com.skt.date.sql.allcard.selectAllCardImg */
+		SELECT		T_USER_IMG.EMAIL AS email,
+					T_USER_IMG.DATA  AS filestream
 		FROM		T_MATCHING
 		JOIN		T_USER
 		ON			T_MATCHING.TO=T_USER.EMAIL
-		WHERE		T_MATCHING.FROM 	=#{email}
-		
+		JOIN		T_USER_IMG
+		ON			T_MATCHING.TO=T_USER_IMG.EMAIL
+		WHERE		T_MATCHING.TO 	=#{email}
 		</select>
 		
-<!-- 		<select id="selectImg" parameterType="UserVo" resultType="UploadVo">
-		/* com.skt.date.sql.profile.selectImg */
-		SELECT		DATA		AS filestream
-		FROM		T_USER_IMG 
-		WHERE		EMAIL 	= #{email}
+	<!-- //////////////////////////////////////////////////
+	//
+	// 카드의 부가적인 정보를 불러온다
+	//
+	////////////////////////////////////////////////// -->
 		
-		</select> -->
-		
+		<select id="selectAllCardAdd" parameterType="String" resultType="ProfileVo">
+		/* com.skt.date.sql.allcard.selectAllCardAdd */
+		SELECT		CLASSIFY			AS classify,
+					DATA				AS data
+		FROM		T_MATCHING
+		JOIN		T_USER_ADDITIONAL
+		ON			T_MATCHING.TO=T_USER_ADDITIONAL.EMAIL
+		WHERE		T_MATCHING.TO 	=#{email}
+
+		</select>
+
 		
 	
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////
