@@ -16,6 +16,9 @@
 	//
 	//////////////////////////////////////////////////
 	
+	// 메뉴
+	var _$menu = null;
+	
 	//////////////////////////////////////////////////
 	//
 	// 모듈생성
@@ -28,6 +31,20 @@
 		// 초기실행
 		.run(function(){
 			
+			// 메뉴
+			_$menu = $("#_menu");
+			
+			// 초기 선택
+			_$menu.find("a").each(function(){
+				
+				var $a = $(this);
+				
+				if( window.location.href.indexOf($a.attr("href")) != -1  ){
+					
+					$a.parent().addClass("sa-selected");
+					return false;
+				} 
+			});
 		})
 		// 컨트롤러
 		.controller("HeaderController", function($scope, $http) {

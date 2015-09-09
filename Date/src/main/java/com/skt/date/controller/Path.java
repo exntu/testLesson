@@ -95,5 +95,10 @@ public class Path {
 	public static final String SEND_MESSAGE_SERVICE			= SERVICE + "/message";
 	public static final String SEND_MESSAGE_JSP				= "/send/message";
 
-
+	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Stroe
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+	public static final String STORE						= "/store";
+	public static final String STORE_SERVICE				= SERVICE + "/store";
+	public static final String STORE_JSP					= "/store/store";
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html ng-app="App">
 <head>
-	<title>서비스앱 main</title>
+	<title>Lesson Master</title>
 
 	<%-- 공통 Variable & CSS & JS --%>
 	<%@ include file="/WEB-INF/jsp/common/common.jsp" %>

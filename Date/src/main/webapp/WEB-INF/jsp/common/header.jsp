@@ -4,19 +4,36 @@
 <script src="${_resource}/js/common/header.js"></script>
 <%-- //스크립트 --%>
 
-<div ng-controller="HeaderController">
-	<%-- 메뉴 --%>
-	<div class="row">
-		<div class="col-xs-12">
-			<ul style="list-style-type: none; margin: 0; padding: 0;">
-				<li style="display: inline;"><a href="${_ctx}/card/today">* Date Site</a></li>
-				<li style="display: inline;"><a href="${_ctx}/card/today">* Today Card</a></li>
-				<li style="display: inline;"><a href="${_ctx}/card/all">* All of Card</a></li>
-				<li style="display: inline;"><a href="${_ctx}/profile">* Profile</a></li>
-			</ul>
-		</div>
-	</div>
-	<hr/>
-	
-	<div class="row">
-		<div class="col-xs-12">
+<!-- loading bar -->
+<div class="page-loading-overlay" style="display:none;">
+    <div class="loader-2"></div>
+</div>
+<!-- //loading bar -->
+<div class="sa-layout-wrap" ng-controller="HeaderController">
+	<!-- header -->
+	<div class="sa-layout-header">
+    	<div class="sa-ui-header">
+             <!-- 로고 -->
+             <h1 class="sa-h1-logo">
+                <img src="${_resource}/images/logo_top.png" alt="Lesson Master" />
+            </h1>
+            <!-- //로고 -->
+            
+            <div class="sa-ui-header-menu">
+                 <ul class="sa-list-top-menu">
+                    <li><a href="${_ctx}/">Log out</a></li>
+                    <li><a href="javascript:">FAQ</a></li>
+                    <li><a href="javascript:">About</a></li>
+                </ul>
+            </div>
+           <div class="sa-ui-header-menu">
+                <ul id="_menu" class="sa-list-menu">
+                    <li><a href="${_ctx}/card/today">TODAY'S CARD</a></li>
+                    <li><a href="${_ctx}/card/all">All CARD</a></li>
+                    <li><a href="${_ctx}/profile">My PROFILE</a></li>
+                    <li><a href="${_ctx}/store">Store</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	<!-- //header -->

@@ -1,7 +1,5 @@
 package com.skt.date.controller;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.skt.date.common.Session;
 import com.skt.date.service.UserService;
@@ -321,6 +318,32 @@ public class UserController extends AbstractBaseController{
 		
 		// 반환메시지
 		model.addObject(Path.MESSAGE, "");
+		
+		return model;
+	}
+	
+	/**
+	 * Store 페이지
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.STORE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView storeView(
+			HttpServletRequest request,
+			HttpServletResponse response ) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		
+		// JSP포워드
+		model.setViewName(Path.STORE_JSP);
 		
 		return model;
 	}
