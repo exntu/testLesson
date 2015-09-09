@@ -104,7 +104,8 @@
 				
 				var list=$scope.result_add
 				//리스트값을 input에 할당
-				angular.forEach(list,function(value){
+				angular.forEach(list,function(index){
+					$scope[index.classify]=index.value;
 					//$scope[]=value.classify;
 				}){
 					
