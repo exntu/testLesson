@@ -87,6 +87,16 @@ public class UserServiceImpl implements UserService{
 		// 수정
 		userRepository.updateUser(vo);
 	}
+	
+	/**
+	 * 닉네임에 해당하는 유저를 조회한다.
+	 */
+	public UserVo selectUserByNickname(UserVo vo){
+		
+		UserVo result = userRepository.selectUserByNickname(vo);
+		
+		return result;
+	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Override Method

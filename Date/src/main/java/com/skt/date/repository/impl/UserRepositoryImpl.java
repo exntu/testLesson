@@ -70,6 +70,16 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		sqlSession.insert("com.skt.date.sql.user.updateUser",vo);
 	}
+	
+	/**
+	 * 닉네임에 해당하는 유저를 조회한다.
+	 */
+	public UserVo selectUserByNickname(UserVo vo){ 
+
+		UserVo result = (UserVo) sqlSession.selectOne("com.skt.date.sql.user.selectUserByNickname",vo);
+		
+		return result; 
+	}
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method

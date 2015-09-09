@@ -33,4 +33,9 @@ public interface UserService {
 	 * @return
 	 */
 	public void updateUser(UserVo vo);
+	
+	/**
+	 * 닉네임에 해당하는 유저를 조회한다.
+	 */
+	public UserVo selectUserByNickname(UserVo vo);
 }
