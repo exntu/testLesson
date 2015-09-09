@@ -24,8 +24,6 @@
 					method : 'GET',
 					// URL
 					url : _ctx + '/service/card/today'
-					// 데이터
-//					params: {email:"test@test.com"}
 				})
 				// 성공콜백
 				.success(
@@ -97,7 +95,7 @@
 				    		//////////////////////////////////////////////////
 				  			var path = $location.absUrl();
 				  			$scope.detailClick= function( email ){
-				  				window.location.href = path + '/detail?'+email;
+				  				window.location.href = path + '/detail?email='+email;
 				  			}
 						})
 				// 에러콜백

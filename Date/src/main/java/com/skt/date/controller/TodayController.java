@@ -2,6 +2,8 @@ package com.skt.date.controller;
 
 import java.util.List;
 
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,8 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skt.date.service.TodayService;
@@ -153,8 +157,9 @@ public class TodayController extends AbstractBaseController {
 	@RequestMapping( value={Path.TODAY_CARD_DETAIL}, method={RequestMethod.GET,RequestMethod.POST} )
 	public ModelAndView todayCardViewDetail(
 			HttpServletRequest request,
-			HttpServletResponse response ) throws Exception {
-		
+			HttpServletResponse response,
+			@RequestParam String email) throws Exception {
+
 		//////////////////////////////////////////////////
 		//
 		// ModelAndView 반환
@@ -163,9 +168,9 @@ public class TodayController extends AbstractBaseController {
 		
 		ModelAndView model = new ModelAndView();
 		
+		model.addObject("email", email);
 		// JSP포워드
 		model.setViewName(Path.TODAY_CARD_DETAIL_JSP);
-		
 		return model;
 	}
 	
@@ -176,10 +181,11 @@ public class TodayController extends AbstractBaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping( value={Path.TODAY_CARD_DETAIL_SERVICE}, method={RequestMethod.GET,RequestMethod.POST} )
+	@RequestMapping( value={Path.TODAY_CARD_DETAIL_SERVICE}, method={RequestMethod.GET} )
 	public ModelAndView todayCardViewDetailService(
 			HttpServletRequest request,
-			HttpServletResponse response ) throws Exception {
+			HttpServletResponse response,
+			@RequestParam String email) throws Exception {
 		
 		//////////////////////////////////////////////////
 		//
@@ -187,9 +193,13 @@ public class TodayController extends AbstractBaseController {
 		//
 		//////////////////////////////////////////////////
 		
+		System.out.println(email);
+		
 		ModelAndView model = new ModelAndView();
 		//JSON
 		model.setViewName(Path.JSON);
+		
+		model.addObject("test", email);
 		
 		return model;
 	}
