@@ -42,11 +42,11 @@
 	
 		<div class="row">
 			<div class="col-sm-2">
-				<button	ng-hide="editMode" ng-click="editMode=true; edit()"
+				<button	ng-hide="editMode" ng-click="editMode=true"
 						type="submit" 
 						class="btn btn-default">프로필 수정</button>
 						
-				<button class="btn btn-default" type="submit" ng-show="editMode" ng-click="editMode=false">저장</button>
+				<button class="btn btn-default" type="submit" ng-show="editMode" ng-click="editMode=false; edit()">저장</button>
 
 			</div>
 			<div class="col-sm-2">
@@ -62,8 +62,7 @@
 				<table class="table table-striped">
 					<tr ng-repeat="person in result_add track by $index">
 				    	<td>
-					    	<span ng-hide="editMode">{{ person.classify }}</span>
-					    	<input type="text" ng-show="editMode" ng-model="person.classify"/>
+					    	<span>{{ person.classify }}</span>
 				    	</td>
 				    	<td>
 					    	<span ng-hide="editMode">{{ person.data }}</span>

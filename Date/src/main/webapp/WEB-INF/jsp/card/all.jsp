@@ -28,9 +28,9 @@
 						<th>나이</th>
 						<th>성별</th>
 						<tr class="sum_list" ng-click="getDetail($index)" ng-repeat="person in result track by $index">
-							<td>{{person.name}}</td>
-							<td>{{person.age}}</td>
-							<td>{{person.sex}}</td>
+							<td>{{person.nickname}}</td>
+							<!-- <td>{{person.age}}</td> -->
+							<td>{{person.gender}}</td>
 						</tr>
 					</table>
 				</div>

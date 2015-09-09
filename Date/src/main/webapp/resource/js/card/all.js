@@ -32,7 +32,7 @@
 				_loading.hide();
 				
 				
-				$scope.result=data;
+				$scope.result=data.repp;
 	
 			})
 			// 에러콜백
@@ -40,26 +40,14 @@
 				_loading.hide();
 				
 			});
-			//var selectedData={};
-			
 			
 			//선택된 리스트 정보 
 			$scope.getDetail=function(index){ 
 				$scope.detail=[];
 				$scope.detail.push($scope.result[index]);
 				
-				/*
-				 * 
-				var detail={};
-				$scope.detail=$scope.result[index];*/
 			};
-			
-/*			$scope.add=function(){
-				$scope.detail.push($scope.detail[index])
-				$scope.detail.push({text:$scope.getDetailTest});
-				
-				
-			};*/
+
 			
 			
 		

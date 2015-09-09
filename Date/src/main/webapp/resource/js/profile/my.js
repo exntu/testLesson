@@ -17,29 +17,31 @@
 				//////////////////////////////////////////////////
 				// 데이터 로드//프로필 로드
 				//////////////////////////////////////////////////
-				$http({
+				$scope.load=function(){
+					
+					$http({
 					// Method
 					method: 'POST',
 					// URL
 					url	: _ctx+'/service/profile',
-				})
-				// 성공콜백
-				.success(function(data, status, headers, config){
-					_loading.hide();
-					
-					if(console) console.info( data );
-
-					$scope.result      = data.repp;
-					$scope.result_img  = data.repp_img;
-					$scope.result_add  = data.repp_add;
-
-				})
-				// 에러콜백
-				.error(function(data, status, headers, config){
-					_loading.hide();
-					
-				});
-				
+					})
+					// 성공콜백
+					.success(function(data, status, headers, config){
+						_loading.hide();
+						
+						if(console) console.info( data );
+	
+						$scope.result      = data.repp;
+						$scope.result_img  = data.repp_img;
+						$scope.result_add  = data.repp_add;
+	
+					})
+					// 에러콜백
+					.error(function(data, status, headers, config){
+						_loading.hide();
+						
+					});
+				};
 
 				//////////////////////////////////////////////////
 				//  프로필 입력칸에 데이터 할당
@@ -95,6 +97,40 @@
 			        } 
 			    };
 			    
-
-			})
+				//////////////////////////////////////////////////
+				// 프로필 수
+				//////////////////////////////////////////////////
+				$scope.edit = function () {
+					_loading.show();
+					
+					var param={
+						classify: $scope.person.classify,
+						data    : $scope.person.data
+					};
+					
+					$http({
+						// Method
+						method: 'POST',
+						// URL
+						url	: _ctx+'/service/profile/upload',
+						data: param
+					})
+					// 성공콜백
+					.success(function(data, status, headers, config){
+						_loading.hide();
+						
+						$scope.load();
+						
+					})
+					// 에러콜백
+					.error(function(data, status, headers, config){
+						_loading.hide();
+						
+					});
+					 
+			        
+			    };
+			    
+			    $scope.load();
+			});
 })();

@@ -11,8 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skt.date.common.Session;
@@ -120,6 +122,33 @@ public class ProfileController extends AbstractBaseController {
 		return model;
 	}
 	
+	/**
+	 * 프로필 수정 서비스 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.PROFILE_UPDATE_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView profileUpdate(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestParam ProfileVo vo) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		ModelAndView model = new ModelAndView();
+
+
+	
+		model.addObject(Path.CODE, "SUCCESS" );
+		model.setViewName(Path.JSON);
+		
+		return model;
+	}
 	/**
 	 * 프로필 업로드 처리화면
 	 * @param request
