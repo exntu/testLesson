@@ -4,7 +4,6 @@
     xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:aop="http://www.springframework.org/schema/aop"    
     xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:tx="http://www.springframework.org/schema/tx"
     xsi:schemaLocation="
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -13,9 +12,7 @@
     	http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd        
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd">
         
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
@@ -28,7 +25,8 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
-	<annotation-driven></annotation-driven>
+	<annotation-driven />
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resource/**" location="/resource/" />
 	
@@ -44,8 +42,8 @@
    	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
 		<beans:property name="contentType" value="text/plain;charset=UTF-8"></beans:property>
 		<beans:property name="extractValueFromSingleKeyModel" value="true" />
-
    	</beans:bean>		
+   	
 	<beans:bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" />
 	</beans:bean>
@@ -54,8 +52,7 @@
 	<beans:bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
     	<beans:property name="useDefaultSuffixPattern" value="false" />
 	</beans:bean>
-	
-	
+		
 	<interceptors>
 		<interceptor>
 			<!-- 모든 URL은 인터셉터 대상이됨 -->

@@ -27,6 +27,7 @@
 		<typeAlias alias="ProfileVo"     	type="com.skt.date.vo.ProfileVo"/>
 		<typeAlias alias="UploadVo"     	type="com.skt.date.vo.UploadVo"/>
 		<typeAlias alias="PeopleVo"     	type="com.skt.date.vo.PeopleVo"/>
+		<typeAlias alias="MeetVo" 		type="com.skt.date.vo.MeetVo" />
     </typeAliases>
  	
     <typeHandlers>

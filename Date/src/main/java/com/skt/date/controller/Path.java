@@ -86,6 +86,7 @@ public class Path {
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
 	public static final String SEND_MEET					= "/meet";
 	public static final String SEND_MEET_SERVICE			= SERVICE + "/meet";
+	public static final String SEND_MEET_SERVICE_INSERT		= SERVICE + "/meet/insert";
 	public static final String SEND_MEET_JSP				= "/send/meet";
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
