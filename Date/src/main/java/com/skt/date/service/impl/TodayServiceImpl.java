@@ -83,27 +83,6 @@ public class TodayServiceImpl implements TodayService {
 		List<MatchingVo> result = todayRepository.selectTwoCard(vo);
 		return result;
 	}
-//		// 오늘 만든 카드가 있는지 조회
-////		if( StringUtils.isEmpty(matchingPickToday()) == false ){
-//		if( matchingPickToday().isEmpty() || matchingPickToday().get(0).getEmail() == null){
-//			
-//			// 없다면 카드 두장 조회
-//			List<MatchingVo> result = todayRepository.selectTwoCard(vo);
-//			
-//			// 조회한 카드 두장을 insert
-//			for( int i=0; i<result.size(); i++){
-//				MatchingVo param = new MatchingVo();
-//				param.setEmail(vo.getEmail());
-//				param.setOtherEmail(result.get(i).getEmail());
-//				insertTwoCardSelected(param);
-//			}
-//			
-//			return result;
-//		}else{
-//			//이미 뽑힌 두장의 카드
-//			return todayRepository.matchingPickToday();
-//		}
-//	}
 
 	/**
 	 * 

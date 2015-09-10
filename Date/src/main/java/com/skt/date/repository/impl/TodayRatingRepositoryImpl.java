@@ -1,27 +1,20 @@
-package com.skt.date.service.impl;
+package com.skt.date.repository.impl;
 
-import java.util.List;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
-
-import com.skt.date.repository.TodayDetailRepository;
-import com.skt.date.repository.TodayRepository;
-import com.skt.date.service.TodayDetailService;
-import com.skt.date.service.TodayService;
-import com.skt.date.vo.FromToVo;
-import com.skt.date.vo.MatchingVo;
-
-@Service
-public class TodayDetailServiceImpl implements TodayDetailService {
-	
+import com.skt.date.repository.TodayRatingRepository;
+import com.skt.date.vo.FeelingVo;
+@Repository
+public class TodayRatingRepositoryImpl implements TodayRatingRepository {
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Variables
-	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-	
-	@Inject
-	private TodayDetailRepository todayDetailRepository;
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
+
+	// MyBatis 객체
+	@Autowired
+	private SqlSession sqlSession;
 
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -40,6 +33,25 @@ public class TodayDetailServiceImpl implements TodayDetailService {
 	| Getter & Setter Method ( DI Method )
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
+
+	/**
+	 * 별점 조회
+	 * @param vo
+	 * @return
+	 */
+	public FeelingVo matchingRate( FeelingVo vo ){
+		FeelingVo result = (FeelingVo) sqlSession.selectOne("com.skt.date.sql.matchingRating.matchingRate", vo);
+		return result;
+	}
+	
+	/**
+	 * Matching에서 상대를 별 rating을 값 넣는다
+	 * @param vo
+	 */
+	public void insertMatchingRate( FeelingVo vo ){
+		sqlSession.insert( "com.skt.date.sql.matchingRating.insertMatchingRate", vo );
+	}
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -48,14 +60,6 @@ public class TodayDetailServiceImpl implements TodayDetailService {
 	| Implement Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
-	/**
-	 * 이메일로 인하여 사용자 정보 조회
-	 */
-	public MatchingVo matchingDetailCard(String email) {
-		MatchingVo result = (MatchingVo) todayDetailRepository.matchingDetailCard(email);
-		return result;
-	}
-	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Override Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
@@ -67,5 +71,5 @@ public class TodayDetailServiceImpl implements TodayDetailService {
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
+	
 }

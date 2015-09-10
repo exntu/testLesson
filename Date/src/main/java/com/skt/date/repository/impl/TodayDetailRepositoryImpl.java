@@ -37,7 +37,7 @@ public class TodayDetailRepositoryImpl implements TodayDetailRepository {
 	 * 선택된 카드 상세정보
 	 */
 	public MatchingVo matchingDetailCard(String email) {
-		MatchingVo result = (MatchingVo) sqlSession.selectOne("com.skt.date.sql.matching.matchingDetail", email);
+		MatchingVo result = (MatchingVo) sqlSession.selectOne("com.skt.date.sql.matchingDetail.matchingDetailEmail", email);
 		return result;
 	}
 	

@@ -64,6 +64,9 @@ public class Path {
 	public static final String TODAY_CARD_DETAIL			=	"/card/today/detail";
 	public static final String TODAY_CARD_DETAIL_SERVICE	=	SERVICE + "/card/today/detail";
 	public static final String TODAY_CARD_DETAIL_JSP	=	"/card/today/detail";
+	//test : rate 보내기
+	public static final String TODAY_CARD_DETAIL_RATING = "/card/today/rating";
+	public static final String TODAY_CARD_DETAIL_RATING_SERVICE = SERVICE + "/card/today/rating";
 	
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

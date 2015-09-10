@@ -50,13 +50,16 @@
 	<div class="row">
 		<div class="col-xs-12">
 		
-
-
- <div ng-init="rating = star.rating + 1"></div>
-
-<div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
-
-
+			<div class="displayDetail">
+				{{matchingDetailCard.nickname}}<br>
+				{{matchingDetailCard.email}}<br>
+				{{matchingDetailCard.gender}}
+			</div>
+		 	<%-- 별 rating --%>
+	 		<div ng-click="clickStar( index )">
+		 		<div ng-init="rating = star.rating + 1"></div>
+				<div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
+			</div>
 
 		
 		</div>

@@ -1,27 +1,22 @@
 package com.skt.date.service.impl;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.skt.date.repository.TodayDetailRepository;
-import com.skt.date.repository.TodayRepository;
-import com.skt.date.service.TodayDetailService;
-import com.skt.date.service.TodayService;
-import com.skt.date.vo.FromToVo;
-import com.skt.date.vo.MatchingVo;
+import com.skt.date.repository.TodayRatingRepository;
+import com.skt.date.service.TodayRatingService;
+import com.skt.date.vo.FeelingVo;
 
 @Service
-public class TodayDetailServiceImpl implements TodayDetailService {
+public class TodayRatingServiceImpl implements TodayRatingService {
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Variables
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 	
 	@Inject
-	private TodayDetailRepository todayDetailRepository;
+	private TodayRatingRepository todayRatingRepository;
 
 
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -49,11 +44,21 @@ public class TodayDetailServiceImpl implements TodayDetailService {
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 	/**
-	 * 이메일로 인하여 사용자 정보 조회
+	 * 별점 조회
+	 * @param vo
+	 * @return
 	 */
-	public MatchingVo matchingDetailCard(String email) {
-		MatchingVo result = (MatchingVo) todayDetailRepository.matchingDetailCard(email);
+	public FeelingVo matchingRate( FeelingVo vo ){
+		FeelingVo result = todayRatingRepository.matchingRate( vo );
 		return result;
+	}
+	
+	/**
+	 * Matching에서 상대를 별 rating을 값 넣는다
+	 * @param vo
+	 */
+	public void insertMatchingRate( FeelingVo vo ){
+		todayRatingRepository.insertMatchingRate(vo);
 	}
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
