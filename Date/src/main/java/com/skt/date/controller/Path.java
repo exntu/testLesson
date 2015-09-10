@@ -76,6 +76,10 @@ public class Path {
 	public static final String ALL_CARD_SERVICE				= SERVICE + "/card/all";
 	public static final String ALL_CARD_JSP					= "/card/all";
 	
+	public static final String ALL_CARD_PROFILE				= "/card/all/profile";
+	public static final String ALL_CARD_PROFILE_SERVICE		= SERVICE + "/card/all/profile";
+	public static final String ALL_CARD_PROFILE_JSP			= "/card/all/profile";
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| 프로필
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	
@@ -84,6 +88,14 @@ public class Path {
 	public static final String PROFILE_JSP					= "/profile/profile";
 	public static final String PROFILE_UPLOAD_SERVICE		= SERVICE +"/profile/upload";
 	public static final String PROFILE_UPDATE_SERVICE		= SERVICE +"/profile/update";
+	//레슨 리스트
+	public static final String PROFILE_LESSON				= "/profile/list/lesson";
+	public static final String PROFILE_LESSON_SERVICE		= SERVICE +"/profile/list/lesson";
+	public static final String PROFILE_LESSON_JSP			= "/profile/list/lesson";
+	//메세지 리스트
+	public static final String PROFILE_MESSAGE				= "/profile/list/message";
+	public static final String PROFILE_MESSAGE_SERVICE		= SERVICE +"/profile/list/message";
+	public static final String PROFILE_MESSAGE_JSP			= "/profile/list/message";
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| 관심표현 보내기
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	

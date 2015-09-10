@@ -1,7 +1,6 @@
 package com.skt.date.controller;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.skt.date.common.Session;
 import com.skt.date.service.AllCardService;
-import com.skt.date.service.CardService;
-import com.skt.date.service.PeopleService;
-import com.skt.date.vo.PeopleVo;
 import com.skt.date.vo.ProfileVo;
 import com.skt.date.vo.UploadVo;
 import com.skt.date.vo.UserVo;
@@ -66,7 +61,7 @@ public class AllCardController extends AbstractBaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping( value={Path.ALL_CARD_SERVICE}, method={RequestMethod.GET,RequestMethod.POST} )
+	@RequestMapping( value={Path.ALL_CARD_SERVICE}, method={RequestMethod.POST} )
 	public ModelAndView allCardView(
 			HttpServletRequest request,
 			HttpServletResponse response, @RequestBody String param2) throws Exception {
@@ -100,4 +95,57 @@ public class AllCardController extends AbstractBaseController{
 		
 		return model;
 	}
+
+	/**
+	 * view화면
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.ALL_CARD_PROFILE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView ProfileView(
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		// JSP포워드
+		model.setViewName(Path.ALL_CARD_PROFILE_JSP);
+
+		return model;
+	}
+	
+	/**
+	 * 
+	 * @param
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.ALL_CARD_PROFILE_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView allCardProfileView(
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		
+		// JSP포워드
+		model.setViewName(Path.JSON);
+		
+		
+		return model;
+	}
+	
 }

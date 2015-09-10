@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -31,7 +32,7 @@ public class ProfileServiceImpl implements ProfileService {
 	 * @param param
 	 * @return
 	 */
-	public UserVo selectProfile(String param){
+	public UserVo selectProfile(UserVo param){
 		
 		UserVo list=(UserVo)profilerepository.selectProfile(param);
 		return list;
@@ -41,7 +42,7 @@ public class ProfileServiceImpl implements ProfileService {
 	 * @param param
 	 * @return
 	 */
-	public List<UploadVo> selectImg(String param){
+	public List<UploadVo> selectImg(UserVo param){
 		List<UploadVo> list=profilerepository.selectImg(param);
 		return list;
 	}
@@ -50,7 +51,7 @@ public class ProfileServiceImpl implements ProfileService {
 	 * @param param
 	 * @return
 	 */
-	public List<ProfileVo> selectAdd(String param){
+	public List<ProfileVo> selectAdd(UserVo param){
 
 		List<ProfileVo> list=profilerepository.selectAdd(param);
 
@@ -94,11 +95,24 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 	/**
 	 * 프로필 부가정보 수정
+	 * 
 	 * @param vo
 	 * @return
 	 */
-	public void UploadAdd(PeopleVo vo){
-		profilerepository.UploadAdd(vo);
+	public void UploadAdd(ProfileVo vo){
+		//for(Iterator<String> itr=vo.getClassify_arr().iterator(); itr.hasNext(); i++){
+
+
+		List<String> str=vo.getClassify_arr();
+		for(int num=0; num<str.size(); num++){
+		
+			//배열의 index 값을 vo data에 넣어준다 
+			vo.setData(vo.getData_arr().get(num));
+			vo.setClassify(str.get(num));
+			
+			//업로드 쿼리 실행 
+			profilerepository.UploadAdd(vo);	
+		}
 		
 	}
 

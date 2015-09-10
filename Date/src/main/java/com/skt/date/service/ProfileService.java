@@ -11,10 +11,10 @@ public interface ProfileService {
 	
 	public boolean UploadProfile(UploadVo vo);
 	
-	public void UploadAdd(PeopleVo vo);
+	public void UploadAdd(ProfileVo vo);
 
-	public UserVo selectProfile(String param);
-	public List<UploadVo> selectImg(String param);
-	public List<ProfileVo> selectAdd(String param);
+	public UserVo selectProfile(UserVo param);
+	public List<UploadVo> selectImg(UserVo param);
+	public List<ProfileVo> selectAdd(UserVo param);
 	
 }

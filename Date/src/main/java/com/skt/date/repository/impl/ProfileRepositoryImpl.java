@@ -21,21 +21,21 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 	/**
 	 * 프로필 기본정보 조회
 	 */
-	public UserVo selectProfile(String param){
+	public UserVo selectProfile(UserVo param){
 		UserVo list=(UserVo)sqlSession.selectOne("com.skt.date.sql.profile.selectProfile",param);
 		return list;
 	}
 	/**
 	 * 프로필 이미지 조회
 	 */
-	public List<UploadVo> selectImg(String param){
+	public List<UploadVo> selectImg(UserVo param){
 		List<UploadVo> list=sqlSession.selectList("com.skt.date.sql.profile.selectImg",param);
 		return list;
 	}
 	/**
 	 * 프로필 부가정보 조회
 	 */
-	public List<ProfileVo> selectAdd(String param){
+	public List<ProfileVo> selectAdd(UserVo param){
 		List<ProfileVo> list=sqlSession.selectList("com.skt.date.sql.profile.selectAdd",param);
 		return list;
 	}
@@ -50,8 +50,8 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 	/**
 	 * 프로필 부가정보 수정
 	 */
-	public void UploadAdd(PeopleVo vo){
-		sqlSession.update("com.skt.date.sql.profile.UploadAd",vo);
+	public void UploadAdd(ProfileVo vo){
+		sqlSession.update("com.skt.date.sql.profile.UploadAdd",vo);
 		
 	}
 }

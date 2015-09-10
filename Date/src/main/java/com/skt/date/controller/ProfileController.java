@@ -104,9 +104,8 @@ public class ProfileController extends AbstractBaseController {
 		//////////////////////////////////////////////////
 		ModelAndView model = new ModelAndView();
 
-
-		UserVo user=(UserVo)request.getSession().getAttribute(Session.LOGIN_KEY);
-		String param=user.getEmail();
+		//로그인 정보 가져오기
+		UserVo param = this.getLoginInfo(request);
 		
 		UserVo repp=profileservice.selectProfile(param);
 		List<UploadVo> repp_img=profileservice.selectImg(param);
@@ -133,7 +132,7 @@ public class ProfileController extends AbstractBaseController {
 	public ModelAndView profileUpdate(
 			HttpServletRequest request,
 			HttpServletResponse response,
-			@RequestParam PeopleVo vo) throws Exception {
+			@RequestBody ProfileVo vo) throws Exception {
 		
 		//////////////////////////////////////////////////
 		//
@@ -141,7 +140,11 @@ public class ProfileController extends AbstractBaseController {
 		//
 		//////////////////////////////////////////////////
 		ModelAndView model = new ModelAndView();
-
+		//로그인 정보 가져오기
+		UserVo param = this.getLoginInfo(request);
+		//profile vo에 email입력
+		vo.setEmail(param.getEmail());
+		
 		profileservice.UploadAdd(vo);
 	
 		model.addObject(Path.CODE, "SUCCESS" );
@@ -171,14 +174,107 @@ public class ProfileController extends AbstractBaseController {
 
 		//로그인 정보 가져오기
 		UserVo userInfo = this.getLoginInfo(request);
+		//업로드에 이메일 정보 입력(업데이트를 위해서)
 		vo.setEmail(userInfo.getEmail());
-		
 		
 		profileservice.UploadProfile(vo);
 		
-		
-		model.addObject("profile",vo.getFilestream());
 		model.addObject(Path.CODE, "SUCCESS" );
+		model.setViewName(Path.JSON);
+		
+		return model;
+	}
+	/**
+	 * view화면
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.PROFILE_LESSON}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView lessonView(
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		// JSP포워드
+		model.setViewName(Path.PROFILE_LESSON_JSP);
+
+		return model;
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.PROFILE_LESSON_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView lesson(
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		ModelAndView model = new ModelAndView();
+
+		model.setViewName(Path.JSON);
+		
+		return model;
+	}
+	/**
+	 * view화면
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.PROFILE_MESSAGE}, method={RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView messageView(
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		// JSP포워드
+		model.setViewName(Path.PROFILE_MESSAGE_JSP);
+
+		return model;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.PROFILE_MESSAGE_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView message(
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		ModelAndView model = new ModelAndView();
+
 		model.setViewName(Path.JSON);
 		
 		return model;

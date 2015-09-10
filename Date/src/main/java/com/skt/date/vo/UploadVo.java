@@ -1,11 +1,12 @@
 package com.skt.date.vo;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 /** PeopleVo의 additional 정보를  upload로 상속(join쿼리를 list로 받기위해서) */
 public class UploadVo extends PeopleVo {
 
-	
+	@JsonIgnore //SERIALIZE THE MULTIPARTFILE 무시
 	private MultipartFile profile;
 	private String email;
 

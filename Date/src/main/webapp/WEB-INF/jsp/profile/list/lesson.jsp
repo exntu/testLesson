@@ -3,41 +3,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>upload</title>
+<title>TODAYS LESSON</title>
 
 	<%-- 공통 Variable & CSS & JS --%>
 	<%@ include file="/WEB-INF/jsp/common/common.jsp" %>
 	<%-- //공통 Variable & CSS & JS --%>
-	
-<script>
-	//optional need to be loaded before angular-file-upload-shim(.min).js
-	FileAPI = {
-		//only one of jsPath or jsUrl.
-		//jsPath: '/js/FileAPI.min.js/folder/', 
-		jsUrl : '${_resource}/lib/angular/upload/FileAPI.min.js',
 
-		//only one of staticPath or flashUrl.
-		//staticPath: '/flash/FileAPI.flash.swf/folder/',
-		flashUrl : '${_resource}/lib/angular/upload/FileAPI.flash.swf'
-	}
-</script>
-
-<%-- Upload --%>
-<%-- AngularJS --%>
-<script src="${_resource}/lib/angular/upload/ng-file-upload-shim.js"></script>
-<script src="${_resource}/lib/angular/upload/ng-file-upload.min.js"></script>
-
-<%-- 스크립트 --%>
-<script src="${_resource}/js/profile/profile.js"></script>
-<%-- //스크립트 --%>
+	<%-- 스크립트 --%>
+	<script src="${_resource}/js/profile/list/lesson.js"></script>
+	<%-- //스크립트 --%>
 
 </head>
 <body ng-controller="AppController">
 	<%-- 공통 Header --%>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%-- //공통 Header --%>
-	
-		<!-- contents -->
+    
+	<!-- contents -->
    	<div class="sa-tab2-contents">
     	<!-- tab -->
         <!-- 
@@ -45,16 +27,16 @@
         -->
     	<div class="sa-ui-tab">
         	<ul class="sa-list-tab">
-            	<li class="sa-selected"><a href="${_ctx}/profile"><span class="sa-text">M Y&nbsp;&nbsp;&nbsp;&nbsp;P R O F I L E</span><em class="sa-data-message">2</em></a></li>
-            	<li class="sa-list-second"><a href="#">L E S S O N <span class="sa-text">목록</span><em class="sa-data-lesson">2</em></a></li>
-            	<li class="sa-list-third"><a href="#"><span class="sa-text">메세지목록</span><em class="sa-data-message">2</em></a></li>
+            	<li><a href="#">M Y&nbsp;&nbsp;&nbsp;&nbsp;P R O F I L E</a></li>
+            	<li class="sa-list-second sa-selected"><a href="#">L E S S O N <span class="sa-text">목록</span><em class="sa-data-lesson">2</em></a></li>
+            	<li><a href="#"><span class="sa-text">메세지목록</span><em class="sa-data-message">2</em></a></li>
             </ul>
         </div>
     	<!-- //tab -->
     	<ul class="sa-list-profile">
         	<li>
             	<a href="#">
-                	<img class="sa-data-image" src="${_resource}/images/@sample.jpg" alt="프로필사진" />
+                	<img class="sa-data-image" src="../images/@sample.jpg" alt="프로필사진" />
                     <div class="sa-ui-info">
                     	<span class="sa-data-name"><strong>영어최강</strong></span>
                     	<div class="sa-ui-user-det">
@@ -66,12 +48,12 @@
                    		</div>
                     </div>
                     <span class="sa-ui-time">3 hour ago</span>
-                    <img class="sa-btn-sendblue" src="${_resource}/images/icon-send.png" alt="보내기버튼" />
+                    <img class="sa-btn-sendblue" src="../images/icon-send.png" alt="보내기버튼" />
                 </a>
             </li>
             <li>
             	<a href="#">
-                	<img class="sa-data-image" src="${_resource}/images/@sample.jpg" alt="프로필사진" />
+                	<img class="sa-data-image" src="../images/@sample.jpg" alt="프로필사진" />
                     <div class="sa-ui-info">
                     	<span class="sa-data-name"><strong>영어최강</strong></span>
                     	<div class="sa-ui-user-det">
@@ -83,12 +65,12 @@
                    		</div>
                     </div>
                     <span class="sa-ui-time">3 hour ago</span>
-                    <img class="sa-btn-receive" src="${_resource}/images/icon-receive.png" alt="받기버튼" />
+                    <img class="sa-btn-receive" src="../images/icon-receive.png" alt="받기버튼" />
                 </a>
             </li>
             <li>
             	<a href="#">
-                	<img class="sa-data-image" src="${_resource}/images/@sample.jpg" alt="프로필사진" />
+                	<img class="sa-data-image" src="../images/@sample.jpg" alt="프로필사진" />
                     <div class="sa-ui-info">
                     	<span class="sa-data-name"><strong>영어최강</strong></span>
                     	<div class="sa-ui-user-det">
@@ -100,12 +82,12 @@
                    		</div>
                     </div>
                     <span class="sa-ui-time">3 hour ago</span>
-                    <img class="sa-btn-sendblue" src="${_resource}/images/icon-send.png" alt="보내기버튼" />
+                    <img class="sa-btn-sendblue" src="../images/icon-send.png" alt="보내기버튼" />
                 </a>
             </li>
             <li>
             	<a href="#">
-                	<img class="sa-data-image" src="${_resource}/images/@sample.jpg" alt="프로필사진" />
+                	<img class="sa-data-image" src="../images/@sample.jpg" alt="프로필사진" />
                     <div class="sa-ui-info">
                     	<span class="sa-data-name"><strong>영어최강</strong></span>
                     	<div class="sa-ui-user-det">
@@ -117,12 +99,12 @@
                    		</div>
                     </div>
                     <span class="sa-ui-time">3 hour ago</span>
-                    <img class="sa-btn-receive" src="${_resource}/images/icon-receive.png" alt="받기버튼" />
+                    <img class="sa-btn-receive" src="../images/icon-receive.png" alt="받기버튼" />
                 </a>
             </li>
             <li class="sa-disable-profile">
             	<a href="#">
-                	<img class="sa-data-image" src="${_resource}/images/@sample.jpg" alt="프로필사진" />
+                	<img class="sa-data-image" src="../images/@sample.jpg" alt="프로필사진" />
                     <div class="sa-ui-info">
                     	<span class="sa-data-name"><strong>영어최강</strong></span>
                     	<div class="sa-ui-user-det">
@@ -138,7 +120,7 @@
             </li>
             <li class="sa-disable-profile">
             	<a href="#">
-                	<img class="sa-data-image" src="${_resource}/images/@sample.jpg" alt="프로필사진" />
+                	<img class="sa-data-image" src="../images/@sample.jpg" alt="프로필사진" />
                     <div class="sa-ui-info">
                     	<span class="sa-data-name"><strong>영어최강</strong></span>
                     	<div class="sa-ui-user-det">
@@ -155,10 +137,12 @@
         </ul>    
     </div>
 	<!-- //contents -->
-	
+    
 	<%-- 공통 Footer --%>
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 	<%-- //공통 Footer --%>
+
+
 
 </body>
 </html>

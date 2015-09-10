@@ -18,7 +18,7 @@
 	// 프로필 기본정보를 조회한다
 	//
 	////////////////////////////////////////////////// -->
-		<select id="selectProfile" parameterType="String" resultType="UserVo">
+		<select id="selectProfile" parameterType="UserVo" resultType="UserVo">
 		/* com.skt.date.sql.profile.selectProfile */
 		SELECT		EMAIL		AS email,
 					PASS		AS pass,
@@ -34,7 +34,7 @@
 	//
 	////////////////////////////////////////////////// -->
 		
-		<select id="selectImg" parameterType="String" resultType="UploadVo">
+		<select id="selectImg" parameterType="UserVo" resultType="UploadVo">
 		/* com.skt.date.sql.profile.selectImg */
 		SELECT		DATA		AS filestream
 		FROM		T_USER_IMG 
@@ -47,7 +47,7 @@
 	//
 	////////////////////////////////////////////////// -->
 		
-		<select id="selectAdd" parameterType="String" resultType="ProfileVo">
+		<select id="selectAdd" parameterType="UserVo" resultType="ProfileVo">
 		/* com.skt.date.sql.profile.selectAdd */
 		SELECT		CLASSIFY    AS classify,
 					DATA		AS data
@@ -74,15 +74,14 @@
 	// 프로필 부가정보를 수정한다
 	//
 	////////////////////////////////////////////////// -->
-		
-		<update id="UploadAdd" parameterType="PeopleVo">
+		<update id="UploadAdd" parameterType="ProfileVo">
 		/* com.skt.date.sql.profile.UploadAdd */
 		UPDATE		T_USER_ADDITIONAL
 		SET 		DATA		= #{data},
 					UPDATE_DT	= NOW()
 		WHERE		CLASSIFY 	= #{classify}
 		AND 		EMAIL 		= #{email}
-		</update>
+		</update> 
 	
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////// UPDATE /////////////////////////////////////////////////
