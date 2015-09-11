@@ -28,7 +28,7 @@
                 <li>
                     <!-- 날짜 -->
                     <div class="sa-data-daily" style="">
-                    	<span class="sa-data-month">9</span>
+                    	<span class="sa-data-month">6</span>
                     	<span class="sa-data-day">1</span>
                     </div>
                     <!-- //날짜 -->
@@ -39,16 +39,18 @@
                     <a href="#" class="sa-ui-disabled">
                         <div class="sa-ui-profile" >
                             <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                            <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
-                            <div class="sa-data-info">
+                            <span class="sa-data-nickname"><strong></strong>김창식 선생님</span>
+               				<div class="sa-data-info">
+	                            <div class="sa-data-info">
                                 <span class="sa-data">20대중반</span>
                                 <span class="sa-data">경기 성남</span>
                                 <span class="sa-data">영어</span>
-                            </div>
-                            <div class="sa-data-info">
-                                <span class="sa-data sa-data-import">20대중반</span>
-                                <span class="sa-data">경기 성남</span>
-                                <span class="sa-data sa-data-import">스페인어</span>
+	                            </div>
+	                            <div class="sa-data-info">
+	                                <span class="sa-data sa-data-import">20대중반</span>
+	                                <span class="sa-data">경기 성남</span>
+	                                <span class="sa-data sa-data-import">영어</span>
+	                            </div>
                             </div>
                             <!-- not choice -->
                             <div class="sa-ui-not-choice">
@@ -75,17 +77,18 @@
                     <a href="${_ctx}/card/all/profile">
                         <div class="sa-ui-profile">
                             <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                            <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
-                            <div class="sa-data-info">
-                                <span class="sa-data">20대중반</span>
-                                <span class="sa-data">경기 성남</span>
-                                <span class="sa-data">영어</span>
-                            </div>
-                            <div class="sa-data-info">
-                                <span class="sa-data sa-data-import">20대중반</span>
-                                <span class="sa-data">경기 성남</span>
-                                <span class="sa-data sa-data-import">스페인어</span>
-                            </div>
+                            <span class="sa-data-nickname" ng-bind=""><strong></strong> 선생님</span>
+                            <div ng-repeat="add in param.repeat1 track by $index">
+	                            <div class="sa-data-info">
+	                                <span class="sa-data">{{add.AGE}}</span>
+	                                <span class="sa-data">{{add.SUB}}{{add.SUB_LOCAL}}</span>
+	                                <span class="sa-data">{{add.LAN}}</span>
+	                            </div>
+	                            <div class="sa-data-info">
+	                                <span class="sa-data sa-data-import">{{add.AGE}}</span>
+	                                <span class="sa-data">{{add.SUB}}{{add.SUB_LOCAL}}</span>
+	                                <span class="sa-data sa-data-import">{{add.LAN}}</span>
+	                            </div>
                             <!-- not choice -->
                             <div class="sa-ui-not-choice">
                                 <em class="sa-icon-choice"></em>
@@ -108,27 +111,28 @@
                     <!-- 
                         선택하지 않을 경우 class="sa-ui-disabled" 추가 
                     -->
-                    <a href="${_ctx}/card/all/profile" >
+                   <%--  <a href="${_ctx}/card/all/profile" >
                         <div class="sa-ui-profile">
                             <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                            <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
-                            <div class="sa-data-info">
-                                <span class="sa-data">20대중반</span>
-                                <span class="sa-data">경기 성남</span>
-                                <span class="sa-data">영어</span>
-                            </div>
-                            <div class="sa-data-info">
-                                <span class="sa-data sa-data-import">20대중반</span>
-                                <span class="sa-data">경기 성남</span>
-                                <span class="sa-data sa-data-import">스페인어</span>
-                            </div>
+                            <span class="sa-data-nickname" ng-bind="nickname2"><strong>영어최강</strong> 선생님</span>
+                            <div>
+	                            <div class="sa-data-info">
+	                                <span class="sa-data">{{add.AGE}}</span>
+	                                <span class="sa-data">{{add.SUB}}{{add.SUB_LOCAL}}</span>
+	                                <span class="sa-data">{{add.LAN}}</span>
+	                            </div>
+	                            <div class="sa-data-info">
+	                                <span class="sa-data sa-data-import">{{add.AGE}}</span>
+	                                <span class="sa-data">{{add.SUB}}{{add.SUB_LOCAL}}</span>
+	                                <span class="sa-data sa-data-import">{{add.LAN}}</span>
+	                            </div>
                             <!-- not choice -->
                             <div class="sa-ui-not-choice">
                                 <em class="sa-icon-choice"></em>
                             </div>
                             <!-- not choice -->
                         </div>
-                    </a>
+                    </a> --%>
                 </li>
                 <!-- //프로필 -->
                 
@@ -146,17 +150,17 @@
                     -->
                     <a href="#" class="sa-ui-disabled">
                         <div class="sa-ui-profile">
-                            <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                            <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
+                            <img src="${_resource}/images/@sample9.jpg" alt="사진" class="sa-data-photo"/>
+                            <span class="sa-data-nickname" ><strong>영어최강</strong> 선생님</span>
                             <div class="sa-data-info">
-                                <span class="sa-data">20대중반</span>
-                                <span class="sa-data">경기 성남</span>
-                                <span class="sa-data">영어</span>
+                                <span class="sa-data">30대중반</span>
+                                <span class="sa-data">서울</span>
+                                <span class="sa-data">중국어</span>
                             </div>
                             <div class="sa-data-info">
-                                <span class="sa-data sa-data-import">20대중반</span>
+                                <span class="sa-data sa-data-import">30대중반</span>
                                 <span class="sa-data">경기 성남</span>
-                                <span class="sa-data sa-data-import">스페인어</span>
+                                <span class="sa-data sa-data-import">중국어</span>
                             </div>
                             <!-- not choice -->
                             <div class="sa-ui-not-choice">

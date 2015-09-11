@@ -31,8 +31,8 @@ public class AllCardRepositoryImpl implements AllCardRepository{
 	 * @param 
 	 * @return
 	 */
-	public List<UploadVo> selectAllCardImg(String param){
-		List<UploadVo> list=sqlSession.selectList("com.skt.date.sql.allcard.selectAllCardImg",param);
+	public List<UploadVo> selectAllCardImg(UserVo vo){
+		List<UploadVo> list=sqlSession.selectList("com.skt.date.sql.allcard.selectAllCardImg",vo);
 		return list;
 	}
 	/**
@@ -40,8 +40,8 @@ public class AllCardRepositoryImpl implements AllCardRepository{
 	 * @param 
 	 * @return
 	 */
-	public List<ProfileVo> selectAllCardAdd(String param){
-		List<ProfileVo> list=sqlSession.selectList("com.skt.date.sql.allcard.selectAllCardAdd",param);
+	public List<ProfileVo> selectAllCardAdd(UserVo vo){
+		List<ProfileVo> list=sqlSession.selectList("com.skt.date.sql.allcard.selectAllCardAdd",vo);
 		return list;
 	}
 	

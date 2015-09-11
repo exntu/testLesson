@@ -18,7 +18,9 @@
 		})
 		.controller('AppController', function($scope, $http, Upload) {
 			//입력폼에 데이터 할당때 이용
-			$scope.result_add=result_add;
+			$scope.result_add=[];
+			$scope.result=[];
+			$scope.result_img=[];
 	
 			//입력값 리스트
 			var list={};
@@ -46,7 +48,8 @@
 					$scope.result_img  = data.repp_img;
 					//프로필 부가정보 
 					$scope.result_add  = data.repp_add;
-	
+					//입력값 할당
+					$scope.movein();
 				})
 				// 에러콜백
 				.error(function(data, status, headers, config){
@@ -109,9 +112,18 @@
 				var list=$scope.result_add;
 				//리스트값을 input에 할당
 				angular.forEach(list,function(index){
-					//ng-model로 리스트 데이터 값을 할당 
+					//리스트 데이터 값을 할당 
 					$scope[index.classify]=index.data;
-				})
+					
+				});
+
+				//기본데이터
+				$scope.email=$scope.result.email;
+				$scope.year=$scope.result.year;
+				$scope.month=$scope.result.month;
+				$scope.nickname=$scope.result.nickname;
+				$scope.date=$scope.result.date;
+				
 				//classify.data // data
 				_loading.hide();
 
@@ -133,19 +145,9 @@
 					angular.forEach(list,function(index){
 						//ng-model로 리스트 데이터 값을 할당 
 						classify.push(index.classify);
+						data.push($scope[index.classify]);
 
-					})
-					
-				//변수값에 mg-model값 할당
-				var AGE=this.AGE;
-				var BLOODTYPE=this.BLOODTYPE;
-				var BODYSHAPE=this.BODYSHAPE;
-				var DRINK=this.DRINK;
-				var HEIGHT=this.HEIGHT;
-				var JOB=this.JOB;
-				var RELIGION=this.RELIGION;
-				var SMOKING=this.SMOKING;
-				var STYLE=this.STYLE;
+					});
 				
 				//param 배열에 넣을 data 배열 생성
 				data=[AGE,BLOODTYPE,BODYSHAPE,DRINK,HEIGHT,JOB

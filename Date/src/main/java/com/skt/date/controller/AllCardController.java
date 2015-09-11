@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skt.date.service.AllCardService;
+import com.skt.date.vo.PeopleVo;
 import com.skt.date.vo.ProfileVo;
 import com.skt.date.vo.UploadVo;
 import com.skt.date.vo.UserVo;
@@ -64,7 +65,7 @@ public class AllCardController extends AbstractBaseController{
 	@RequestMapping( value={Path.ALL_CARD_SERVICE}, method={RequestMethod.POST} )
 	public ModelAndView allCardView(
 			HttpServletRequest request,
-			HttpServletResponse response, @RequestBody String param2) throws Exception {
+			HttpServletResponse response) throws Exception {
 		
 		//////////////////////////////////////////////////
 		//
@@ -75,15 +76,15 @@ public class AllCardController extends AbstractBaseController{
 		ModelAndView model = new ModelAndView();
 		
 		//현재 사용자 id조회
-		UserVo param = this.getLoginInfo(request);
+		UserVo vo = this.getLoginInfo(request);
 
 		
-		//유저 데이터 조회
-		List<UserVo> repp=allcardservice.selectAllCard(param);
+		//기본 정보 조회 
+		List<UserVo> repp=allcardservice.selectAllCard(vo);
 		//이미지 데이터 조회
-		List<UploadVo> repp_img=allcardservice.selectAllCardImg(param2);
+		List<UploadVo> repp_img=allcardservice.selectAllCardImg(vo);
 		//추가 정보 조회
-		List<ProfileVo> repp_add=allcardservice.selectAllCardAdd(param2);
+		List<ProfileVo> repp_add=allcardservice.selectAllCardAdd(vo);
 		
 		model.addObject("repp",repp);
 		model.addObject("repp_img",repp_img);

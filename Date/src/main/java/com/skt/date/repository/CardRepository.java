@@ -9,8 +9,6 @@ import com.skt.date.vo.PeopleVo;
 public interface CardRepository {
 
 	
-	public List<PeopleVo> selectAllCard();
-	
 	public List<CardVo> selectTodayCard(CardVo vo);
 	public List<CardVo> selectExtra(CardVo vo);
 	

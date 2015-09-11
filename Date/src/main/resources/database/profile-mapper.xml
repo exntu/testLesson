@@ -22,8 +22,11 @@
 		/* com.skt.date.sql.profile.selectProfile */
 		SELECT		EMAIL		AS email,
 					PASS		AS pass,
-					GENDER		AS sex,	
-					NICKNAME	AS name
+					GENDER		AS gender,	
+					NICKNAME	AS nickname,
+					YEAR		AS year,
+					MONTH		AS month, 
+					DATE		AS date
 		FROM		T_USER 
 		WHERE		EMAIL 	= #{email}
 		

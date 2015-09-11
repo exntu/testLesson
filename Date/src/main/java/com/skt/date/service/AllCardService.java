@@ -10,7 +10,7 @@ import com.skt.date.vo.UserVo;
 
 public interface AllCardService {
 	public List<UserVo> selectAllCard(UserVo vo);
-	public List<UploadVo> selectAllCardImg(String param);
-	public List<ProfileVo> selectAllCardAdd(String param);
+	public List<UploadVo> selectAllCardImg(UserVo vo);
+	public List<ProfileVo> selectAllCardAdd(UserVo vo);
 	
 }

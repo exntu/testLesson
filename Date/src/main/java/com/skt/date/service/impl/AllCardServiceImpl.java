@@ -1,5 +1,6 @@
 package com.skt.date.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,8 +34,14 @@ public class AllCardServiceImpl implements AllCardService{
 	 * @param 
 	 * @return
 	 */
-	public List<UploadVo> selectAllCardImg(String param){
-		List<UploadVo> list=allcardrepo.selectAllCardImg(param);
+	public List<UploadVo> selectAllCardImg(UserVo vo){
+		
+		List<UploadVo> list = null;
+		//이메일의 개수만큼 각각의 detail을 불러온다 
+		for(int num=0;num<vo.getEmail().length();num++){
+		
+			list=allcardrepo.selectAllCardImg(vo);
+		};
 		return list;
 		
 	}
@@ -43,8 +50,13 @@ public class AllCardServiceImpl implements AllCardService{
 	 * @param 
 	 * @return
 	 */
-	public List<ProfileVo> selectAllCardAdd(String param){
-		List<ProfileVo> list=allcardrepo.selectAllCardAdd(param);
+	public List<ProfileVo> selectAllCardAdd(UserVo vo){
+		
+		List<ProfileVo> list = null;
+		
+		for(int num=0;num<vo.getEmail().length();num++){
+			list=allcardrepo.selectAllCardAdd(vo);
+		};
 		return list;
 		
 	}

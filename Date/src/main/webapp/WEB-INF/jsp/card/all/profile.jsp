@@ -31,7 +31,7 @@
         
         <!-- 프로필 내용 -->
     	<div class="sa-wrap-top">
-        	<img src="${_resource}/img-@sample15.png" alt="이미지" />
+        	<img src="${_resource}/images/img-@sample15.png" alt="이미지" />
             <div class="sa-box-profile">
             	<div class="sa-ui-jobwrap">
             		<span>영문학도</span>
@@ -48,7 +48,7 @@
                 <ul class="sa-list-photo">
                 	<li>
                     	<a href="#">
-                        	<img src="${_resource}/img_photo1.png" alt="images1" />
+                        	<img src="${_resource}/images/img_photo1.png" alt="images1" />
                             <!-- 닫힘 -->
                             <div class="sa-ui-image-close">
                                 <em class="sa-icon-close"></em>
@@ -58,7 +58,7 @@
                     </li>
                     <li class="sa-list-close">
                         <a href="#">
-                        	<img src="${_resource}/img_photo2.png" alt="images1" />
+                        	<img src="${_resource}/images/img_photo2.png" alt="images1" />
                             <!-- 닫힘 -->
                             <div class="sa-ui-image-close">
                                 <em class="sa-icon-close"></em>
@@ -68,7 +68,7 @@
                     </li>
                     <li class="sa-list-close">
                     	<a href="#">
-                            <img src="${_resource}/img_photo3.png" alt="images1" />
+                            <img src="${_resource}/images/img_photo3.png" alt="images1" />
                             <!-- 닫힘 -->
                             <div class="sa-ui-image-close">
                                 <em class="sa-icon-close"></em>

@@ -15,19 +15,18 @@
 	
 	<!-- //////////////////////////////////////////////////
 	//
-	// 카드의 기본정보를 불러온다.
+	// 카드의 기본정보를 불러온다.(선생님=F)
 	//
 	////////////////////////////////////////////////// -->
 		<select id="selectAllCard" parameterType="UserVo" resultType="UserVo">
 		/* com.skt.date.sql.allcard.selectAllCard */
 		SELECT		T_MATCHING.TO		AS email,
-					T_USER.GENDER		AS gender,	
 					T_USER.NICKNAME	AS nickname
 		FROM		T_MATCHING
 		JOIN		T_USER
 		ON			T_MATCHING.TO=T_USER.EMAIL
 		WHERE		T_MATCHING.FROM 	=#{email}
-		
+		AND			T_USER.GENDER		='F'
 		</select>
 		
 	<!-- //////////////////////////////////////////////////
@@ -46,6 +45,7 @@
 		JOIN		T_USER_IMG
 		ON			T_MATCHING.TO=T_USER_IMG.EMAIL
 		WHERE		T_MATCHING.TO 	=#{email}
+		
 		</select>
 		
 	<!-- //////////////////////////////////////////////////

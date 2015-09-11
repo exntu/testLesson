@@ -39,8 +39,6 @@ JS 전역변수 선언
 <%-- =================================================================
 CSS 
 ================================================================= --%>
-<%-- Bootstrap --%>
-<link href="${_resource}/css/bootstrap.min.css" 	rel="stylesheet">
 <%-- 샘플앱 CSS --%>
 <link href="${_resource}/css/sa.ui.css" 			rel="stylesheet">
 
