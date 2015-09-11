@@ -1,3 +1,9 @@
+/**
+ * Today repositoryImpl
+ * 
+ * choonghyun
+ */
+
 package com.skt.date.repository.impl;
 
 import java.util.List;
@@ -9,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.skt.date.repository.TodayRepository;
 import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
+import com.skt.date.vo.ProfileVo;
 @Repository
 public class TodayRepositoryImpl implements TodayRepository {
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -37,7 +44,7 @@ public class TodayRepositoryImpl implements TodayRepository {
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 	/**
-	 * 서버 현재 시간 가져오기
+	 * 서버 현재 시간 가져오기 
 	 * @return
 	 */
 	public String currentTime(){
@@ -46,16 +53,18 @@ public class TodayRepositoryImpl implements TodayRepository {
 	}
 	
 	/**
-	 * 오늘 카드가 뽑혔는지 확인
+	 * 오늘 카드 2장이 뽑혔는지 확인 
 	 * @return
 	 */
-	public List<MatchingVo> matchingPickToday() {
-		List<MatchingVo> result = (List<MatchingVo>) sqlSession.selectList("com.skt.date.sql.matching.matchingPickToday");
+	public List<FromToVo> matchingPickToday() {
+		List<FromToVo> result = (List<FromToVo>) sqlSession.selectList("com.skt.date.sql.matching.matchingPickToday");
 		return result;
 	}
 	
 	/**
-	 * 두장의 카드 뽑기
+	 * 두장의 카드 뽑기 
+	 *@param vo
+	 *@return
 	 */
 	public List<MatchingVo> selectTwoCard( MatchingVo vo ) {
 		List<MatchingVo> result = sqlSession.selectList("com.skt.date.sql.matching.selectTwoCard", vo);
@@ -63,27 +72,34 @@ public class TodayRepositoryImpl implements TodayRepository {
 	}
 	
 	/**
-	 * 뿁혔던 두장의 카드 뽑기
-	 */
-	public List<MatchingVo> selectTwoCardAlready() {
-		List<MatchingVo> result = sqlSession.selectList("com.skt.date.sql.matching.matchingUserAlready");
-		return result; 
-	}
-	
-	/**
-	 * 두장의 뽑힌 카드 넣기
+	 * 두장의 뽑힌 카드 넣기 
+	 * @param
 	 */
 	public void insertTwoCardSelected( FromToVo vo ) {
 		sqlSession.insert( "com.skt.date.sql.matching.insertMatchedCard", vo );
 	}
-
+	
 	/**
-	 * histroy에서 두장 카드 가져오기
+	 * history에서 7일전 카드 가져오기 
+	 * @param email
+	 * @return
 	 */
-	public List<FromToVo> matchingHistory(){
-		List<FromToVo>result = sqlSession.selectList("com.skt.date.sql.matching.matchingHistory");
+	public List<FromToVo> matchingHistory( String email ){
+		List<FromToVo>result = sqlSession.selectList( "com.skt.date.sql.matching.matchingHistory", email );
 		return result;
 	}
+	
+	/**
+	 * 뿁혔던 두장의 카드 뽑기
+	 * @param email
+	 * @return
+	 */
+	public List<ProfileVo> selectTwoCardAlready( String email ) {
+		List<ProfileVo> result = sqlSession.selectList( "com.skt.date.sql.matching.matchingUserAlready", email );
+		return result; 
+	}
+	
+
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method

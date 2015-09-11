@@ -1,3 +1,8 @@
+/**
+ * TodayServiceImpl
+ * 
+ * choong
+ */
 package com.skt.date.service.impl;
 
 import java.util.List;
@@ -10,6 +15,7 @@ import com.skt.date.repository.TodayRepository;
 import com.skt.date.service.TodayService;
 import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
+import com.skt.date.vo.ProfileVo;
 
 @Service
 public class TodayServiceImpl implements TodayService {
@@ -55,11 +61,25 @@ public class TodayServiceImpl implements TodayService {
 	}
 	
 	/**
-	 * 오늘 뽑은 카드있는지 확인
+	 * 오늘 2장 카드 있는지 확인, 없으면 insert 2장의 카드
 	 * @return
 	 */
-	public List<MatchingVo> matchingPickToday(){
-		List<MatchingVo> result = todayRepository.matchingPickToday();
+	public List<FromToVo> matchingPickToday( MatchingVo matchingVo ){
+		List<FromToVo> result = todayRepository.matchingPickToday();
+		//2장의 카드가 없을 경우 2장의 카드 조회
+		if( result.get(0).getTo() == null || result.size()==0 ){
+			//2장의 랜덤 카드 조회
+			List<MatchingVo>selectTwoCard = selectTwoCard(matchingVo);
+			//2장의 랜덤카드 insert하기
+			FromToVo fromtoVo = new FromToVo();
+			for(int num=0; num<selectTwoCard.size(); num++ ){
+				fromtoVo.setFrom(matchingVo.getEmail());
+				fromtoVo.setTo(selectTwoCard.get(num).getEmail());
+				insertTwoCardSelected( fromtoVo );
+			}
+		}else{
+			return result;
+		}
 		return result;
 	}
 	
@@ -75,7 +95,6 @@ public class TodayServiceImpl implements TodayService {
 	 * 1.	유저를 조회한다.
 	 * 2.	오늘카드 있는지
 	 * 3.	오늘의 카드가 없다면 insert카드 
-	 * 
 	 * @param vo
 	 * @return
 	 */
@@ -85,22 +104,25 @@ public class TodayServiceImpl implements TodayService {
 	}
 
 	/**
-	 * 
-	 *	뿁혔던 두장의 카드 뽑기 
-	 * @param vo
+	 * 7일간의 history가져온다.
+	 * @param email
 	 * @return
 	 */
-	public List<MatchingVo> selectTwoCardAlready() {
-		List<MatchingVo> result = todayRepository.selectTwoCardAlready();
+	public List<FromToVo>matchingHistory( String email ){
+		List<FromToVo> result = todayRepository.matchingHistory( email );
 		return result;
 	}
 	
-	
-	public List<FromToVo>matchingHistory(){
-		List<FromToVo> result = todayRepository.matchingHistory();
+	/**
+	 *	뿁혔던 두장의 카드 뽑기 
+	 * @param email
+	 * @return
+	 */
+	public List<ProfileVo> selectTwoCardAlready( String email ) {
+		List<ProfileVo> result = todayRepository.selectTwoCardAlready( email );
 		return result;
 	}
-	
+
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Override Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/	

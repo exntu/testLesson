@@ -5,7 +5,7 @@ package com.skt.date.vo;
  *
  */
 
-public class FromToVo {
+public class FromToVo extends ProfileVo{
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Private Variables
@@ -15,6 +15,11 @@ public class FromToVo {
 	private String from;
 	/** 아이디 (이메일) 상대 사람 */
 	private String to;
+	/** 아이디 (이메일) 상대 사람 */
+	private String selectYN;
+	/** CREATE DATE*/
+	private String createdate;
+	
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Variables
@@ -44,6 +49,18 @@ public class FromToVo {
 	public void setTo(String to) {
 		this.to = to;
 	}
+	public String getSelectYN() {
+		return selectYN;
+	}
+	public void setSelectYN(String selectYN) {
+		this.selectYN = selectYN;
+	}
+	public String getCreatedate() {
+		return createdate;
+	}
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
+	}
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method
@@ -59,11 +76,12 @@ public class FromToVo {
 	
 	@Override
 	public String toString() {
-		return "FromToVo [from=" + from + ", to=" + to + ", getFrom()=" + getFrom() + ", getTo()=" + getTo()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "FromToVo [from=" + from + ", to=" + to + ", selectYN=" + selectYN + ", createdate=" + createdate
+				+ ", getFrom()=" + getFrom() + ", getTo()=" + getTo() + ", getSelectYN()=" + getSelectYN()
+				+ ", getCreatedate()=" + getCreatedate() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
-
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Protected Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/

@@ -1,9 +1,15 @@
+/**
+ * Today Repository interface
+ * 
+ * choong
+ */
 package com.skt.date.repository;
 
 import java.util.List;
 
 import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
+import com.skt.date.vo.ProfileVo;
 
 public interface TodayRepository {
 	
@@ -14,10 +20,10 @@ public interface TodayRepository {
 	public String currentTime();
 	
 	/**
-	 * 오늘 카드가 뽑혔는지 확인
+	 * 오늘 2장 카드가 뽑혔는지 확인
 	 * @return
 	 */
-	public List<MatchingVo> matchingPickToday();
+	public List<FromToVo> matchingPickToday();
 	
 	/**
 	 * 두장의 카드를 뽑는다.
@@ -27,21 +33,24 @@ public interface TodayRepository {
 	public List<MatchingVo> selectTwoCard(MatchingVo vo);
 	
 	/**
-	 * 뽑힌 두장의 카드를 뽑는다.
-	 * @param vo
-	 * @return
-	 */
-	public List<MatchingVo> selectTwoCardAlready();
-	
-	/**
 	 * 뽑힌 두장의 카드 넣는다.
 	 * @param vo
 	 */
 	public void insertTwoCardSelected( FromToVo vo );
 
 	/**
-	 * history에서 2장카드 가져오기
+	 * history에서 7일전 카드 가져오기
+	 * @param email
 	 * @return
 	 */
-	public List<FromToVo>matchingHistory();
+	public List<FromToVo>matchingHistory( String email );
+	
+	/**
+	 * 뽑힌 두장의 카드를 뽑는다.
+	 * @param email
+	 * @return
+	 */
+	public List<ProfileVo> selectTwoCardAlready( String email );
+	
+
 }

@@ -15,46 +15,41 @@
 
 	<!-- //////////////////////////////////////////////////
 	//
-	// 서버 시간 조회한다.
+	// 서버 시간 조회한다. 
 	//
 	////////////////////////////////////////////////// -->
 	<select id="matchingTimer" resultType="String">
 		/* com.skt.date.sql.matching.matchingTimer*/
-		SELECT		CURRENT_TIMESTAMP()		
-		FROM 		DUAL
+		SELECT
+			CURRENT_TIMESTAMP()		
+		FROM 
+			DUAL
 	</select>
 	
 	<!-- //////////////////////////////////////////////////
 	//
-	// 오늘 카드 날짜 조회
+	// 오늘 카드 날짜 조회 
 	//
 	////////////////////////////////////////////////// -->	
 	<select id="matchingPickToday" resultType="FromToVo">
 		/* com.skt.date.sql.matching.matchingPickToday*/
 		<![CDATA[
-			SELECT			`TO`				AS		`to`
-			FROM				T_MATCHING
-			WHERE			CREATE_DT		=		CURDATE()
+			SELECT
+				`FROM`			AS		`from`,
+				`TO`				AS		`to`,
+				SELECT_YN		AS		selectYN
+			FROM	
+				T_MATCHING
+			WHERE
+				CREATE_DT		=		CURDATE()
+			limit
+				2
 		]]>
 	</select>
-	
+
 	<!-- //////////////////////////////////////////////////
 	//
-	// 오늘 카드 날짜 조회
-	//
-	////////////////////////////////////////////////// -->	
-	<select id="matchingHistory" resultType="FromToVo">
-		/* com.skt.date.sql.matching.matchingHistory*/
-		<![CDATA[
-			SELECT				`TO`
-			FROM					T_MATCHING
-			limit					2
-		]]>
-	</select>
-	
-	<!-- //////////////////////////////////////////////////
-	//
-	// 유저를 조회한다.
+	// 유저를 조회한다. 
 	//		1. 나와 다른 신분
 	//		2. T_MATCHING 에서 전에 만났던 사람 제외
 	//
@@ -62,35 +57,70 @@
 	<select id="selectTwoCard" parameterType="MatchingVo" resultType="MatchingVo">
 		/* com.skt.date.sql.matching.selectTwoCard*/
 		<![CDATA[
-				SELECT 			EMAIL			AS				email
-								,	GENDER 			AS 			gender
-								,	NICKNAME		AS				nickname
-				FROM 			T_USER
-				WHERE			GENDER 			!=				#{ gender }
-				AND 				EMAIL 			NOT IN 	(	SELECT	 	`TO` 				AS			 otheremail
-																		FROM 		T_MATCHING
-																		WHERE 		`FROM`	 			=			#{ email }	)
-				limit 				2
+				SELECT 
+					EMAIL			AS				email	,
+					GENDER 			AS 			gender ,
+					NICKNAME		AS				nickname ,
+				FROM 			
+					T_USER
+				WHERE			
+					GENDER 			!=				#{ gender }
+				AND 				
+					EMAIL			NOT IN 	(	
+														SELECT	 	
+															`TO`		AS		 otheremail
+														FROM 		
+															T_MATCHING
+														WHERE 		
+															`FROM`	=		#{ email }	
+													)
+				limit
+					2
 		]]>
 	</select>
+	
+	<!-- //////////////////////////////////////////////////
+	//
+	// 7일간의 History를 조회해 온다. 
+	//
+	////////////////////////////////////////////////// -->	
+	<select id="matchingHistory" parameterType="String" resultType="FromToVo">
+		/* com.skt.date.sql.matching.matchingHistory*/
+		<![CDATA[
+			SELECT
+				T_MATCHING.`FROM` AS `from`,
+				T_MATCHING.`TO` AS `to`,
+				T_MATCHING.SELECT_YN AS selelctYN,
+				T_MATCHING.CREATE_DT AS createDT,
+				T_USER_ADDITIONAL.EMAIL AS eamil,
+				T_USER_ADDITIONAL.CLASSIFY AS classify,
+				T_USER_ADDITIONAL.DATA AS data
+			FROM
+				T_MATCHING
+			JOIN T_USER_ADDITIONAL
+			ON T_MATCHING.`TO` = T_USER_ADDITIONAL.EMAIL
+			WHERE
+				T_MATCHING.`FROM` = #{ email }
+			AND
+				T_MATCHING.CREATE_DT between adddate(now(),-7) and now()
+		]]>
+	</select>
+	
 
 	<!-- //////////////////////////////////////////////////
 	//
-	// 유저를 조회한다.
-	//		1. 나와 다른 신분
-	//		2. 위에 두개 뽑기
+	// 유저의 상세정보를 조회한다. 
 	//
 	////////////////////////////////////////////////// -->
-	<select id="matchingUserAlready" resultType="MatchingVo">
+	<select id="matchingUserAlready" parameterType="String" resultType="ProfileVo">
 		/* com.skt.date.sql.matching.matchingUserAlready*/
 		<![CDATA[
-				SELECT 			EMAIL			AS				email
-								,	GENDER 			AS 			gender
-								,	NICKNAME		AS				nickname
-				FROM 			T_USER
-				WHERE			EMAIL IN (	SELECT			`TO`		
-										FROM				T_MATCHING
-										WHERE			CREATE_DT		=		CURDATE()		)
+				SELECT
+					*
+				FROM 		
+					T_USER_ADDITIONAL
+				WHERE		
+					EMAIL = #{ email }
 		]]>
 	</select>
 	
@@ -104,20 +134,23 @@
 
 	<!-- //////////////////////////////////////////////////
 	//
-	// INSERT 만난 사람
+	// INSERT 뽑힌 2장의 카드를 넣는다. 
 	//
 	////////////////////////////////////////////////// -->
 	<insert id="insertMatchedCard" parameterType="FromToVo" >
 		/*	com.skt.date.sql.matching.insertMatchedCard*/
 		<![CDATA[
-			INSERT	INTO	T_MATCHING (
-			 						`FROM`
-			 					,	 `TO`
-			 					,	CREATE_DT 
-			)	VALUES	(
-			 						 #{ from }
-			 					,	 #{ to }
-			 					,	CURRENT_TIMESTAMP()
+			INSERT	INTO	
+				T_MATCHING (
+			 		`FROM`	,
+			 		`TO`	,
+			 		SELECT_YN	,
+			 		CREATE_DT
+				)	VALUES	(
+					#{ from }	,
+					#{ to }	,
+					#{ selectYN }	,
+					CURRENT_TIMESTAMP()
 			)
 		]]>
 	</insert>

@@ -1,5 +1,12 @@
+/**
+ * Today Controller
+ * 
+ * choong
+ */
+
 package com.skt.date.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +28,7 @@ import com.skt.date.service.TodayService;
 import com.skt.date.vo.FeelingVo;
 import com.skt.date.vo.FromToVo;
 import com.skt.date.vo.MatchingVo;
+import com.skt.date.vo.ProfileVo;
 import com.skt.date.vo.UserVo;
 
 
@@ -101,42 +109,35 @@ public class TodayController extends AbstractBaseController {
 			HttpServletRequest request,
 			HttpServletResponse response ) throws Exception {
 		
+		//서버시간 보내기
 		String currentTime = todayService.currentTime();
 		
 		//로그인 정보 가져오기
 		UserVo userInfo = this.getLoginInfo(request);
-		
-		//matchingVo 셋팅
+		//로그인 사람 정보 MatchingVO에 맞게 설정
 		MatchingVo matchingVo = new MatchingVo();
 		matchingVo.setEmail(userInfo.getEmail());
 		matchingVo.setGender(userInfo.getGender());
 		matchingVo.setNickname(userInfo.getNickname());
 		
-		//결과값
-		List<MatchingVo> result;	
-		//오늘 카드 확인
-		if( todayService.matchingPickToday().isEmpty() ){
-			//이메일로 정보 추출
-			List<MatchingVo> matchingCard = todayService.selectTwoCard(matchingVo);
-			//insert
-			FromToVo fromtoVo = new FromToVo();
-			for(int i=0; i<matchingCard.size(); i++){
-				fromtoVo.setFrom(userInfo.getEmail());
-				fromtoVo.setTo(matchingCard.get(i).getEmail());
-				todayService.insertTwoCardSelected(fromtoVo);
+		//매칭 카드 확인, 없으면 insert 2장 카드
+		List<FromToVo> matchingPickToday = todayService.matchingPickToday( matchingVo );
+		
+		//매칭 2장의 카드에 대해서도 조회 <1번, 2번>
+		List<ProfileVo>selectFirstCardAlready = todayService.selectTwoCardAlready(matchingPickToday.get(0).getTo());
+		List<ProfileVo>selectSecondCardAlready = todayService.selectTwoCardAlready(matchingPickToday.get(1).getTo());
+		
+		//카드 선택 확인 여부 --> shade처리
+		Boolean cardSelected = false;
+		for( int num=0; num<matchingPickToday.size(); num++){
+			if( matchingPickToday.get(num).getSelectYN().equals("Y") ){
+				cardSelected = true;
 			}
-			result = matchingCard;
-		} else {
-			result = todayService.selectTwoCardAlready();
 		}
 		
-		//History 카드 보여주기
-		List<FromToVo> matchingHistory = todayService.matchingHistory();
-		matchingHistory.get(0).getTo();
-		matchingHistory.get(1).getTo();
+		//7일간의 History 카드
+		List<FromToVo> matchingHistory = todayService.matchingHistory( userInfo.getEmail() );
 		
-		
-		System.out.println(matchingHistory);
 		//////////////////////////////////////////////////
 		//
 		// ModelAndView 반환
@@ -146,9 +147,16 @@ public class TodayController extends AbstractBaseController {
 		
 		//JSON
 		model.setViewName(Path.JSON);
-		model.addObject("result", result );
+		//서버 시간 보내기
 		model.addObject("currentTime", currentTime);
+		//화면 shade처리
+		model.addObject("cardSelected", cardSelected);
+		//7일간의 history
 		model.addObject("matchingHistory", matchingHistory);
+		//2장의 카드 조회 <1번, 2번>
+		model.addObject("selectFirstCardAlready", selectFirstCardAlready );
+		model.addObject("selectSecondCardAlready", selectSecondCardAlready );
+//		model.addObject("selectCardAlready", selectCardAlready );
 		
 		return model;
 	}
