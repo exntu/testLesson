@@ -269,6 +269,7 @@ public class TodayController extends AbstractBaseController {
 		
 		//feeling에 값 넣기
 		feelingVo.setFrom(userVo.getEmail());
+		feelingVo.setTo(feelingVo.getTo());
 
 		if( todayRatingService.matchingRate(feelingVo) == null ){
 			todayRatingService.insertMatchingRate(feelingVo);
