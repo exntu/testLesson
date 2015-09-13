@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.skt.date.repository.TodayRepository;
 import com.skt.date.vo.FromToVo;
+import com.skt.date.vo.MatchingAllVo;
 import com.skt.date.vo.MatchingVo;
 import com.skt.date.vo.ProfileVo;
 @Repository
@@ -80,12 +81,12 @@ public class TodayRepositoryImpl implements TodayRepository {
 	}
 	
 	/**
-	 * history에서 7일전 카드 가져오기 
+	 * history에서 7일전 email 카드 가져오기 
 	 * @param email
 	 * @return
 	 */
-	public List<FromToVo> matchingHistory( String email ){
-		List<FromToVo>result = sqlSession.selectList( "com.skt.date.sql.matching.matchingHistory", email );
+	public List<MatchingAllVo> matchingHistory( String email ){
+		List<MatchingAllVo> result = sqlSession.selectList( "com.skt.date.sql.matching.matchingHistory", email );
 		return result;
 	}
 	
@@ -94,12 +95,30 @@ public class TodayRepositoryImpl implements TodayRepository {
 	 * @param email
 	 * @return
 	 */
-	public List<ProfileVo> selectTwoCardAlready( String email ) {
-		List<ProfileVo> result = sqlSession.selectList( "com.skt.date.sql.matching.matchingUserAlready", email );
+	public List<FromToVo> selectTwoCardAlready( String email ) {
+		List<FromToVo> result = sqlSession.selectList( "com.skt.date.sql.matching.matchingUserAlready", email );
 		return result; 
 	}
 	
-
+	/**
+	 * History 카드 상세정보 조회
+	 * @param vo
+	 * @return
+	 */
+	public List<MatchingAllVo>matchingHistoryCard( FromToVo vo ){
+		List<MatchingAllVo>result = sqlSession.selectList("com.skt.date.sql.matching.matchingHistoryCard", vo);
+		return result;
+	}
+	
+	/**
+	 * history 카드 email 7일 상세 정보 최근순
+	 * @param email
+	 * @return
+	 */
+	public List<FromToVo>matchingHistoryEmail( String email ){
+		List<FromToVo>result = sqlSession.selectList("com.skt.date.sql.matching.matchingHistoryEmail", email );
+		return result;
+	}
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method

@@ -1,6 +1,8 @@
 package com.skt.date.repository;
 
-import com.skt.date.vo.MatchingVo;
+import java.util.List;
+
+import com.skt.date.vo.MatchingAllVo;
 
 public interface TodayDetailRepository {
 	
@@ -9,6 +11,7 @@ public interface TodayDetailRepository {
 	 * @param email
 	 * @return
 	 */
-	public MatchingVo matchingDetailCard(String email);
+	public List<MatchingAllVo> matchingDetailCard(String email);
+	
 	
 }

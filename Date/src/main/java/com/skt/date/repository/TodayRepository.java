@@ -8,6 +8,7 @@ package com.skt.date.repository;
 import java.util.List;
 
 import com.skt.date.vo.FromToVo;
+import com.skt.date.vo.MatchingAllVo;
 import com.skt.date.vo.MatchingVo;
 import com.skt.date.vo.ProfileVo;
 
@@ -39,18 +40,31 @@ public interface TodayRepository {
 	public void insertTwoCardSelected( FromToVo vo );
 
 	/**
-	 * history에서 7일전 카드 가져오기
+	 * history에서 7일전 email 카드 가져오기
 	 * @param email
 	 * @return
 	 */
-	public List<FromToVo>matchingHistory( String email );
+	public List<MatchingAllVo> matchingHistory( String email );
 	
 	/**
 	 * 뽑힌 두장의 카드를 뽑는다.
 	 * @param email
 	 * @return
 	 */
-	public List<ProfileVo> selectTwoCardAlready( String email );
+	public List<FromToVo> selectTwoCardAlready( String email );
 	
-
+	/**
+	 * history 상세 정보 가져오기
+	 * @param vo
+	 * @return
+	 */
+	public List<MatchingAllVo>matchingHistoryCard( FromToVo vo );
+	
+	/**
+	 * history Email 상세 정보 가져오기 (최근순)
+	 * @param vo
+	 * @return
+	 */
+	public List<FromToVo>matchingHistoryEmail( String email );
+	
 }

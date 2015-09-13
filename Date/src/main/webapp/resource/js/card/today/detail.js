@@ -18,7 +18,7 @@
 
 			})
 			// 컨트롤러
-			.controller('AppController', function($scope, $http) {
+			.controller('AppController', function($scope, $http, $location) {
 
 				// 값 보내기
 				$scope.matchingDetail = function() {
@@ -33,8 +33,31 @@
 					})
 					// 성공콜백
 					.success(function(data, status, headers, config) {
-						// data 넘어 온 값
-						$scope.matchingDetailCard = data.matchingDetailCard;
+				  		//////////////////////////////////////////////////
+			    		// data 넘어오는 값
+			    		//////////////////////////////////////////////////
+						var matchingDetailCard = data.matchingDetailCard;
+						
+						for( var num=0; num<matchingDetailCard .length; num++ ){
+							$scope.detailCard = matchingDetailCard [num];
+							if( matchingDetailCard [num].classify=="LAN" ){
+								$scope.detailLan = matchingDetailCard [num].data; 
+							}else if( matchingDetailCard [num].classify=="AGE" ){
+								var ageDetail = matchingDetailCard [num].data;
+								$scope.detailAge = ageDetail>50 ? "50대 이상" : ( ageDetail>40 ? "40대" : ( ageDetail>30 ? "30대" : ( ageDetail>20 ? "20대" : "20대 이하" )));
+							}else if( matchingDetailCard [num].classify=="SUB"){
+								$scope.detailAddress = matchingDetailCard [num].data;
+							}else if( matchingDetailCard [num].classify=="SUB_LOCAL" ){
+								$scope.detailAddressLocal = matchingDetailCard [num].data;
+							}else if( matchingDetailCard[num].gender =="M" ){
+								$scope.detailJob = "선생님";
+							}else if( matchingDetailCard[num].gender =="F" ){
+								$scope.detailJob = "학생";
+							}else{
+								$scope.detailNotDefine = "NONE";
+							}
+						}
+						
 					})
 					// 에러
 					.error(function(data, status, headers, config) {
@@ -70,10 +93,23 @@
 					}
 				};
 				
-				$scope.clickStar = function(){
-					//rating 실행
-					$scope.rateFunction();
+		  		//////////////////////////////////////////////////
+	    		// click function
+	    		//////////////////////////////////////////////////
+				$scope.clickbtn = function(){
+					alert('평가 함');
 				}
+				$scope.clickCoin = function(){
+					alert(' 결 제 결 제 !!!');
+				}
+				var url = $location.url();
+				$scope.clickChatting = function(){
+					location.href= url + '/tdate/message'
+				}
+				$scope.clickMessage = function(){
+					location.href= url + '/tdate/message'
+				}
+				
 			})//controller
 			
 			.directive( 'starRating',	function() {

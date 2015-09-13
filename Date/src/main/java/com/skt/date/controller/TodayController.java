@@ -27,8 +27,8 @@ import com.skt.date.service.TodayRatingService;
 import com.skt.date.service.TodayService;
 import com.skt.date.vo.FeelingVo;
 import com.skt.date.vo.FromToVo;
+import com.skt.date.vo.MatchingAllVo;
 import com.skt.date.vo.MatchingVo;
-import com.skt.date.vo.ProfileVo;
 import com.skt.date.vo.UserVo;
 
 
@@ -124,19 +124,39 @@ public class TodayController extends AbstractBaseController {
 		List<FromToVo> matchingPickToday = todayService.matchingPickToday( matchingVo );
 		
 		//매칭 2장의 카드에 대해서도 조회 <1번, 2번>
-		List<ProfileVo>selectFirstCardAlready = todayService.selectTwoCardAlready(matchingPickToday.get(0).getTo());
-		List<ProfileVo>selectSecondCardAlready = todayService.selectTwoCardAlready(matchingPickToday.get(1).getTo());
+		List<FromToVo>selectFirstCardAlready = todayService.selectTwoCardAlready(matchingPickToday.get(0).getTo());
+		List<FromToVo>selectSecondCardAlready = todayService.selectTwoCardAlready(matchingPickToday.get(1).getTo());
 		
-		//카드 선택 확인 여부 --> shade처리
-		Boolean cardSelected = false;
-		for( int num=0; num<matchingPickToday.size(); num++){
-			if( matchingPickToday.get(num).getSelectYN().equals("Y") ){
-				cardSelected = true;
-			}
-		}
+		Boolean firstCardShade = "Y".equals(selectFirstCardAlready.get(0).getSelectYN());
+		Boolean secondCardShade = "Y".equals(selectSecondCardAlready.get(0).getSelectYN());
 		
-		//7일간의 History 카드
-		List<FromToVo> matchingHistory = todayService.matchingHistory( userInfo.getEmail() );
+		//7일간의 History 카드 (최근 순서)
+		List<FromToVo> matchingHistory = todayService.matchingHistoryEmail( userInfo.getEmail() );
+		
+		//1번
+		FromToVo temp = new FromToVo();
+		
+		List<MatchingAllVo>matchingHistoryEmailFirst = new ArrayList<MatchingAllVo>();
+		temp.setFrom( userInfo.getEmail() );
+		temp.setTo( matchingHistory.get(0).getTo() );
+		matchingHistoryEmailFirst.addAll( todayService.matchingHistoryCard( temp ) );
+		
+		List<MatchingAllVo>matchingHistoryEmailSecond= new ArrayList<MatchingAllVo>();
+		temp.setFrom( userInfo.getEmail() );
+		temp.setTo( matchingHistory.get(1).getTo() );
+		matchingHistoryEmailSecond.addAll( todayService.matchingHistoryCard( temp ) );
+		
+		List<MatchingAllVo>matchingHistoryEmailThird= new ArrayList<MatchingAllVo>();
+		temp.setFrom( userInfo.getEmail() );
+		temp.setTo( matchingHistory.get(2).getTo() );
+		matchingHistoryEmailThird.addAll( todayService.matchingHistoryCard( temp ) );
+		
+		List<MatchingAllVo>matchingHistoryEmailForth= new ArrayList<MatchingAllVo>();
+		temp.setFrom( userInfo.getEmail() );
+		temp.setTo( matchingHistory.get(3).getTo() );
+		matchingHistoryEmailForth.addAll( todayService.matchingHistoryCard( temp ) );
+		
+		
 		
 		//////////////////////////////////////////////////
 		//
@@ -149,14 +169,19 @@ public class TodayController extends AbstractBaseController {
 		model.setViewName(Path.JSON);
 		//서버 시간 보내기
 		model.addObject("currentTime", currentTime);
-		//화면 shade처리
-		model.addObject("cardSelected", cardSelected);
-		//7일간의 history
-		model.addObject("matchingHistory", matchingHistory);
 		//2장의 카드 조회 <1번, 2번>
 		model.addObject("selectFirstCardAlready", selectFirstCardAlready );
 		model.addObject("selectSecondCardAlready", selectSecondCardAlready );
-//		model.addObject("selectCardAlready", selectCardAlready );
+		//카드 shade
+		model.addObject( "firstCardShade",firstCardShade );
+		model.addObject( "secondCardShade",secondCardShade );
+		//카드 history 상세정보
+		model.addObject( "matchingHistoryEmailFirst", matchingHistoryEmailFirst );
+		model.addObject( "matchingHistoryEmailSecond", matchingHistoryEmailSecond );
+		model.addObject( "matchingHistoryEmailThird", matchingHistoryEmailThird );
+		model.addObject( "matchingHistoryEmailForth", matchingHistoryEmailForth );
+		
+		
 		
 		return model;
 	}
@@ -201,10 +226,9 @@ public class TodayController extends AbstractBaseController {
 			HttpServletRequest request,
 			HttpServletResponse response,
 			@RequestParam String email ) throws Exception {
-
 		
 		//get으로 email값 가져와서 사용
-		MatchingVo matchingDetailCard = todayDetailService.matchingDetailCard(email);
+		List<MatchingAllVo> matchingDetailCard = todayDetailService.matchingDetailCard(email);
 		//feeling에 넣기
 		FeelingVo feelingVo = new FeelingVo();
 		//로그인 가져오기
@@ -224,7 +248,6 @@ public class TodayController extends AbstractBaseController {
 		//OBJECT
 		model.addObject( "matchingDetailCard", matchingDetailCard );
 		model.addObject( "feelingVo", feelingVo );
-		model.addObject( "test", "test" );
 		return model;
 	}
 	
@@ -261,8 +284,6 @@ public class TodayController extends AbstractBaseController {
 		ModelAndView model = new ModelAndView();
 		//JSON
 		model.setViewName(Path.JSON);
-		//OBJECT
-		model.addObject( "test", "test" );
 		return model;
 	}
 	

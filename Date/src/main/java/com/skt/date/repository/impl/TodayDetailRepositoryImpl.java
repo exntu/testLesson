@@ -1,11 +1,13 @@
 package com.skt.date.repository.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.skt.date.repository.TodayDetailRepository;
-import com.skt.date.vo.MatchingVo;
+import com.skt.date.vo.MatchingAllVo;
 @Repository
 public class TodayDetailRepositoryImpl implements TodayDetailRepository {
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -36,8 +38,8 @@ public class TodayDetailRepositoryImpl implements TodayDetailRepository {
 	/**
 	 * 선택된 카드 상세정보
 	 */
-	public MatchingVo matchingDetailCard(String email) {
-		MatchingVo result = (MatchingVo) sqlSession.selectOne("com.skt.date.sql.matchingDetail.matchingDetailEmail", email);
+	public List<MatchingAllVo>  matchingDetailCard(String email) {
+		List<MatchingAllVo>  result =  sqlSession.selectList("com.skt.date.sql.matchingDetail.matchingDetailEmail", email);
 		return result;
 	}
 	

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+\<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html ng-app="App">
 <head>
@@ -33,7 +33,7 @@
         -->
         <div class="sa-ui-today-contents sa-ui-today-close">
 <!--         	마감 -->
-        	<div	ng-show="shadePage()" class="sa-ui-close-wrap2">
+        	<div	ng-show="pageShade()" class="sa-ui-close-wrap2">
             	<em class="sa-icon-close-clock"></em>
                 <p class="sa-text-time"><span>{{ todayMonth }}월 {{ todayDay }}일의 Today’s Lesson 마감시간이 지났습니다.</span></p>
                 <span class="sa-text-ment">{{ todayMonth }}월 {{ todayDay + 1 }}일 PM 12:00에 또 다른 2인의 선생님이 소개됩니다.</span>
@@ -47,7 +47,7 @@
                         <!-- 
                             마감 class="sa-ui-profile-close" 추가 
                         -->
-                        <a	ng-class="{'sa-ui-profile-close': selectShadeLeft() }" 	ng-click="detailClick( firstCard.email )">
+                        <a	ng-class="{'sa-ui-profile-close': selectShadeLeft() }" 	ng-click="clickSelect( firstCard.email )">
                             <div class="sa-ui-profile">
                                 <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
                                 <span class="sa-data-nickname"><strong>{{ firstLan }}</strong> 선생님 </span>
@@ -76,7 +76,7 @@
                         <!-- 
                             마감 class="sa-ui-profile-close" 추가 
                         -->
-                        <a	ng-class="{'sa-ui-profile-close' : selectShadeRight() }" ng-click="detailClick( secondCard.email )">
+                        <a	ng-class="{'sa-ui-profile-close' : selectShadeRight() }" ng-click="clickSelect( secondCard.email )">
                             <div class="sa-ui-profile">
                                 <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
                                 <span class="sa-data-nickname"><strong>{{ secondLan }}</strong> 선생님</span>
@@ -120,22 +120,22 @@
             <ul class="sa-list-history">
             	<!-- history -->
             	<li>
-                	<div ng-click="detailClick" class="sa-ui-history-wrap">
-                        <p class="sa-data-date"><strong>{{ card.createdate }}</strong> 월 <span class="sa-data-daily"><strong>31</strong> 일</span></p>
+                	<div class="sa-ui-history-wrap">
+                        <p class="sa-data-date"><strong>{{ firstMonth }}</strong> 월 <span class="sa-data-daily"><strong>{{ firstDay}}</strong> 일</span></p>
                         <ul class="sa-list-profile-card">
                         	<!-- 프로필 -->
                             <li>
                                 <!-- 
                                     마감 class="sa-ui-profile-close" 추가 
                                 -->
-                            	<a ng-click="detailClick( card )" class="sa-ui-profile-close">
+                            	<a ng-click="clickHistorySelect( firstHistory.email )" ng-class="{ 'sa-ui-profile-close': firstHistoryShade() }">
                                     <div class="sa-ui-profile-card">
                                         <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                                        <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
+                                        <span class="sa-data-nickname"><strong>{{ firstHistoryLan }}</strong> {{ firstHistoryJob }}</span>
                                         <div class="sa-data-info">
-                                            <span class="sa-data">20대중반</span>
-                                            <span class="sa-data">경기 성남</span>
-                                            <span class="sa-data">영어{{firstHistory}}</span>
+                                            <span class="sa-data">{{ firstHistoryAge }}</span>
+                                            <span class="sa-data">{{ firstHistoryAddress }} {{ firstHistoryAddressLocal}}</span>
+                                            <span class="sa-data">{{ firstHistoryLan }}</span>
                                         </div>
                                         <!-- 마감 -->
                                         <div class="sa-ui-close-wrap">
@@ -149,14 +149,14 @@
                             
                           	<!-- 프로필 -->
                             <li>
-                            	<a ng-click="detailClick( second.History )">
+                            	<a ng-click="clickHistorySelect( secondHistory.email )" ng-class="{ 'sa-ui-profile-close': secondHistoryShade() }">
                                     <div class="sa-ui-profile-card">
                                         <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                                        <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
+                                        <span class="sa-data-nickname"><strong>{{ secondHistoryLan }}</strong> {{ secondHistoryJob }} </span>
                                         <div class="sa-data-info">
-                                            <span class="sa-data">20대중반</span>
-                                            <span class="sa-data">경기 성남</span>
-                                            <span class="sa-data">영어{{secondHistory}}</span>
+                                            <span class="sa-data">{{ secondHistoryAge }}</span>
+                                            <span class="sa-data">{{ secondHistoryAddress }}{{ secondHistoryAddressLocal }}</span>
+                                            <span class="sa-data">{{ secondHistoryLan }}</span>
                                         </div>
                                         <!-- 마감 -->
                                         <div class="sa-ui-close-wrap">
@@ -175,21 +175,21 @@
                 <!-- history -->
             	<li>
                 	<div class="sa-ui-history-wrap">
-                        <p class="sa-data-date"><strong>8</strong>월 <span class="sa-data-daily"><strong>31</strong>일</span></p>
+                        <p class="sa-data-date"><strong>{{ thirdMonth }}</strong>월 <span class="sa-data-daily"><strong>{{ thirdDay }}</strong>일</span></p>
                         <ul class="sa-list-profile-card">
                         	<!-- 프로필 -->
                             <li>
                                 <!-- 
                                     마감 class="sa-ui-profile-close" 추가 
                                 -->
-                            	<a ng-click="detailClick( first.History )" class="sa-ui-profile-close">
+                            	<a ng-click="clickHistorySelect( first.History )" ng-class="{ 'sa-ui-profile-close': thirdHistoryShade() }">
                                     <div class="sa-ui-profile-card">
                                         <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                                        <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
+                                        <span class="sa-data-nickname"><strong>{{ thirdHistoryLan }}</strong> {{ thirdHistoryJob }} </span>
                                         <div class="sa-data-info">
-                                            <span class="sa-data">20대중반</span>
-                                            <span class="sa-data">경기 성남</span>
-                                            <span class="sa-data">영어{{firstHistory}}</span>
+                                            <span class="sa-data">{{ thirdHistoryAge }}</span>
+                                            <span class="sa-data">{{ thirdHistoryAddress }}{{ thirdHistoryAddressLocal }}</span>
+                                            <span class="sa-data">{{ thirdHistoryLan }}</span>
                                         </div>
                                         <!-- 마감 -->
                                         <div class="sa-ui-close-wrap">
@@ -203,14 +203,14 @@
                             
                           	<!-- 프로필 -->
                             <li>
-                            	<a ng-click="detailClick( second.History )" >
+                            	<a ng-click="clickHistorySelect( second.History )" ng-class="{ 'sa-ui-profile-close': forthHistoryShade() }">
                                     <div class="sa-ui-profile-card">
                                         <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
-                                        <span class="sa-data-nickname"><strong>영어최강</strong> 선생님</span>
+                                        <span class="sa-data-nickname"><strong>{{ forthHistoryLan }}</strong> {{ forthHistoryJob }}</span>
                                         <div class="sa-data-info">
-                                            <span class="sa-data">20대중반</span>
-                                            <span class="sa-data">경기 성남</span>
-                                            <span class="sa-data">영어{{secondHistory}}</span>
+                                            <span class="sa-data">{{ forthHistoryAge }}</span>
+                                            <span class="sa-data">{{ forthHistoryAddress }} {{ forthHistoryAddressLocal }}</span>
+                                            <span class="sa-data">{{ forthHistoryLan }}</span>
                                         </div>
                                         <!-- 마감 -->
                                         <div class="sa-ui-close-wrap">

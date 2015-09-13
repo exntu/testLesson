@@ -8,6 +8,7 @@ package com.skt.date.service;
 import java.util.List;
 
 import com.skt.date.vo.FromToVo;
+import com.skt.date.vo.MatchingAllVo;
 import com.skt.date.vo.MatchingVo;
 import com.skt.date.vo.ProfileVo;
 
@@ -39,11 +40,11 @@ public interface TodayService {
 	public void insertTwoCardSelected( FromToVo fromtoVo );
 	
 	/**
-	 * history에서 7일전 카드 가져오기 
+	 * history에서 7일전  카드 가져오기 
 	 * @param email
 	 * @return
 	 */
-	public List<FromToVo>matchingHistory( String email );
+	public List<MatchingAllVo> matchingHistory( String email );
 	
 	
 	/**
@@ -51,6 +52,21 @@ public interface TodayService {
 	 * @param email
 	 * @return
 	 */
-	public List<ProfileVo> selectTwoCardAlready( String email );
+	public List<FromToVo> selectTwoCardAlready( String email );
+	
+	/**
+	 * history 카드 상세 정보
+	 * @param email
+	 * @return
+	 */
+	public List<MatchingAllVo>matchingHistoryCard( FromToVo vo );
+	
+	/**
+	 * history Email 7일 최근 순서
+	 * @param vo
+	 * @return
+	 */
+	public List<FromToVo>matchingHistoryEmail( String email );
+	
 
 }

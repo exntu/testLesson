@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.skt.date.repository.TodayRepository;
 import com.skt.date.service.TodayService;
 import com.skt.date.vo.FromToVo;
+import com.skt.date.vo.MatchingAllVo;
 import com.skt.date.vo.MatchingVo;
 import com.skt.date.vo.ProfileVo;
 
@@ -67,14 +68,15 @@ public class TodayServiceImpl implements TodayService {
 	public List<FromToVo> matchingPickToday( MatchingVo matchingVo ){
 		List<FromToVo> result = todayRepository.matchingPickToday();
 		//2장의 카드가 없을 경우 2장의 카드 조회
-		if( result.get(0).getTo() == null || result.size()==0 ){
+		if( result == null || result.isEmpty() || result.get(0).getTo() == null || result.size()==0 ){
 			//2장의 랜덤 카드 조회
-			List<MatchingVo>selectTwoCard = selectTwoCard(matchingVo);
+			List<MatchingVo>selectTwoCard = selectTwoCard( matchingVo );
 			//2장의 랜덤카드 insert하기
 			FromToVo fromtoVo = new FromToVo();
 			for(int num=0; num<selectTwoCard.size(); num++ ){
 				fromtoVo.setFrom(matchingVo.getEmail());
 				fromtoVo.setTo(selectTwoCard.get(num).getEmail());
+				fromtoVo.setSelectYN("N");
 				insertTwoCardSelected( fromtoVo );
 			}
 		}else{
@@ -104,12 +106,12 @@ public class TodayServiceImpl implements TodayService {
 	}
 
 	/**
-	 * 7일간의 history가져온다.
+	 * 7일간의 history를 email로 가져온다.
 	 * @param email
 	 * @return
 	 */
-	public List<FromToVo>matchingHistory( String email ){
-		List<FromToVo> result = todayRepository.matchingHistory( email );
+	public List<MatchingAllVo> matchingHistory( String email ){
+		List<MatchingAllVo> result = todayRepository.matchingHistory( email );
 		return result;
 	}
 	
@@ -118,8 +120,23 @@ public class TodayServiceImpl implements TodayService {
 	 * @param email
 	 * @return
 	 */
-	public List<ProfileVo> selectTwoCardAlready( String email ) {
-		List<ProfileVo> result = todayRepository.selectTwoCardAlready( email );
+	public List<FromToVo> selectTwoCardAlready( String email ) {
+		List<FromToVo> result = todayRepository.selectTwoCardAlready( email );
+		return result;
+	}
+	
+	/**
+	 * History카드 상세 정보 가져오기
+	 * @param email
+	 * @return
+	 */
+	public List<MatchingAllVo>matchingHistoryCard( FromToVo vo ){
+		List<MatchingAllVo>result = todayRepository.matchingHistoryCard( vo );
+		return result;
+	}
+	
+	public List<FromToVo>matchingHistoryEmail( String email ){
+		List<FromToVo>result = todayRepository.matchingHistoryEmail( email );
 		return result;
 	}
 

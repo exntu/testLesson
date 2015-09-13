@@ -52,20 +52,20 @@
     	<!-- title -->
     	<div class="sa-ui-top-title">
         	<a href="javascript:history.back()" class="sa-btn-back">목록으로</a>
-        	<span class="sa-data-name">{{matchingDetailCard.nickname}} 영문학도</span>' S&nbsp;&nbsp;&nbsp;&nbsp;P R O F I L E
+        	<span class="sa-data-name"> {{ detailCard.nickname }}</span>' S&nbsp;&nbsp;&nbsp;&nbsp;P R O F I L E
         </div>
     	<!-- //title -->
         
         <!-- 프로필 내용 -->
     	<div class="sa-wrap-top">
-        	<img src="${_resource}/images/img-@sample15.png" alt="이미지" />
+	        <img src="${_resource}/images/img-@sample15.png" alt="이미지" />
             <div class="sa-box-profile">
             	<div class="sa-ui-jobwrap">
-            		<span>{{matchingDetailCard.nickname}} 영문학도</span>
-                    <span class="sa-ui-job">학생</span>
+            		<span>{{ detailCard.nickname }}</span>
+                    <span class="sa-ui-job">{{ detailJob }}</span>
                 </div>
                 <ul class="sa-list-introduce">
-                	<li class="sa-ui-strong">30대 중반</li>
+                	<li class="sa-ui-strong">{{ detailAge }}</li>
                     <li>경기 성남</li>
                     <li>영어</li>
                 </ul>
@@ -74,7 +74,7 @@
                 -->
                 <ul class="sa-list-photo">
                 	<li>
-                    	<a href="#">
+                    	<a href="#" ng-click = "clickCoin()">
                         	<img src="${_resource}/images/img_photo1.png" alt="images1" />
                             <!-- 닫힘 -->
                             <div class="sa-ui-image-close">
@@ -84,7 +84,7 @@
                         </a>
                     </li>
                     <li class="sa-list-close">
-                        <a href="#">
+                        <a href="#" ng-click = "clickCoin()">
                         	<img src="${_resource}/images/img_photo2.png" alt="images1" />
                             <!-- 닫힘 -->
                             <div class="sa-ui-image-close">
@@ -94,7 +94,7 @@
                         </a>
                     </li>
                     <li class="sa-list-close">
-                    	<a href="#">
+                    	<a href="#" ng-click = "clickCoin()">
                             <img src="${_resource}/images/img_photo3.png" alt="images1" />
                             <!-- 닫힘 -->
                             <div class="sa-ui-image-close">
@@ -112,8 +112,8 @@
                 </div>
                 <!-- //평가 -->
                 <div class="sa-list-chat">
-                	<a class="sa-bg-chat" href="#"><p>Chatting</p></a>
-                   	<a class="sa-bg-message" href="#"><p>메시지 보내기</p></a>
+                	<a class="sa-bg-chat" ng-click = "clickChatting()" href="#"><p>Chatting</p></a>
+                   	<a class="sa-bg-message" ng-click = "clickMessage()" href="#"><p>메시지 보내기</p></a>
                 </div>
             </div>
         </div>
@@ -121,35 +121,35 @@
         <!-- 평가점수 -->
         <div class="sa-wrap-middle">
         	<p>평가점수</p>
-           	<span ng-click="clickStar( index )">
+           	<span>
     	       	<div ng-init="rating = star.rating + 1"></div>
 				<div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
 			</span>
-            <button type="button">평가하기</button>
+            <button type="button" ng-click="clickbtn()">평가하기</button>
         </div>
         <!-- //평가점수 -->
         
         <!-- 프로필 리스트 -->
         <div class="sa-wrap-bottom">
         	<div class="sa-list-profile">
-            	<span><strong>{{matchingDetailCard.nickname}} 영문학도</strong>'S Profile</span>
+            	<span><strong>{{ detailCard.nickname }}</strong>'S Profile</span>
                 <ul>
                 	<li>
                     	<span class="sa-ui-title">과목</span>
-                        <span>영어(영어회화,독해)</span>
+                        <span>{{ detailLan }}</span>
                     </li>
                     <li>
                     	<span class="sa-ui-title">지역</span>
-                        <span>경기 성남</span>
+                        <span>{{ detailAddress }}{{ detailAddressLocal }}</span>
                     </li>
                     <li>
                     	<span class="sa-ui-title">나이</span>
-                        <span>20대 중반</span>
+                        <span>{{ detailAge }}</span>
                     </li>
                 </ul>
             </div>
             <div class="sa-list-lesson">
-            	<span><strong>{{matchingDetailCard.nickname}} 영문학도</strong>'S lesson infomation</span>
+            	<span><strong>{{ detailCard.nickname }}</strong>'S lesson infomation</span>
                 <ul>
                 	<li>
                     	<span class="sa-ui-title">레슨희망일</span>
@@ -163,7 +163,7 @@
                     	<span class="sa-ui-title">레슨요청 키워드</span>
                         <span>
                             <span>회화위주</span>
-                            <span>20대 선생님</span>
+                            <span>{{ detailAge }} {{ detailJob }}</span>
                             <span>유학경험</span>
                         </span>
                     </li>

@@ -7,11 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.skt.date.repository.TodayDetailRepository;
-import com.skt.date.repository.TodayRepository;
 import com.skt.date.service.TodayDetailService;
-import com.skt.date.service.TodayService;
-import com.skt.date.vo.FromToVo;
-import com.skt.date.vo.MatchingVo;
+import com.skt.date.vo.MatchingAllVo;
 
 @Service
 public class TodayDetailServiceImpl implements TodayDetailService {
@@ -51,8 +48,8 @@ public class TodayDetailServiceImpl implements TodayDetailService {
 	/**
 	 * 이메일로 인하여 사용자 정보 조회
 	 */
-	public MatchingVo matchingDetailCard(String email) {
-		MatchingVo result = (MatchingVo) todayDetailRepository.matchingDetailCard(email);
+	public List<MatchingAllVo> matchingDetailCard(String email) {
+		List<MatchingAllVo> result = todayDetailRepository.matchingDetailCard(email);
 		return result;
 	}
 	
