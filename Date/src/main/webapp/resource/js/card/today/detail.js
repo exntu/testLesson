@@ -19,7 +19,9 @@
 			})
 			// 컨트롤러
 			.controller('AppController', function($scope, $http, $location) {
-
+				
+				_loading.show();
+				
 				// 값 보내기
 				$scope.matchingDetail = function() {
 					$http({
@@ -58,10 +60,13 @@
 							}
 						}
 						
+						_loading.hide();
+						
 					})
 					// 에러
 					.error(function(data, status, headers, config) {
 						_loading.hide();
+						alert("실패!");
 					});
 				};
 				// detail카드 실행
@@ -85,10 +90,12 @@
 						})
 						// 성공콜백
 						.success(function(data, status, headers, config) {
+							_loading.hide();
 						})
 						// 에러
 						.error(function(data, status, headers, config) {
 							_loading.hide();
+							alter("별 점 주기 실패");
 						});
 					}
 				};
@@ -96,12 +103,13 @@
 		  		//////////////////////////////////////////////////
 	    		// click function
 	    		//////////////////////////////////////////////////
-				$scope.clickbtn = function(){
-					alert('평가 함');
-				}
 				$scope.clickCoin = function(){
-					alert(' 결 제 결 제 !!!');
+					var confirm = window.confirm("결제 하겠습니까?");
+					if( confirm == true){
+						location.href= url + '/tdate/#'
+					}
 				}
+				
 				var url = $location.url();
 				$scope.clickChatting = function(){
 					location.href= url + '/tdate/message'
@@ -116,7 +124,7 @@
 					return {
 						restrict : 'A',
 						template : '<ul class="rating">'
-									+ '	<li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
+									+ '	<li ng-repeat="star in stars" ng-class="star" ng-click="rateBtn($index)">'
 									+ '\u2605' + '</li>' + '</ul>',
 						scope : {
 							ratingValue : '=',
@@ -131,6 +139,9 @@
 									filled : i < scope.ratingValue
 								});
 							}
+						};
+						scope.rateBtn = function(index){
+							scope.toggle(index);
 						};
 						scope.toggle = function(index) {
 							scope.ratingValue = index + 1;

@@ -6,6 +6,7 @@
 
 package com.skt.date.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -273,8 +274,54 @@ public class TodayController extends AbstractBaseController {
 
 		if( todayRatingService.matchingRate(feelingVo) == null ){
 			todayRatingService.insertMatchingRate(feelingVo);
+		}else{
+			todayRatingService.updateMatchingRate(feelingVo);
 		}
-			
+		
+		
+		//////////////////////////////////////////////////
+		//
+		// ModelAndView 반환
+		//
+		//////////////////////////////////////////////////
+		
+		ModelAndView model = new ModelAndView();
+		//JSON
+		model.setViewName(Path.JSON);
+		return model;
+	}
+	
+	/**
+	 * matching vote한거 설정
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping( value={Path.TODAY_CARD_VOTING_SERVICE}, method={RequestMethod.POST} )
+	public ModelAndView todayCardViewVoting(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestBody FromToVo fromToVo ) throws Exception {
+		
+		//로그인 가져오기
+		UserVo userVo = this.getLoginInfo(request);
+		
+		//matching에 값 넣기
+		fromToVo.setFrom( userVo.getEmail() );
+		fromToVo.setTo( fromToVo.getTo() );
+		
+		//Select에 대해 정보 가져오기
+		List<FromToVo>selectYN= todayService.matchingSelectYN( fromToVo );
+		
+		//update selectYN "Y"
+		for( int num=0; num<selectYN.size(); num++ ){
+			if( selectYN.get(num).getSelectYN().equals("N")){
+				//select Y 로 update
+				fromToVo.setSelectYN("Y");
+				todayService.updateMatchingCard(fromToVo);
+			}
+		}
 		
 		//////////////////////////////////////////////////
 		//

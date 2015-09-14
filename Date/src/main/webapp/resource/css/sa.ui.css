@@ -510,6 +510,30 @@ button.sa-btn {padding:11px 21px; border:1px solid #ac995e; background-color:#c7
 .sa-pop-select span {border-right:1px solid #ccc; font-size:14px; color:#999;}
 
 
+/**********************************************************************
+	평가
+*******************************************************************/
+ .rating{
+   color: #a9a9a9;
+   margin: 0;
+   padding: 0;
+ }
+ ul.rating {
+   display: inline-block;
+ }
+ .rating li {
+   list-style-type: none;
+   display: inline-block;
+   padding: 1px;
+   text-align: center;
+   font-weight: bold;
+   cursor: pointer;
+   font-size:31px;
+ }
+ .rating .filled {
+   color: #21568b;
+ }
+
 /****************************************************************
 	공통
 *****************************************************************/
@@ -577,8 +601,8 @@ button.sa-btn {padding:11px 21px; border:1px solid #ac995e; background-color:#c7
 *****************************************************************/
 .sa-layout-contents .sa-wrap-middle{width:830px; margin:30px auto 20px auto; padding-bottom:15px; border-bottom:1px solid #000; overflow:hidden;}
 .sa-layout-contents .sa-wrap-middle p {margin-left:30px; margin-top:5px; font-size:18px; font-weight:800; float:left; }
-.sa-layout-contents .sa-wrap-middle span {display:block; width:194px; height:32px; margin-left:250px; background:url(../images/icon-big-star.png) no-repeat 0 0; float:left;}
-.sa-layout-contents .sa-wrap-middle span em {display:inline-block; height:32px; background:url(../images/icon-big-star.png) no-repeat left bottom;}
+.sa-layout-contents .sa-wrap-middle span {display:block; width:194px; height:32px; margin-left:250px; float:left;}
+.sa-layout-contents .sa-wrap-middle span em {display:inline-block; height:32px;}
 .sa-layout-contents .sa-wrap-middle button {width:100px; height:30px; margin-right:70px; float:right; color:#fff; text-shadow:1px 1px #a8965e; border:1px solid #ac995e; background:#c7b270;}
 
 /****************************************************************

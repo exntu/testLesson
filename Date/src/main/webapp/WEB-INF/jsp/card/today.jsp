@@ -47,7 +47,8 @@
                         <!-- 
                             마감 class="sa-ui-profile-close" 추가 
                         -->
-                        <a	ng-class="{'sa-ui-profile-close': selectShadeLeft() }" 	ng-click="clickSelect( firstCard.email )">
+                        <a	ng-class="{'sa-ui-profile-close': selectShadeLeft() }" 
+                        	ng-click="clickSelect( firstCard.to )">
                             <div class="sa-ui-profile">
                                 <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
                                 <span class="sa-data-nickname"><strong>{{ firstLan }}</strong> 선생님 </span>
@@ -76,7 +77,8 @@
                         <!-- 
                             마감 class="sa-ui-profile-close" 추가 
                         -->
-                        <a	ng-class="{'sa-ui-profile-close' : selectShadeRight() }" ng-click="clickSelect( secondCard.email )">
+                        <a	ng-class="{'sa-ui-profile-close' : selectShadeRight() }" 
+                        	ng-click="clickSelect( secondCard.to )">
                             <div class="sa-ui-profile">
                                 <img src="${_resource}/images/@sample.jpg" alt="사진" class="sa-data-photo"/>
                                 <span class="sa-data-nickname"><strong>{{ secondLan }}</strong> 선생님</span>

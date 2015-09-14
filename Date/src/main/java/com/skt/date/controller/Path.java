@@ -67,6 +67,10 @@ public class Path {
 	//test : rate 보내기
 	public static final String TODAY_CARD_DETAIL_RATING = "/card/today/rating";
 	public static final String TODAY_CARD_DETAIL_RATING_SERVICE = SERVICE + "/card/today/rating";
+	//matching 된 카드 vote
+	public static final String TODAY_CARD_VOTING= "/card/today/voting";
+	public static final String TODAY_CARD_VOTING_SERVICE= SERVICE + "/card/today/voting";
+	
 	
 	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

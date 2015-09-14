@@ -16,5 +16,11 @@ public interface TodayRatingService {
 	 * @param vo
 	 */
 	public void insertMatchingRate( FeelingVo vo );
+	
+	/**
+	 * Matching에서 상대별이 있을때 다시 값을 넣었을때
+	 * @param vo
+	 */
+	public void updateMatchingRate( FeelingVo vo );
 
 }

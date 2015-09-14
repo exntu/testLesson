@@ -52,6 +52,14 @@ public class TodayRatingRepositoryImpl implements TodayRatingRepository {
 		sqlSession.insert( "com.skt.date.sql.matchingRating.insertMatchingRate", vo );
 	}
 	
+	/**
+	 * Matching에서 상대별이 있을때 다시 값을 넣었을때
+	 * @param vo
+	 */
+	public void updateMatchingRate( FeelingVo vo ){
+		sqlSession.update( "com.skt.date.sql.matchingRating.updateMatchingRate", vo );
+	}
+	
 	/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Public Method
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/

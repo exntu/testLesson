@@ -2,31 +2,6 @@
 <!DOCTYPE html>
 <html ng-app="App">
 <head>
-	<!-- 별에대한 CSS -->
-	<style type="text/css">
-		.rating{
-		  color: #a9a9a9;
-		  margin: 0;
-		  padding: 0;
-		}
-		ul.rating {
-		  display: inline-block;
-		  
-		}
-		.rating li {
-		  list-style-type: none;
-		  display: inline-block;
-		  padding: 1px;
-		  text-align: center;
-		  font-weight: bold;
-		  cursor: pointer;
-		}
-		.rating .filled {
-		  color: #21568b;
-		}
-	</style>
-
-
 	<title>오늘의 카드</title>
 
 	<%-- 공통 Variable & CSS & JS --%>
@@ -125,7 +100,7 @@
     	       	<div ng-init="rating = star.rating + 1"></div>
 				<div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
 			</span>
-            <button type="button" ng-click="clickbtn()">평가하기</button>
+            <button type="button">평가하기</button>
         </div>
         <!-- //평가점수 -->
         

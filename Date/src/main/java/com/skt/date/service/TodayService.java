@@ -68,5 +68,17 @@ public interface TodayService {
 	 */
 	public List<FromToVo>matchingHistoryEmail( String email );
 	
-
+	/**
+	 * 카드가 선택이 되었는지를 확인
+	 * @param vo
+	 * @return
+	 */
+	public List<FromToVo>matchingSelectYN( FromToVo vo);
+	
+	/**
+	 * 선택 될 경우 SelectYN Y 로 변경
+	 * @param vo
+	 */
+	public void updateMatchingCard( FromToVo vo );
+	
 }
